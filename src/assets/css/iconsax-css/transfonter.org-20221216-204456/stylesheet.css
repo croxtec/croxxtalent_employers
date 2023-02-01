@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'iconsax';
+    src: url('iconsax.eot');
+    src: url('iconsax.eot?#iefix') format('embedded-opentype'),
+        url('iconsax.woff') format('woff'),
+        url('iconsax.ttf') format('truetype'),
+        url('iconsax.svg#iconsax') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

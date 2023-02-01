@@ -1,0 +1,121 @@
+/* STYLING FOR TALENT HERO SECTION */
+.talent--hero_section {
+    height: 700px;
+    display: grid;
+    align-items:center ;
+    background: url('../img/about.svg') right center no-repeat, url('../img/hero-g-g.svg') center center no-repeat;
+}
+.pivot--text {
+    width: 57%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left--pivot {
+    width: 65%;
+}
+
+.right--pivot {
+    background: url('../img/badge.svg');
+    height: 150px;
+    width: 150px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
+}
+
+.right--pivot h5, .right--pivot h6 {
+    color: #fff;
+}
+.right--pivot h6 {
+    font-weight: 100;
+    font-size: 23px;
+}
+
+.right--pivot h5 {
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.right--pivot div {
+    text-align: center;
+    transform: rotate(-30deg);
+}
+
+.main--text {
+    font-size: 54px;
+    font-weight: 700;
+    margin-bottom: 15px !important;
+}
+
+.desc--text {
+    width: 60%;
+    font-weight: 300;
+}
+
+.talent--search {
+    width: 72%;
+}
+
+/* FEATURED JOBS  */
+.see--all span, .see--all i {
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+.featured--jobs {
+    padding: 4rem 0;
+    background-color: var(--gray-50);
+}
+
+.job--card {
+    border: 1px solid #D6DDEB;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.jobs--cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/* Subscibe to Newsletter */
+.subscribe-to-newsletter {
+    background-color: var(--primary-color);
+    padding: 5rem 0;
+}
+
+.subscribe-form {
+    background-color: #E6F2FF;
+    padding: 4rem;
+    border-radius: 20px;text-align: center;
+}
+
+.subscibe-input {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 0 auto;
+    background-color: #fff;
+    width: 60%;
+    border-radius: 30px;
+}
+
+.subscibe-input input {
+    width: 100%;
+    border: transparent;
+    padding: 0.5rem 2rem; 
+    border-radius: 30px;
+}
+
+.subscibe-input input::placeholder {
+    color: var(--gray-200);
+    font-weight: 300;
+}

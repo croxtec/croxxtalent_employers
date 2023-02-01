@@ -1,0 +1,322 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+*,
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--primary-font-family);
+    text-decoration: none !important;
+    list-style: none;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    color: var(--dark-color);
+}
+
+.font-weight-bold {
+    font-weight: 900 !important;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    /* width of the entire scrollbar */
+    /* height of the entire scrollbar */
+    height: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--main-color);
+    /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid var(--main-color);
+    /* creates padding around scroll thumb */
+}
+
+:root {
+    --primary-font-family: 'Poppins', sans-serif;
+    /* Main Colors  */
+    --primary-color: #0040a1;
+    --secondary-color: #00EC83;
+    --dark-color: #282929;
+
+    /* Cobalt Blue  */
+    --blue-100: #ebf3ff;
+    --blue-200: #d6e7ff;
+    --blue-300: #c2dbff;
+    --blue-400: #99c3ff;
+    --blue-500: #85bbff;
+
+     /* Green Shades  */
+     --green-100: #ebfff6;
+     --green-200: #d6ffed;
+     --green-300: #c2ffe4;
+     --green-400: #99ffd1;
+     --green-500: #70ffbf;
+   
+
+    /* Gray Shades  */
+    --gray-50: #f5f5f5;
+    --gray-100: #ebebeb;
+    --gray-200: #e0e0e0;
+    --gray-300: #c2c2c2;
+    --gray-400: #979b9b;
+    --gray-500: #646b6b;
+    --gray-600: #464949;
+    --gray-700: #3c3e3e;
+    --gray-800: #323434;
+    --gray-900: #282929;
+
+    /* Alerts/Extras/Accents  */
+    --error-color: #Ff6550;
+    --info-color: #Ffb836;
+    --success-color: #56cdad;
+     --blue-accent: #26a4ff;
+     --purple-accent: #7b61ff;
+    --spacer: 20px;
+    --curve: 10;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.app--loader {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.container-fluid {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+}
+
+body {
+    background-color: #fff;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.a,
+.b,
+.c,
+.d,
+.e,
+.A,
+.B,
+.C,
+.D,
+.E {
+    background-color: #FF0000 !important;
+    color: #fff;
+}
+
+.f,
+.g,
+.h,
+.i,
+.j,
+.J,
+.I,
+.H,
+.G,
+.F {
+    background-color: #FFB20F;
+}
+
+.K,
+.L,
+.M,
+.N,
+.O,
+.P,
+.m,
+.n,
+.o,
+.p,
+.k,
+.l {
+    background-color: #000;
+    color: #fff;
+}
+
+.q,
+.r,
+.s,
+.t,
+.u,
+.Q,
+.R,
+.S,
+.T,
+.U {
+    background-color: #01445f;
+    color: #fff;
+}
+
+.v,
+.w,
+.x,
+.y,
+.z,
+.V,
+.W,
+.X,
+.Y,
+.Z {
+    background-color: rgb(11, 100, 11);
+    color: #fff;
+}
+
+.primary--button {
+    background-color: var(--primary-color);
+    padding: 0.6rem 2rem;
+    color: #fff;
+    border-radius: 40px !important;
+    font-size: 13px !important;
+    border: none;
+    border:1px solid var(--primary-color);
+    font-weight: 600;
+}
+
+.primary--button_border {
+    border:1px solid var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-radius: 40px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+}
+
+button.inactive {
+    background-color: var(--inactive-color);
+    padding: 0.5rem 2rem;
+    color: #fff;
+    border-radius: 5px !important;
+    font-size: 13px !important;
+    border: none;
+    pointer-events: none;
+}
+
+.completed,
+.approved,
+.activated,
+.in-stock,
+.registered {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+    border-radius: 15px;
+}
+
+.delivered {
+    color: rgb(41, 87, 89);
+    background-color: rgba(0, 255, 255, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+    border-radius: 15px;
+}
+
+.canceled,
+.deactivated,
+.rejected,
+.banned,
+.out-of-stock,
+.not-registered {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+    border-radius: 15px;
+}
+
+.in-progress {
+    color: purple;
+    background-color: rgba(128, 0, 128, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+    border-radius: 15px;
+}
+
+.pending {
+    color: orange;
+    background-color: rgba(255, 166, 0, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+    border-radius: 15px;
+}
+
+.pending {
+    color: orange;
+    background-color: rgba(255, 166, 0, 0.175);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+}
+
+.table td,
+.table th {
+    border-top: none;
+    border-bottom: none;
+    font-size: 0.85rem;
+    vertical-align: middle;
+}
+
+.table td {
+    /* color: var(--main-color); */
+    border-bottom: 1px solid var(--gray-300);
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.table thead th {
+    /* border-bottom: none; */
+    color: var(--gray-500) !important;
+}
+
+.other--tables .table thead th {
+    border-bottom: 1px solid var(--gray-300);
+    color: var(--gray-700);
+    background-color: var(--gray-200);
+}
+
+.other--tables .table td {
+    color: var(--gray-800);
+}
+
+.add-item-content input,
+.add-item-content select {
+    font-size: 0.8rem;
+}

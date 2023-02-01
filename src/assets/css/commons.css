@@ -1,0 +1,119 @@
+/* STYLING FOR NAVIGATION AREA  */
+
+.navbar-transparent {
+    border-bottom: 1px solid #93B7E3;
+}
+.app--nav_items li a {
+    color: var(--dark-color);
+    font-weight: 500;
+    position: relative;
+    font-size: 0.8rem;
+}
+
+.app--header img {
+    height: 600px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.app--header .carousel-caption {
+    bottom: 30%;
+}
+
+.app--header .carousel-caption.right--side {
+    left: 60% !important;
+}
+
+.app--header .carousel-caption h1 {
+    color: var(--primary-color);
+    font-size: 2.6rem;
+    font-weight: 700;
+}
+.app--nav_items li a:after+.app--nav_items li a:hover {
+    content: "";
+    width: 80%;
+    height: 1px;
+    background-color: var(--dark-color);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.app--nav_items li .router-link-exact-active::after {
+    content: "";
+    width: 80%;
+    height: 2px;
+    background-color: var(--dark-color);
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+.app--nav_items li .router-link-exact-active::before {
+    content: "";
+    width: 80%;
+    height: 2px;
+    background-color: var(--dark-color);
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+.app--nav_items li a::after {
+    content: "";
+    width: 80%;
+    height: 2px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    transition: transform 0.2s;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.app--nav_items li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+/* Hero Search fieldset */
+.hero--search {
+    border-radius: 30px;
+    border: 0.5px solid #E0E0E0;
+    /* Shadow */
+    box-shadow: 0px 79px 128px rgba(192, 192, 192, 0.09), 0px 28.8363px 46.7221px rgba(192, 192, 192, 0.0598508), 0px 13.9995px 22.6827px rgba(192, 192, 192, 0.0475723), 0px 6.86281px 11.1195px rgba(192, 192, 192, 0.0380675), 0px 2.71357px 4.39666px rgba(192, 192, 192, 0.0270615);
+    border-radius: 60px;
+    display: flex;
+    gap:20px;
+    padding: 10px 12px;
+    background-color: #fff;
+    margin-top: 35px;
+}
+.line--field {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.line--input {
+    border: none;
+    border-bottom: 1px solid var(--blue-300);
+    width: 100%;
+    padding: 0.54em;
+    font-size: 0.8re;
+}
+
+.line--input::placeholder {
+    color: var(--gray-200);
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+/* header */
+.header--text {
+    font-weight: 600;
+}
