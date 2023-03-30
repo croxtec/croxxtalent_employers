@@ -1,0 +1,32 @@
+.auth-container {
+    background-color: var(--gray-100);
+    min-height: 100vh;
+    display: grid;
+    display: -moz-grid;
+    display: -ms-grid;
+    place-items: center;
+}
+
+.auth-content {
+    background-color: var(--white-50);
+    padding: 30px;
+    border-radius: 8px;
+    width: 35%;
+}
+
+.auth-content form label {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.auth-content form input::placeholder {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gray-500);
+}
+
+.auth-content form .input-field .form-icon {
+    color: var(--gray-500);
+    font-size: 20px;
+}
+

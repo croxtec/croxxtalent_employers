@@ -1,0 +1,85 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*,
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--primary-font-family);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    /* width of the entire scrollbar */
+    /* height of the entire scrollbar */
+    height: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--main-color);
+    /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid var(--main-color);
+    /* creates padding around scroll thumb */
+}
+
+:root {
+    /* Primary Font Type */
+    --primary-font-family: 'Poppins', sans-serif;
+
+    /* Primary Theme  */
+    --primary-50: #EBF3FF;
+    --primary-100:  #D6E7FF;
+    --primary-200: #C2DBFF;
+    --primary-300: #99C3FF;
+    --primary-400: #85B8FF;
+    --primary-500: #0040A1;
+
+     /* Gray Theme  */
+     --white: #FFFFFF;
+     --gray-50: #F5F5F5;
+     --gray-100: #EBEBEB;
+     --gray-200: #E0E0E0;
+     --gray-300: #C2C2C2;
+     --gray-400: #979B9B;
+     --gray-500: #646868;
+     --gray-600: #464949;
+     --gray-700: #3C3E3E;
+     --gray-800: #323434;
+     --gray-900: #282929;
+
+    /* Tertiary Theme  */
+    --tertiary-50: #EBFFF6;
+    --tertiary-100: #D6FFED;
+    --tertiary-200: #C2FFE4;
+    --tertiary-300: #99FFD1;
+    --tertiary-400: #70FFBF;
+    --tertiary-500: #00EC83;
+
+    /* Accents  */
+    --accent-warning: #FFB836;
+    --accent-success: #56CDAD;
+    --accent-danger:#FF6550 ;
+    --accent-info: #26A4FF ;
+    --accent-primary: #7B61FF;
+
+
+    /* Elevations  */
+    --elevation-10: 0px 2px 2px #D9D9D9;
+    --elevation-1: 0px 1px 2px rgba(64, 141, 251, 0.05), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --elevation-2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15) ;
+    --elevation-3:0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3) ;
+    --elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+    --elevation-5:0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3) ;
+
+    --spacer: 20px;
+    --curve: 10;
+}

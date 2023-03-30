@@ -1,0 +1,124 @@
+/* APP DRAWER  */
+#app-drawer {
+    width: 230px;
+    background-color: var(--primary-50);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    /* left: 0; */
+    overflow-y: auto;
+    transition: all 0.5s;
+}
+
+/* When Menu is collapsed */
+#app-drawer.collapsible {
+    width: 120px;
+    transition: all 0.5s;
+}
+
+#app-drawer.collapsible ul li .menu-item-link .menu-title {
+  display: none;
+    transition: all 0.5s;
+}
+
+#app-drawer.collapsible ul li .sub-menu .sub-menu-items .sub-menu-title {
+    display: none;
+      transition: all 0.5s;
+  }
+
+  #app-drawer.collapsible ul li .menu-item-link .menu-title-header {
+    font-size: 11px;
+  }
+
+  #app-drawer.collapsible ul li .menu-item-link, #app-drawer ul li .menu-icon {
+    padding: 1rem 1.3rem;
+}
+
+#app-drawer ul li .menu-item-link, #app-drawer ul li .menu-icon {
+    color: var(--white-50);
+    font-weight: 500;
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    gap: 10px;
+    font-size: 13px;
+    padding: 1rem 1.3rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#app-drawer ul li .menu-item-link.active-link {
+    background-color: var(--white-50);
+    color: var(--gray-800);
+}
+
+#app-drawer ul li .menu-item-link .menu-item-icon, #app-drawer ul li .sub-menu .sub-menu-items .menu-item-icon {
+    font-size: 14px;
+}
+
+#app-drawer.collapsible ul li .sub-menu .sub-menu-items {
+    padding: 1em 0 1em 1rem;
+}
+
+#app-drawer ul li .sub-menu .sub-menu-items {
+    color: var(--white-50);
+    display: block;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0 0 0 2.5rem;
+}
+
+
+#app-drawer ul li .sub-menu .sub-menu-items.active-sub-menu {
+   background-color: var(--primary-200);
+   color: var(--gray-800);
+}
+#app-drawer ul li .sub-menu  {
+    /* background-color: var(--primary-200); */
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* APP HEADER  */
+#app-header {
+    box-shadow: var(--elevation-10) ;
+    background: var(--white-50);
+}
+
+.app-header-content {
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 20px;
+}
+
+.user-name {
+    font-size: 15.6px;
+    font-weight: 400;
+}
+
+.user-menu-actions {
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-image {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    -o-object-fit: cover;
+    object-position: center;
+    -o-object-position: center;
+    border-radius: 50%;
+}

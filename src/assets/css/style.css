@@ -1,0 +1,17 @@
+/* Partials  */
+@import url("./partials.css");
+
+/* Main Styling */
+@import url('./main.css');
+
+/* Navigation Styles  */
+@import url('./nav.css');
+
+/* Compoenents  */
+@import url("./components.css");
+
+/* Auth CSS  */
+@import url("./auth.css");
+
+/* Media Query  */
+@import url("./media-query.css");

@@ -1,0 +1,18 @@
+@media (min-width: 1440px) {
+    .filter-container {
+        width: 290px;
+    }
+    .body-content #reports-header button {
+        display: none;
+    }
+    .body-content  {
+        margin-right: 290px;
+    }
+    .fliter-close {
+        display: none;
+    }
+    .body-content .filter-button {
+        display: none;
+    }
+    
+}
