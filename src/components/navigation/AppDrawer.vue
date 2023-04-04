@@ -9,7 +9,7 @@
           src="@/assets/img/drawer.svg"
           alt=""
         /> -->
-        <img class="menu-icon" src="@/assets/img/logo.png" width="200" alt="">
+        <img class="menu-icon mb-4" src="@/assets/img/logo.png" width="200" alt="">
       </li>
       <li v-for="item in menu" :key="item.id">
         <div class="menu-item">
@@ -19,7 +19,7 @@
             @click="item.hasChildren ? openSubMenu(item) : goToLink(item)"
             :class="{ 'active-link': item.parent === routeParent }"
           >
-            <div class="d-flex align-items-center" style="gap: 10px">
+            <div class="main-link d-flex align-items-center" style="gap: 10px">
               <i-icon
                 :icon="item.icon"
                 v-if="item.icon"
@@ -29,16 +29,17 @@
                 {{ item.title }}
               </span>
             </div>
-            <span v-if="item.hasChildren">
+            <!-- <span v-if="item.hasChildren">
               <i-icon
                 :icon="
                   subMenu === item.id ? 'prime:angle-down' : 'prime:angle-right'
                 "
                 width="30px"
               />
-            </span>
+            </span> -->
           </span>
-          <div class="sub-menu" v-if="subMenu === item.id">
+          <hr class="bg-white" v-if="item.lineAfter"/>
+          <!-- <div class="sub-menu" v-if="subMenu === item.id">
             <span
               role="button"
               class="sub-menu-items"
@@ -50,11 +51,11 @@
               <i-icon :icon="subMenu.icon" class="menu-item-icon" />
               <span class="sub-menu-title"> {{ subMenu.title }} </span>
             </span>
-          </div>
+          </div> -->
         </div>
       </li>
 
-      <!-- <hr class="bg-white" /> -->
+     
     </ul>
   </div>
 </template>

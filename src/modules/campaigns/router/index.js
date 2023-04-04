@@ -2,12 +2,13 @@ const Home = () => import("../views/indexView.vue")
 
 const routes = [
     {
-        path: "/",
+        path: "/campaigns",
         component: Home,
-        name: "index-page",
+        name: "campaigns",
         meta: {
             layout: 'DashboardLayout',
-            parent: "dashboard"
+            parent: "campaigns",
+            header: "Campaigns"
         }
     }
 ]

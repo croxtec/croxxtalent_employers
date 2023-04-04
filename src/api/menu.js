@@ -1,99 +1,101 @@
 const menu = [
   {
     id: 1,
-    title: "Menu Item",
-    icon: "ic:outline-dashboard",
+    title: "Dashboard",
+    icon: "solar:home-2-outline",
     url: "/",
     parent: "dashboard",
+    lineAfter: false
+  },
+
+  {
+    id: 2,
+    title: "Employees",
+    icon: "fluent-emoji-high-contrast:briefcase",
+    url: "/employees",
+    parent: "employees",
+    lineAfter: false
   },
 
   {
     id: 3,
-    title: "Menu-Sub Menu",
-    icon: "material-symbols:calendar-view-day-outline-rounded",
-    hasChildren: true,
-    parent: "event-logs",
-    children: [
-      {
-        id: 1,
-        title: "Sub Menu 1",
-        icon: "mdi:user-circle-outline",
-        url: "/user-logs",
-        parent: "event-logs",
-        subItem: "user-logs",
-      },
-      {
-        id: 2,
-        title: "Sub Menu 2",
-        icon: "ph:chalkboard-teacher",
-        url: "/trainer-logs",
-        parent: "event-logs",
-        subItem: "trainer-logs",
-      },
-      {
-        id: 3,
-        title: "Sub Menu 3",
-        icon: "tabler:affiliate",
-        url: "/affiliate-logs",
-        parent: "event-logs",
-        subItem: "affiliate-logs",
-      },
-    ],
+    title: "Competence",
+    icon: "ic:outline-dashboard",
+    url: "/competence",
+    parent: "competence",
+    lineAfter: false
+  },
+
+  {
+    id: 4,
+    title: "Manage Assessment",
+    icon: "solar:document-outline",
+    url: "/manage-accessment",
+    parent: "manage-accessment",
+    lineAfter: false
   },
 
   {
     id: 5,
-    title: "Menu-Sub Menu",
-    icon: "fluent:content-view-24-regular",
-    hasChildren: true,
-    parent: "management",
-    children: [
-      {
-        id: 1,
-        title: "Sub Menu 1",
-        icon: "mdi:user-circle-outline",
-        url: "/all-users",
-        subItem: "all-users",
-      },
-      {
-        id: 2,
-        title: "Sub Menu 2",
-        icon: "clarity:administrator-line",
-        url: "/all-admins",
-        subItem: "all-admins",
-      },
-      {
-        id: 3,
-        title: "Sub Menu 3",
-        icon: "ph:chalkboard-teacher",
-        url: "/trainer-activities",
-        subItem: "trainer-activities",
-      },
-      {
-        id: 4,
-        title: "Sub Menu 4",
-        icon: "ic:baseline-percentage",
-        url: "/website-percentage",
-        subItem: "website-percentage",
-      },
-    ],
+    title: "Campaigns",
+    icon: "ic:outline-dashboard",
+    url: "/campaigns",
+    parent: "campaigns",
+    lineAfter: false
   },
 
   {
     id: 6,
-    title: "Menu Item",
-    icon: "nimbus:stats",
-    url: "/reports-and-stats",
-    hasChildren: false,
-    parent: "reports-and-stats",
+    title: "Candidates",
+    icon: "fluent:people-28-regular",
+    url: "/candidates",
+    parent: "candidates",
+    lineAfter: false
   },
 
   {
     id: 7,
-    title: "Logout",
-    icon: "material-symbols:logout-rounded",
-    url: "/logout",
-    hasChildren: false,
+    title: "Find Talents",
+    icon: "icon-park-outline:people-search-one",
+    url: "/find-talents",
+    parent: "find-talents",
+    lineAfter: false
+  },
+
+  {
+    id: 8,
+    title: "Trainings",
+    icon: "mdi:file-document-multiple-outline",
+    url: "/trainings",
+    parent: "trainings",
+    lineAfter: true
+  },
+
+  {
+    id: 9,
+    title: "Settings",
+    icon: "solar:settings-outline",
+    url: "/settings",
+    parent: "settings",
+    lineAfter: false
+  },
+
+  {
+    id: 10,
+    title: "Subscriptions",
+    icon: "pixelarticons:subscriptions",
+    url: "/subscriptions",
+    parent: "subscriptions",
+    lineAfter: false
+  },
+
+  {
+    id: 11,
+    title: "Help Center",
+    icon: "material-symbols:settings-alert-outline",
+    url: "/help-center",
+    parent: "help-center",
+    lineAfter: false
   },
 ];
 

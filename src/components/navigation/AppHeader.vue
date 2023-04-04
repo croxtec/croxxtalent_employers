@@ -1,7 +1,7 @@
 <template>
   <div id="app-header" class="spacer sticky-top">
     <div class="app-header-content">
-     App Header
+     {{ header.header }}
     </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     ...mapState("auth", {
       user: (state) => state.user,
     }),
+    header(){
+      return this.$route.meta
+    }
   },
 };
 </script>

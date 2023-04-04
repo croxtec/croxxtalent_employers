@@ -83,3 +83,8 @@ html {
     --spacer: 20px;
     --curve: 10;
 }
+
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+}
