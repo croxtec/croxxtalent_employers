@@ -70,7 +70,7 @@ html {
     --accent-danger:#FF6550 ;
     --accent-info: #26A4FF ;
     --accent-primary: #7B61FF;
-
+    --muted-color: #7E7E7E;
 
     /* Elevations  */
     --elevation-10: 0px 2px 2px #D9D9D9;
@@ -87,4 +87,8 @@ html {
 body {
     max-width: 1440px;
     margin: 0 auto;
+}
+
+a:hover {
+    text-decoration: none;
 }

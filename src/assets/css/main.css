@@ -9,6 +9,89 @@
     transition: all 0.5s;
 }
 
-/* CAMPAIGNS  */
+/* DASHBOARD */
+/* Analytics  */
+.analytics {
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    gap: 20px;
+}
 
+.sidebar-card h6, .sidebar-card2 h6, #jobs-opened h1 {
+    font-weight: 600;
+  }
+  
+  .sidebar-card h1, .sidebar-card2 h1 {
+    font-weight: 600;
+  }
+  
+  .analytics .sidebar-card {
+    background: url('../img/icons/text.png');
+    background-size: 25% 47%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 100%;
+  }
+  
+  .analytics .sidebar-card2 {
+    background: url('../img/icons/user.png');
+    background-size: 25% 46%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 100%;
+  }
+
+  #analytics-data {
+    display: grid;
+    display: -ms-grid;
+    display: -moz-grid;
+    grid-template-columns: 1fr 30%;
+    gap: 20px;
+    grid-row: 1 / span 2;
+  }
+
+  #chartts {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+
+  .list-applicants {
+    display: grid;
+    display: -moz-grid;
+    display: -ms-grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  
+  .list-applicants h6 {
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--gray-400);
+  }
+
+  .list-applicants h6 .number {
+    color: var(--gray-900);
+    font-weight: 500;
+  }
+
+  .applicant-type {
+    display: flex;
+    display: inline-flex;
+    display: -webkit-flex;
+    gap: 3px;
+    align-items: center;
+  }
+
+/* CAMPAIGNS  */
+#create-campaign {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#create-campaign .form-content {
+    border: 1px solid var(--primary-200);
+    border-radius: 10px;
+}
 

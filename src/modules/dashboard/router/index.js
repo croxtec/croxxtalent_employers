@@ -7,7 +7,8 @@ const routes = [
         name: "index-page",
         meta: {
             layout: 'DashboardLayout',
-            parent: "dashboard"
+            parent: "dashboard",
+            header: "Dashboard"
         }
     }
 ]

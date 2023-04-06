@@ -1,10 +1,12 @@
 <template>
   <div id="campaigns" class="spacer">
     <div class="heaader d-flex justify-content-end">
-      <button class="button dark-btn d-flex align-items-center" style="gap:4px">
-        <span> <i-icon icon="ic:twotone-plus"/> </span>
+      <router-link to="/create-campaign">
+        <button class="button dark-btn d-flex align-items-center" style="gap:4px">
+        <span> <i-icon icon="ic:tswotone-plus"/> </span>
         <span>Add Campaign</span>
       </button>
+      </router-link>
     </div>
 
     <div class="table-data mt-3">

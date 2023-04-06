@@ -121,7 +121,7 @@
 /* APP HEADER  */
 #app-header {
     /* box-shadow: var(--elevation-10) ; */
-    background: var(--white-50);
+    background: var(--white);
 }
 
 .app-header-content {
