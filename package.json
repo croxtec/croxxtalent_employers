@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@iconify/vue2": "^2.1.0",
+    "apexcharts": "^3.37.3",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.13",
     "toastify-js": "^1.12.0",

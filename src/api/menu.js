@@ -28,10 +28,10 @@ const menu = [
 
   {
     id: 4,
-    title: "Manage Assessment",
+    title: "Assessment",
     icon: "solar:document-outline",
-    url: "/manage-accessment",
-    parent: "manage-accessment",
+    url: "/assessment",
+    parent: "assessment",
     lineAfter: false
   },
 

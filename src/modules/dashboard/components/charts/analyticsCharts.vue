@@ -30,6 +30,18 @@
         >
       </div>
        </div>
+       <hr>
+       <div>
+        <div class="actual-chart">
+            actual-chart
+        </div>
+        <div class="job-applied bordered">
+
+        </div>
+        <div class="job-views bordered">
+
+        </div>
+       </div>
     </div>
   </div>
 </template>
