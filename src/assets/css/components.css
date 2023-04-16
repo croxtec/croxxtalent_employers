@@ -176,7 +176,7 @@ label {
 }
 
 select,
-input {
+input, textarea {
     width: 100%;
     padding: 12px 14px;
     font-weight: 400;
@@ -187,7 +187,7 @@ input {
     font-size: 14px;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     font-weight: 400;
     font-size: 13px;
 }
@@ -636,4 +636,15 @@ ul {
     padding: 5px 5px;
     border-radius: 40px;
     width: max-content;
+  }
+
+  /* TEXT EDITOR  */
+  .ql-toolbar.ql-snow {
+    border: 1px solid var(--primary-200) !important;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .ql-toolbar.ql-snow+.ql-container.ql-snow {
+    border: 1px solid var(--primary-200) !important;
+    border-radius: 0 0 20px 20px;
   }

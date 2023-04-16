@@ -1,5 +1,6 @@
 /* Partials  */
 @import url("./partials.css");
+@import url("./tags.css");
 
 /* Main Styling */
 @import url('./main.css');

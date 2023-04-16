@@ -14,6 +14,10 @@ Vue.use(ElementUI);
 // import CountryFlag from "vue-country-flag";
 // Vue.component("country-flag", CountryFlag);
 
+import Vue2Editor from "vue2-editor";
+
+Vue.use(Vue2Editor);
+
 import "toastify-js/src/toastify.css";
 
 import { Icon } from "@iconify/vue2";
