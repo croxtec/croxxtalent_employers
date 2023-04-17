@@ -158,3 +158,9 @@
     -o-object-position: center;
     border-radius: 50%;
 }
+
+
+/* CREATE HEADER  */
+.create-header {
+    border-bottom: 1px solid var(--primary-200);
+}

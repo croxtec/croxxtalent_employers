@@ -3,7 +3,7 @@
     <div class="heaader d-flex justify-content-end">
       <router-link to="/create-campaign">
         <button class="button dark-btn d-flex align-items-center" style="gap:4px">
-        <span> <i-icon icon="ic:tswotone-plus"/> </span>
+        <span> <i-icon icon="material-symbols:add"/> </span>
         <span>Add Campaign</span>
       </button>
       </router-link>

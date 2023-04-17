@@ -228,3 +228,11 @@
   color: var(--primary-color);
 }
 
+#create-assessment .form-content {
+  border: 1px solid var(--primary-200);
+  border-radius: 10px;
+  width: 75%;
+  margin: 0 auto;
+}
+
+
