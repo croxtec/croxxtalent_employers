@@ -58,6 +58,9 @@ export default {
     PREV_ITEM(state) {
       state.activeItem--;
     },
+    SELECT_ACTIVE_ELEMENT(state, payload) {
+      state.activeItem = payload;
+    },
     SET_QUESTIONS_CONTAINER(state) {
       state.questionsContainer = true;
     },

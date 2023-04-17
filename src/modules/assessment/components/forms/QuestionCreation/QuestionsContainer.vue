@@ -3,7 +3,7 @@
     <QuestionsSideBar class="side-area"/>
     <div class="main-area">
       <QuestionsHeader/>
-      <QuestionsContent/>
+      <QuestionsContent class="mt-4"/>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
 
   #questions-container .side-area,  #questions-container .main-area {
     border: 1px solid var(--primary-200);
-   border-radius: 10px;
+   border-radius: 25px;
    padding: 25px;
   }
 </style>

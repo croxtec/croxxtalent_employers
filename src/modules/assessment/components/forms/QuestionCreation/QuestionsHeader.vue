@@ -1,10 +1,10 @@
 <template>
     <div>
       <div class="assessment-header">
-            <span role="button" class="assessment-item" v-for="item in questionsHeader" :key="item.id"
+            <span role="button" @click="selectActive(item.id)" class="assessment-item" v-for="item in questionsHeader" :key="item.id"
             :class="{'active-header': activeEl === item.id}">
                 <span>{{ item.title }}</span>
-                <span> <i-icon icon="mdi:tick-circle" width="18px"/> </span>
+                <span v-if="activeEl === item.id"> <i-icon icon="mdi:tick-circle" width="18px"/> </span>
             </span>
       </div>
     </div>
@@ -16,6 +16,11 @@
       data(){
           return {
           }
+      },
+      methods: {
+        selectActive(value) {
+            this.$store.commit("assessmentHeader/SELECT_ACTIVE_ELEMENT", value)
+        }
       },
       computed: {
           ...mapState('assessmentHeader', {
