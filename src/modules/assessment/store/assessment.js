@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 const getDefaultState = () => ({
-  activeEl: 1,
+  activeEl: 3,
   activeItem: 1,
   questionsContainer: false,
   assessmentHeaderMenu: [

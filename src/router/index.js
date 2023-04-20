@@ -1,22 +1,29 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 // Modules
-import DashboardRoutes from '@/modules/dashboard/router/index.js';
-import Campaigns from '@/modules/campaigns/router';
-import Assessment from '@/modules/assessment/router';
-import TalentFinder from '@/modules/talents/router';
+import DashboardRoutes from "@/modules/dashboard/router/index.js";
+import Campaigns from "@/modules/campaigns/router";
+import Assessment from "@/modules/assessment/router";
+import TalentFinder from "@/modules/talents/router";
+import JobCodes from "@/modules/job-codes/router";
+import Employees from "@/modules/employees/router";
 
 Vue.use(VueRouter);
 
-const routes = [
-
-];
+const routes = [];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes: routes.concat(DashboardRoutes, Campaigns, Assessment, TalentFinder),
+  routes: routes.concat(
+    DashboardRoutes,
+    Campaigns,
+    Assessment,
+    TalentFinder,
+    JobCodes,
+    Employees
+  ),
 });
 
 export default router;
