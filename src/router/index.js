@@ -8,6 +8,7 @@ import Assessment from "@/modules/assessment/router";
 import TalentFinder from "@/modules/talents/router";
 import JobCodes from "@/modules/job-codes/router";
 import Employees from "@/modules/employees/router";
+import Candidates from "@/modules/candidates/router"
 
 Vue.use(VueRouter);
 
@@ -22,7 +23,8 @@ const router = new VueRouter({
     Assessment,
     TalentFinder,
     JobCodes,
-    Employees
+    Employees,
+    Candidates
   ),
 });
 
