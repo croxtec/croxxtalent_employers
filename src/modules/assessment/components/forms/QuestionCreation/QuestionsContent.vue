@@ -1,8 +1,8 @@
 <template>
   <div>
     <questions-instructions v-if="activeEl === 1"/>
-    <multiple-choice v-if="activeEl === 2"/>
-    <single-choice v-if="activeEl === 3"/>
+    <single-choice v-if="activeEl === 2"/>
+    <multiple-choice v-if="activeEl === 3"/>
     <open-ended v-if="activeEl === 4"/>
   </div>
 </template>

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 const getDefaultState = () => ({
-  activeEl: 3,
+  activeEl: 1,
   activeItem: 1,
   questionsContainer: false,
   assessmentHeaderMenu: [
@@ -51,6 +51,9 @@ export default {
     },
     PREV_EL(state) {
       state.activeEl--;
+    },
+    SET_ACTIVE_EL(state, payload) {
+      state.activeEl = payload;
     },
     NEXT_ITEM(state) {
       state.activeItem++;

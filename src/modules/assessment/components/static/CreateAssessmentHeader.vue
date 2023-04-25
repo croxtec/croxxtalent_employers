@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="assessment-header">
-        <span role="button" v-for="item in assessmentHeaderMenu" :key="item.id"
+        <span role="button" v-for="item in assessmentHeaderMenu" :key="item.id" @click="selectHeader(item)"
         :class="{'active-header': activeEl === item.id}">{{ item.title }}</span>
     </div>
   </div>
@@ -12,6 +12,11 @@ import { mapState } from 'vuex'
 export default {
     data(){
         return {
+        }
+    },
+    methods: {
+        selectHeader(item) {
+            this.$store.commit("assessmentHeader/SET_ACTIVE_EL", item.id)
         }
     },
     computed: {
