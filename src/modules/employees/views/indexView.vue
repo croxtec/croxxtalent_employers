@@ -1,12 +1,12 @@
 <template>
   <div id="campaigns" class="spacer">
-    <div class="heaader d-flex justify-content-end">
-      <!-- <router-link to="/create-code">
-        <button class="button dark-btn d-flex align-items-center" style="gap:4px">
-        <span> <i-icon icon="material-symbols:add"/> </span>
-        <span>Add Job Code</span>
+    <div class="d-flex align-items-center justify-content-end" style="gap:20px">
+      <button class="button dark-btn d-flex align-items-center justify-content-center" style="gap:20px">
+        <span> <i-icon icon="solar:download-minimalistic-outline" /> </span><span>Download Template</span>
       </button>
-      </router-link> -->
+      <button class="button dark-btn d-flex align-items-center justify-content-center" style="gap:20px">
+        <span> <i-icon icon="solar:upload-minimalistic-outline" /> </span><span>Upload Employees</span>
+      </button>
     </div>
 
     <div class="table-data mt-3">

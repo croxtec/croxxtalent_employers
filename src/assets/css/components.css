@@ -10,7 +10,7 @@
 /* BUTTONS  */
 .button {
     border-radius: 35px;
-    padding: 12px 45px;
+    padding: 12px 25px;
     font-weight: 500;
     font-size: 13px;
     border: none;
@@ -307,15 +307,15 @@ option:disabled {
     display: grid;
     display: -ms-grid;
     display: -moz-grid;
-    gap: 30px;
+    gap: 20px;
 }
 
 .t-row .main-table {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
 }
 
 .t-row .table-details {
-    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
 }
 
 .t-body img {
