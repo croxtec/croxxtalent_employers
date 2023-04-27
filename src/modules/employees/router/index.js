@@ -1,5 +1,5 @@
 const Home = () => import("../views/indexView.vue")
-const CreateJobCode = () => import("../views/CreateNewCode.vue")
+const CreateEmployee = () => import("../views/AddEmployee.vue")
 
 
 const routes = [
@@ -10,18 +10,18 @@ const routes = [
         meta: {
             layout: 'DashboardLayout',
             parent: "employees",
-            header: "Job Codes"
+            header: "Employees"
         }
     },
 
     {
-        path: "/create-code",
-        component: CreateJobCode,
-        name: "create-code",
+        path: "/create-employee",
+        component: CreateEmployee,
+        name: "create-employee",
         meta: {
             layout: 'DashboardLayout',
-            parent: "job-codes",
-            header: "Create New Job Code"
+            parent: "employees",
+            header: "Create New Employee"
         }
     }
 ]

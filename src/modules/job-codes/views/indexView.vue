@@ -29,9 +29,19 @@
 
 <script>
 import DataTable from "../components/tables/DataTable.vue";
-
+import { mapActions } from "vuex"
 export default {
-  components: { DataTable }
+  components: { DataTable },
+  data(){
+    return {
+    }
+  },
+  methods: {
+    ...mapActions("job_codes", ["list"])
+  },
+  beforeMount(){
+    this.list()
+  }
 }
 </script>
 

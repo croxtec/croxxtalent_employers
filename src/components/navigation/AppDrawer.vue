@@ -1,5 +1,5 @@
 <template>
-  <div id="app-drawer" class="py-4" :class="{ collapsible: isCollapsed }">
+  <div id="app-drawer" class="py-4">
     <ul>
       <li>
         <!-- <img
@@ -62,7 +62,7 @@
 
 <script>
 import menu from "@/api/menu";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 export default {
   data: () => {
     return {
@@ -79,7 +79,7 @@ export default {
     },
 
     collapseAppDrawer() {
-      this.$store.dispatch("drawer/setCollapseState");
+      // this.$store.dispatch("drawer/setCollapseState");
     },
   },
   computed: {
@@ -89,9 +89,9 @@ export default {
     routeParent() {
       return this.$route.meta.parent;
     },
-    ...mapState("drawer", {
-      isCollapsed: (state) => state.collapsed,
-    }),
+    // ...mapState("drawer", {
+    //   isCollapsed: (state) => state.collapsed,
+    // }),
   },
 };
 </script>

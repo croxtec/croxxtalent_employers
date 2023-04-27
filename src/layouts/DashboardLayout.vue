@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-drawer />
-    <div id="main" :class="{ collapsible: isCollapsed }">
+    <div id="main">
       <app-header />
       <slot />
     </div>
@@ -16,9 +16,9 @@ export default {
   components: { AppHeader, AppDrawer },
   name: "DashboardLayout",
   computed: {
-    ...mapState("drawer", {
-      isCollapsed: (state) => state.collapsed,
-    }),
+    // ...mapState("drawer", {
+    //   isCollapsed: (state) => state.collapsed,
+    // }),
   },
 };
 </script>

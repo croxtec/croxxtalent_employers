@@ -1,5 +1,6 @@
 const Home = () => import("../views/IndexView.vue")
 const CreateAssessment = () => import("../views/CreateAssessment")
+const ManageAssessment = () => import("../views/_ID")
 
 
 const routes = [
@@ -13,6 +14,19 @@ const routes = [
             header: "Assessment"
         }
     },
+
+    {
+        path: "/manage-assessment",
+        component: ManageAssessment,
+        name: "manage-assessment",
+        meta: {
+            layout: 'DashboardLayout',
+            parent: "assessment",
+            header: "Surface Cementing (Lv1) - AssessmentAssessment"
+        }
+    },
+
+
     {
         path: "/create-assessment",
         component: CreateAssessment,

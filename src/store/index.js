@@ -2,13 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 // Modules
-import createPersistedState from "vuex-persistedstate";
-import auth from "@/modules/auth/store/index";
-import dashboard from "@/modules/dashboard/store/index";
+import employees from "@/modules/employees/store/index";
+import job_codes from "@/modules/job-codes/store/index"
 
-// Extras
-import drawer from "./drawer";
-import assessmentHeader from "@/modules/assessment/store/assessment";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
@@ -20,9 +17,8 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    assessmentHeader,
-    auth,
-    drawer,
-    dashboard,
+    employees,
+    job_codes
   },
 });
+

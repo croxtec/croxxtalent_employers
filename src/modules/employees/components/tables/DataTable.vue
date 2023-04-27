@@ -1,5 +1,20 @@
 <template>
-  <div class="t-info" id="campaigns-table">
+   <div class="d-flex flex-column" style="gap: 20px">
+    <div>
+      <!-- {{ results }} -->
+    </div>
+    <div v-if="loading">
+      <i-icon
+        icon="eos-icons:three-dots-loading"
+        style="color: var(--primary-500)"
+        width="60px"
+      />
+    </div>
+    <span class="error-alert" v-else-if="results.length === 0 && !loading">
+      No Data found
+    </span>
+    <div v-else>
+      <div class="t-info" id="campaigns-table">
     <div class="t-body d-flex" style="gap:20px">
       <div>
         <img
@@ -66,6 +81,9 @@
       </div>
     </div>
   </div>
+    </div>
+  </div>
+  
 </template>
 
 <script>
