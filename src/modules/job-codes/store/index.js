@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 import $request from "@/https/axios";
 
+import toastify from "toastify-js"
+
 const getDefaultState = () => {
   return {
     results: null,
@@ -55,6 +57,12 @@ export default {
       state.loading = false;
       state.validationErrors = payload;
     },
+    
+    REMOVE_ALERTS(state) {
+      state.error = false;
+      state.success = false;
+      state.validationErrors = {};
+    }
   },
   actions: {
     // List Employees
@@ -65,6 +73,7 @@ export default {
         let res = await $request.get(`employers/jobcode`);
         console.log(res);
         commit("SET_DATA", res.data);
+        
         // console.log(res.message);
         return res;
       } catch (error) {
@@ -86,10 +95,17 @@ export default {
       commit("SET_LOADING_STATUS");
       try {
         let res = await $request.post(`employers/jobcode`, payload);
+        toastify({
+          text: `Job code succesfully created`,
+          className: "info",
+          style: {
+            background: "green",
+            fontSize: "12px",
+            borderRadius: "5px",
+          },
+        }).showToast();
+        commit("SET_SUCCESS", true);
         dispatch("list");
-        // commit("SET_DATA", { res: res.message, result: "success" });
-        console.log(res.message);
-
         return res;
       } catch (error) {
         console.log(error.data);
