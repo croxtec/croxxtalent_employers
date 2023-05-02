@@ -11,11 +11,16 @@
         width="60px"
       />
     </div>
-    <span class="error-alert" v-else-if="results.length === 0 && !loading">
+    
+    <div v-else>
+      <span class="error-alert" v-if="error">
+      {{ error }}
+    </span>
+      <span class="error-alert" v-else-if="results.length === 0">
       No Data found
     </span>
-    <div v-else class="d-flex flex-column" style="gap: 20px">
-      <div class="t-info" id="campaigns-table" v-for="item in results" :key="item.id">
+      <div v-else class="d-flex flex-column" style="gap: 20px">
+        <div class="t-info" id="campaigns-table" v-for="item in results" :key="item.id">
         <div class="t-body">
           <div class="t-row">
             <div class="main-table">
@@ -42,6 +47,7 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,9 +66,11 @@ export default {
     ...mapState("job_codes", {
       results: (state) => state.results,
       loading: (state) => state.loading,
+      error: (state) => state.error
     }),
   },
 };
 </script>
 
 <style></style>
+ 

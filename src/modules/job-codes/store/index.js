@@ -78,6 +78,7 @@ export default {
         return res;
       } catch (error) {
         console.log(error.data);
+        commit('SET_ERROR', error.data.message)
         // commit("SET_DATA", {
         //   res: error.data.errors.email,
         //   result: "error",

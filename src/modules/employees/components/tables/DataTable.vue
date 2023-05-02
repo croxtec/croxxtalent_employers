@@ -11,15 +11,19 @@
         width="60px"
       />
     </div>
-    <span class="error-alert" v-else-if="results.length === 0 && !loading">
+    <div v-else>
+      <span class="error-alert" v-if="error">
+      {{ error }}
+    </span>
+      <span class="error-alert" v-else-if="results.length === 0">
       No Data found
     </span>
-    <div v-else  class="d-flex flex-column" style="gap: 20px">
-      <div class="t-info" id="campaigns-table">
+    <div v-else class="d-flex flex-column" style="gap: 20px">
+      <div class="t-info" id="campaigns-table" v-for="(item, index) in results" :key="index">
         <div class="t-body d-flex" style="gap: 20px">
           <div>
             <img
-              src="https://secretsourcemarketing.com/wp-content/uploads/2021/07/company-icon-02.png"
+              src="@/assets/img/no_avatar.webp"
               alt=""
             />
           </div>
@@ -27,22 +31,22 @@
             <div class="main-table">
               <div class="t-data">
                 <h6 class="cell-header">Name</h6>
-                <h6 class="cell-content">233</h6>
+                <h6 class="cell-content">{{ item.name }}</h6>
               </div>
 
               <div class="t-data">
                 <h6 class="cell-header">Email</h6>
-                <h6 class="cell-content">233</h6>
+                <h6 class="cell-content">{{ item.email }}</h6>
               </div>
 
               <div class="t-data">
                 <h6 class="cell-header">Phone Number</h6>
-                <h6 class="cell-content">24 July 2021</h6>
+                <h6 class="cell-content">{{ item.phone }}</h6>
               </div>
 
               <div class="t-data">
                 <h6 class="cell-header">Job Title</h6>
-                <h6 class="cell-content">233</h6>
+                <h6 class="cell-content">{{ item.job_code.job_title }}</h6>
               </div>
 
               <div
@@ -57,31 +61,18 @@
             <div class="table-details" v-if="details">
               <div class="t-data">
                 <h6 class="cell-header">Date of birth</h6>
-                <h6 class="cell-content">Energy</h6>
+                <h6 class="cell-content">{{ item.birth_date || 'No data' }}</h6>
               </div>
 
               <div class="t-data">
                 <h6 class="cell-header">Job Code</h6>
-                <h6 class="cell-content">5 Years</h6>
+                <h6 class="cell-content">{{ item.job_code.job_code }}</h6>
               </div>
-
-              <!-- <div class="t-data">
-            <h6 class="cell-header">Work Type</h6>
-            <h6 class="cell-content">Full Time</h6>
-          </div> -->
-
-              <!-- <div class="t-data">
-            <h6 class="cell-header">Salary Range</h6>
-            <h6 class="cell-content">$10,000 - $15,000</h6>
-          </div>
-
-          <div class="t-data">
-            <span class="status managed">Managed By Croxxtalent</span>
-          </div> -->
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -100,6 +91,7 @@ export default {
     ...mapState("employees", {
       results: (state) => state.results,
       loading: (state) => state.loading,
+      error: (state) => state.error
     }),
   },
 };

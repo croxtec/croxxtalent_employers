@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import $request from "@/https/axios";
-
+import Swal from 'sweetalert2'
 import toastify from "toastify-js"
 
 const getDefaultState = () => {
@@ -11,6 +11,7 @@ const getDefaultState = () => {
     success: null,
     error: null,
     validationErrors: {},
+    createEmployeeModal: false
   };
 };
 
@@ -58,6 +59,10 @@ export default {
       state.validationErrors = payload;
     },
 
+    SET_CREATE(state, payload) {
+      state.createEmployeeModal = payload
+    },
+
     REMOVE_ALERTS(state) {
       state.error = false;
       state.success = false;
@@ -73,11 +78,11 @@ export default {
         let res = await $request.get(`employers/employee`);
         console.log(res);
         commit("SET_DATA", res.data);
-        
         // console.log(res.message);
         return res;
       } catch (error) {
         console.log(error.data);
+        commit('SET_ERROR', error.data.message)
         // commit("SET_DATA", {
         //   res: error.data.errors.email,
         //   result: "error",
@@ -95,15 +100,21 @@ export default {
       commit("SET_LOADING_STATUS");
       try {
         let res = await $request.post(`employers/employee`, payload);
-        toastify({
-          text: `Employee succesfully created`,
-          className: "info",
-          style: {
-            background: "green",
-            fontSize: "12px",
-            borderRadius: "5px",
-          },
-        }).showToast();
+        // toastify({
+        //   text: `Employee succesfully created`,
+        //   className: "info",
+        //   style: {
+        //     background: "green",
+        //     fontSize: "12px",
+        //     borderRadius: "5px",
+        //   },
+        // }).showToast();
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Employee created successful',
+        })
+        commit("SET_CREATE", false)
         commit("SET_SUCCESS", true);
         dispatch("list");
         return res;
