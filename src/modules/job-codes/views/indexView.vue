@@ -1,12 +1,10 @@
 <template>
   <div id="campaigns" class="spacer">
     <div class="heaader d-flex justify-content-end">
-      <router-link to="/create-code">
-        <button class="button dark-btn d-flex align-items-center" style="gap:4px">
+        <button class="button dark-btn d-flex align-items-center" style="gap:4px" @click="createJobCode">
         <span> <i-icon icon="material-symbols:add"/> </span>
         <span>Add Job Code</span>
       </button>
-      </router-link>
     </div>
 
     <div class="table-data mt-3">
@@ -24,23 +22,41 @@
         <DataTable/>
       </div>
     </div>
+
+    <!-- Create Job Code -->
+    <div>
+      <create-job-code v-if="create_job_code"/>
+    </div>
   </div>
 </template>
 
 <script>
 import DataTable from "../components/tables/DataTable.vue";
-import { mapActions } from "vuex"
+import { mapActions, mapState } from "vuex"
+import CreateJobCode from '../components/modals/CreateJobCode.vue';
 export default {
-  components: { DataTable },
+  components: { DataTable, CreateJobCode },
   data(){
     return {
     }
   },
   methods: {
-    ...mapActions("job_codes", ["list"])
+    ...mapActions("job_codes", ["list"]),
+    createJobCode(){
+      this.$store.commit("job_codes/SET_CREATE", true)
+    },
+    closeModal() {
+      this.$store.commit("job_codes/SET_CREATE", false)
+    }
   },
-  beforeMount(){
-    this.list()
+  beforeMount() {
+    this.list();
+    this.$store.commit("job_codes/SET_CREATE", false)
+  },
+  computed: {
+    ...mapState("job_codes", {
+      create_job_code: (state) => state.createJobCodeModal
+    })
   }
 }
 </script>

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import $request from "@/https/axios";
-
-import toastify from "toastify-js"
+import Swal from 'sweetalert2'
+// import toastify from "toastify-js"
 
 const getDefaultState = () => {
   return {
@@ -11,6 +11,7 @@ const getDefaultState = () => {
     success: null,
     error: null,
     validationErrors: {},
+    createJobCodeModal: false
   };
 };
 
@@ -53,6 +54,10 @@ export default {
       state.loading = false;
     },
 
+    SET_CREATE(state, payload) {
+      state.createJobCodeModal = payload
+    },
+
     SET_VALIDATION_ERRORS(state, payload) {
       state.loading = false;
       state.validationErrors = payload;
@@ -73,7 +78,6 @@ export default {
         let res = await $request.get(`employers/jobcode`);
         console.log(res);
         commit("SET_DATA", res.data);
-        
         // console.log(res.message);
         return res;
       } catch (error) {
@@ -96,15 +100,12 @@ export default {
       commit("SET_LOADING_STATUS");
       try {
         let res = await $request.post(`employers/jobcode`, payload);
-        toastify({
-          text: `Job code succesfully created`,
-          className: "info",
-          style: {
-            background: "green",
-            fontSize: "12px",
-            borderRadius: "5px",
-          },
-        }).showToast();
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Job Code created successfully',
+        })
+        commit("SET_CREATE", false)
         commit("SET_SUCCESS", true);
         dispatch("list");
         return res;

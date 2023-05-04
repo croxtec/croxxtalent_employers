@@ -6,23 +6,23 @@ const menu = [
     url: "/",
     parent: "dashboard",
     lineAfter: false
-  },
-
+  }, 
+  
   {
     id: 2,
-    title: "Employees",
-    icon: "fluent-emoji-high-contrast:briefcase",
-    url: "/employees",
-    parent: "employees",
+    title: "Job Codes",
+    icon: "ic:outline-dashboard",
+    url: "/job-codes",
+    parent: "job-codes",
     lineAfter: false
   },
 
   {
     id: 3,
-    title: "Job Codes",
-    icon: "ic:outline-dashboard",
-    url: "/job-codes",
-    parent: "job-codes",
+    title: "Employees",
+    icon: "fluent-emoji-high-contrast:briefcase",
+    url: "/employees",
+    parent: "employees",
     lineAfter: false
   },
 

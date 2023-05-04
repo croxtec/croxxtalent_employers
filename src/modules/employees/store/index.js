@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import $request from "@/https/axios";
 import Swal from 'sweetalert2'
-import toastify from "toastify-js"
+// import toastify from "toastify-js"
 
 const getDefaultState = () => {
   return {
@@ -100,19 +100,10 @@ export default {
       commit("SET_LOADING_STATUS");
       try {
         let res = await $request.post(`employers/employee`, payload);
-        // toastify({
-        //   text: `Employee succesfully created`,
-        //   className: "info",
-        //   style: {
-        //     background: "green",
-        //     fontSize: "12px",
-        //     borderRadius: "5px",
-        //   },
-        // }).showToast();
         Swal.fire({
           icon: 'success',
           title: 'Successful',
-          text: 'Employee created successful',
+          text: 'Employee created successfully',
         })
         commit("SET_CREATE", false)
         commit("SET_SUCCESS", true);
