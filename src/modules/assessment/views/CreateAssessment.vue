@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import AssessmentDetails from '../components/forms/AssessmentDetails.vue';
 import AssignManager from '../components/forms/AssignManager.vue';
 import QuestionCreationHome from '../components/forms/QuestionCreation/QuestionCreationHome.vue';
@@ -26,10 +26,13 @@ import CreateAssessmentHeader from "../components/static/CreateAssessmentHeader.
 export default {
   components: { CreateAssessmentHeader, AssessmentDetails, AssignManager, QuestionCreationHome },
   methods: {
-    // ...mapActions("assessmentHeader", ["next", "prev"]),
+    ...mapActions("config", ["getSkills"]),
     goToNext() {
       this.$store.commit("assessmentHeader/NEXT_EL")
     },
+  },
+  beforeMount(){
+    this.getSkills()
   },
   computed: {
     ...mapState('assessmentHeader', {

@@ -18,7 +18,7 @@
 
     <div class="footer-data d-flex align-items-center" style="gap:20px">
       <button class="button primary-btn">Another Instruction</button>
-      <button class="button outline-btn" @click="next">Next</button>
+      <button class="button outline-btn">Next</button>
     </div>
   </div>
 </template>

@@ -4,6 +4,11 @@ import Vuex from "vuex";
 // Modules
 import employees from "@/modules/employees/store/index";
 import job_codes from "@/modules/job-codes/store/index"
+import middleware from "@/middleware/store"
+import assessmentHeader from "@/modules/assessment/store/assessment"
+
+// Configurations
+import config from "./configurations"
 
 import createPersistedState from "vuex-persistedstate";
 
@@ -17,8 +22,16 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
+    // Configuration
+    config,
+    
+    // Headers and Menus
+    assessmentHeader,
+
+    // Modules 
     employees,
-    job_codes
+    job_codes,
+    middleware
   },
 });
 

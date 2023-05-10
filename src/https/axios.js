@@ -15,8 +15,8 @@ const $axios = axios.create({
   },
 });
 // Add access token to header if any
-// const accessToken = Cookies.get(config.accessTokenStorageKey);
-const accessToken = "118|vd9f7PXg6jUUgNMkxiPzJOZSOoSNGARzXAuQhK3V";
+const accessToken = Cookies.get(config.accessTokenStorageKey);
+// const accessToken = "118|vd9f7PXg6jUUgNMkxiPzJOZSOoSNGARzXAuQhK3V";
 if (accessToken) {
   $axios.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
 } else {
@@ -30,8 +30,8 @@ if (accessToken) {
 $axios.interceptors.request.use(
   function (axiosConfig) {
     // Add access token to header before request is sent if any
-    // const accessToken = Cookies.get(config.accessTokenStorageKey);
-    const accessToken = "118|vd9f7PXg6jUUgNMkxiPzJOZSOoSNGARzXAuQhK3V";
+    const accessToken = Cookies.get(config.accessTokenStorageKey);
+    // const accessToken = "118|vd9f7PXg6jUUgNMkxiPzJOZSOoSNGARzXAuQhK3V";
     if (accessToken) {
       axiosConfig.headers.Authorization = "Bearer " + accessToken;
     } else {
