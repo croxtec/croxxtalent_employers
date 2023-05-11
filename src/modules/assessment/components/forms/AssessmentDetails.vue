@@ -42,26 +42,28 @@
           <input type="text" placeholder="Assessment Name">
         </div>
         <div class="w-100">
-          <label for="">Validity Period <span class="text-danger">*</span></label>
-          <select>
-            <option value="-" selected disabled>Select Validity Period</option>
-            <option value="1">1</option>
-          </select>
-        </div>
-      </div>
-      <div class="d-flex align-items-center" style="gap:20px">
-        <div class="w-100">
           <label for="">Categories <span class="text-danger">*</span></label>
           <select>
             <option value="-" selected disabled>Select Category</option>
             <option value="1" v-for="item in categories" :key="item.id">{{ item.name }}</option>
           </select>
         </div>
+       
+      </div>
+      <div class="d-flex align-items-center" style="gap:20px">
         <div class="w-100">
           <label for="">Delivery Type <span class="text-danger">*</span></label>
           <select>
             <option value="-" selected disabled>Select Delivery Type</option>
             <option value="1" v-for="item in delivery_type" :key="item.id">{{ item.name }}</option>
+          </select>
+        </div>
+        <div class="w-100">
+          <label for="">Validity Period <span class="text-danger">*</span></label>
+          <select>
+            <option value="-" selected disabled>Select Validity Period</option>
+            <option value="1">Valid (1 Year to 2 Years)</option>
+            <option value="1">Not Valid (1 Year to 2 Years)</option>
           </select>
         </div>
       </div>

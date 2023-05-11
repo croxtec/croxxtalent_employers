@@ -15,7 +15,7 @@ const getDefaultState = () => ({
     },
     {
       id: 3,
-      title: 'Assign Manager',
+      title: 'Configuration',
     },
   ],
   questionsHeader: [
