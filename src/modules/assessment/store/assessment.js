@@ -19,10 +19,10 @@ const getDefaultState = () => ({
     },
   ],
   questionsHeader: [
-    {
-      id: 1,
-      title: 'Introduction',
-    },
+    // {
+    //   id: 1,
+    //   title: 'Introduction',
+    // },
     {
       id: 2,
       title: 'Single choice',
@@ -34,6 +34,14 @@ const getDefaultState = () => ({
     {
       id: 4,
       title: 'Open ended',
+    },
+    {
+      id: 5,
+      title: 'File',
+    },
+    {
+      id: 6,
+      title: 'Link',
     },
   ],
 });

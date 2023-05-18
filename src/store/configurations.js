@@ -15,7 +15,9 @@ const getDefaultState = () => {
     job_titles: [],
     degrees: [],
     languages: [],
-    skills: [],
+    skills: null,
+    domains: [],
+    cores: null,
     delivery_type: [
       {
         id: 1,
@@ -56,24 +58,24 @@ const getDefaultState = () => {
     categories: [
       {
         id: 1, 
-        name: 'HSE',
-        value: 'hse'
+        name: 'Generic',
+        value: 'generic'
       },
       {
         id: 2, 
-        name: 'Assessment',
-        value: 'assessment'
-      },
-      {
-        id: 3, 
         name: 'Job Specific',
         value: 'job-specific'
       },
       {
+        id: 3, 
+        name: 'HSE',
+        value: 'hse'
+      },
+      {
         id: 4, 
-        name: 'General',
-        value: 'general'
-      }
+        name: 'Assessment',
+        value: 'assessment'
+      },
     ],
     levels: [
       {
@@ -121,6 +123,12 @@ export default {
     SET_DEGREES(state, payload) {
       state.degrees = payload;
     },
+    SET_DOMAINS(state, payload) {
+      state.domains = payload;
+    },
+    SET_CORES(state, payload) {
+      state.cores = payload;
+    },
     SET_SKILLS(state, payload) {
       state.skills = payload;
     },
@@ -137,9 +145,31 @@ export default {
       }
     },
 
-    async getSkills ({commit}) {
+    async getDomains ({commit}) {
       try {
         let response = await $request.get("settings/competence");
+        console.log(response.data.data);
+        let responsePayload = response.data.data;
+        commit("SET_DOMAINS", responsePayload);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getCore({commit}, domain) {
+      try {
+        let response = await $request.get(`settings/competence/core/${domain}`);
+        console.log(response.data.data);
+        let responsePayload = response.data.data.core;
+        commit("SET_CORES", responsePayload);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getSkills({commit}, core) {
+      try {
+        let response = await $request.get(`settings/competence/skill/${core}`);
         console.log(response.data.data);
         let responsePayload = response.data.data;
         commit("SET_SKILLS", responsePayload);
@@ -147,6 +177,8 @@ export default {
         console.log(error);
       }
     },
+
+   
 
     // get Countries
     async getCourses({ commit }) {

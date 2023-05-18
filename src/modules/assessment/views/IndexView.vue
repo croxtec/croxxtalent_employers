@@ -210,6 +210,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -227,10 +228,14 @@ export default {
     };
   },
   methods: {
+    ...mapActions('assessments', ['list']),
     handleChange(val) {
       console.log(val);
     },
   },
+  beforeMount(){
+    this.list()
+  }
 };
 </script>
 

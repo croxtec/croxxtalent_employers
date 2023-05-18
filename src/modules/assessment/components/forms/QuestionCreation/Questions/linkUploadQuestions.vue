@@ -1,7 +1,7 @@
 <template>
   <div class="question-item">
     <div class="headline">
-      <h6>This is a single choice Question</h6>
+      <h6>This is a question requiring link submission</h6>
     </div>
 
     <div class="main-header">
@@ -23,22 +23,6 @@
         placeholder="What is your question?"
         v-model="payload.question"
       />
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option1" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option3" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option4" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
     </div>
 
     <div class="footer-data d-flex align-items-center" style="gap: 20px">
@@ -54,12 +38,8 @@ export default {
   data() {
     return {
       payload: {
-        type: "radio",
+        type: "link",
         question: "",
-        option1: "",
-        option2: "",
-        option3: "",
-        option4: "",
       },
     };
   },

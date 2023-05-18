@@ -4,8 +4,13 @@ import Vuex from "vuex";
 // Modules
 import employees from "@/modules/employees/store/index";
 import job_codes from "@/modules/job-codes/store/index"
+import assessments from "@/modules/assessment/store/index";
+
 import middleware from "@/middleware/store"
+
+// Headers and Extras
 import assessmentHeader from "@/modules/assessment/store/assessment"
+import assessmentDetails from "@/modules/assessment/store/assessmentDetails";
 
 // Configurations
 import config from "./configurations"
@@ -27,10 +32,13 @@ export default new Vuex.Store({
     
     // Headers and Menus
     assessmentHeader,
+    assessmentDetails,
 
     // Modules 
     employees,
     job_codes,
+    assessments,
+
     middleware
   },
 });

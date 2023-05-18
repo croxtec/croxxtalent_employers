@@ -5,64 +5,100 @@
     </div>
 
     <div class="main-header">
-    <h6>Question 1</h6>
-  </div>
+      <h6>Question {{ questions.length + 1 }}</h6>
+    </div>
 
-  <div class="question">
-    <h6>What would like to ask? </h6>
-  </div>
+    <div class="question">
+      <h6>What would like to ask?</h6>
+    </div>
 
-  <div class="choices">
-    <input type="text" class="question-input">
-    <span class="d-flex align-items-center w-75" style="gap:10px">
-      <input type="text" class="answer-choice">
-      <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span>
-    </span>
-    <span class="d-flex align-items-center w-75" style="gap:10px">
-      <input type="text" class="answer-choice">
-      <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span>
-    </span>
-    <span class="d-flex align-items-center w-75" style="gap:10px">
-      <input type="text" class="answer-choice">
-      <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span>
-    </span>
-    <span class="d-flex align-items-center w-75" style="gap:10px">
-      <input type="text" class="answer-choice">
-     
-    </span>
-  </div>
+    <!-- <div>
+      {{ questions }}
+    </div> -->
 
-  <div class="footer-data d-flex align-items-center" style="gap:20px">
-    <button class="button primary-btn">Another Question</button>
-    <button class="button outline-btn">Next</button>
-  </div>
+    <div class="choices">
+      <input
+        type="text"
+        class="question-input"
+        placeholder="What is your question?"
+        v-model="payload.question"
+      />
+      <span class="d-flex align-items-center w-75" style="gap: 10px">
+        <input type="text" class="answer-choice" v-model="payload.option1" placeholder="Enter Option" />
+        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+      </span>
+      <span class="d-flex align-items-center w-75" style="gap: 10px">
+        <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
+        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+      </span>
+      <span class="d-flex align-items-center w-75" style="gap: 10px">
+        <input type="text" class="answer-choice" v-model="payload.option3" placeholder="Enter Option" />
+        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+      </span>
+      <span class="d-flex align-items-center w-75" style="gap: 10px">
+        <input type="text" class="answer-choice" v-model="payload.option4" placeholder="Enter Option" />
+        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+      </span>
+    </div>
+
+    <div class="footer-data d-flex align-items-center" style="gap: 20px">
+      <button class="button primary-btn" @click="addQuestion">Add Question</button>
+      <button class="button outline-btn" @click="next">Next</button>
+    </div>
   </div>
 </template>
 
 <script>
+// import { mapGetters } from "vuex";
 export default {
-
-}
+  data() {
+    return {
+      payload: {
+        type: "checkbox",
+        question: "",
+        option1: "",
+        option2: "",
+        option3: "",
+        option4: "",
+      },
+    };
+  },
+  methods: {
+    addQuestion(){
+      console.log(this.payload);
+      console.log(this.questions)
+      this.$store.commit('assessmentDetails/SET_QUESTIONS', this.payload)
+      this.payload = {}
+    },
+    next() {
+      this.$store.commit("assessmentHeader/NEXT_EL", 3);
+    },
+  },  
+  computed: {
+    questions(){
+      return this.$store.getters["assessmentDetails/getQuestions"]
+    }
+  },
+};
 </script>
 
 <style scoped>
-  .headline {
-    background: var(--tertiary-50) ;
-    display: flex;
-    display: inline-flex;
-    display: -webkit-flex;
-    height: 60px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    width: 100%;
-  }
-  .headline h6 {
-    font-weight: 400;
-    font-size: 14px;
-  }
+.headline {
+  background: var(--tertiary-50);
+  display: flex;
+  display: inline-flex;
+  display: -webkit-flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  width: 100%;
+}
+.headline h6 {
+  font-weight: 400;
+  font-size: 14px;
+}
 
-  
 .main-header h6 {
   color: var(--primary-500);
   font-weight: 600;
@@ -81,17 +117,17 @@ export default {
   gap: 15px;
   flex-direction: column;
 }
-.answer-choice, .question-input {
+.answer-choice,
+.question-input {
   border: 1px solid var(--primary-200);
   width: 100%;
-  border-radius: 15px;
+  border-radius: 18px;
   padding: 13px;
   margin: 0 auto;
 }
 
 .answer-choice {
   padding: 10px;
- 
 }
 
 .delete-response {
@@ -109,7 +145,7 @@ export default {
   display: inline-flex;
   display: -webkit-flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
 }
 </style>

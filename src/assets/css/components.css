@@ -311,11 +311,11 @@ option:disabled {
 }
 
 .t-row .main-table {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .t-row .table-details {
-    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .t-body img {
