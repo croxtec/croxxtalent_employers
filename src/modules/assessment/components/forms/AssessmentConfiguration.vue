@@ -3,13 +3,16 @@
     <div
       class="d-flex align-items-center"
       style="gap: 20px"
-      v-if="details.category === 'job-specific'"
+      v-if="details.category === 'job specific'"
     >
       <span class="label">Assign Job Title</span>
+      <!-- <div>
+        {{ job_codes }}
+      </div> -->
       <div class="w-100">
-        <select name="" id="" class="">
+        <select name="" id="" class="" v-model="job_code_id">
           <option value="" selected disable>Select job title</option>
-          <option value="" v-for="item in results" :key="item.id">
+          <option :value="item.id" v-for="item in job_codes" :key="item.id">
             {{ item.job_title }}
           </option>
         </select>

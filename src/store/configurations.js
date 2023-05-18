@@ -64,7 +64,7 @@ const getDefaultState = () => {
       {
         id: 2, 
         name: 'Job Specific',
-        value: 'job-specific'
+        value: 'job specific'
       },
       {
         id: 3, 
@@ -73,8 +73,8 @@ const getDefaultState = () => {
       },
       {
         id: 4, 
-        name: 'Assessment',
-        value: 'assessment'
+        name: 'Vetting',
+        value: 'vetting'
       },
     ],
     levels: [

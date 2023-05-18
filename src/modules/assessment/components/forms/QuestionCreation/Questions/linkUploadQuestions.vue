@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       payload: {
-        type: "link",
+        type: "reference",
         question: "",
       },
     };
