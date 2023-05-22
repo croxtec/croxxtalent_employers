@@ -631,8 +631,8 @@ ul {
   /* HEADER SELECTION */
   .competences-header-container span {
     color: var(--primary-500);
-    font-size: 15px;
-    padding: 10px 18px;
+    font-size: 13px;
+    padding: 7px 18px;
     border-radius: 25px;
     font-weight: 500;
   }

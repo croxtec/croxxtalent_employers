@@ -1,10 +1,7 @@
 <template>
     <div>
       <div>
-        <div class="search-area w-25 mb-2">
-            <i-icon icon="teenyicons:search-outline" class="search-icon"/>
-            <input type="search" placeholder="Search">
-          </div>
+        
       </div>
       <div v-if="loading">
         <span>Retrieving Data</span>
@@ -105,8 +102,8 @@
   th,
   td {
     /* width: 100%; */
-    border-bottom: 1px solid var(--primary-300);
-    border-top: 1px solid var(--primary-300);
+    border-bottom: 1px solid var(--primary-300) !important;
+    border-top: 1px solid var(--primary-300) !important;
     /* padding: 5px; */
     background: var(--accent-color);
     padding: 20px 25px;
