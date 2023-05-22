@@ -77,7 +77,7 @@ export default {
       try {
         let res = await $request.get(`/assesments`);
         console.log(res);
-        commit("SET_DATA", res.data);
+        commit("SET_DATA", res.data.data);
         // console.log(res.message);
         return res;
       } catch (error) {

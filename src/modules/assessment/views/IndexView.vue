@@ -15,8 +15,12 @@
       </div>
     </div>
     <div class="skills">
+      <!-- <div>
+        {{ results }}
+        {{ data}}
+      </div> -->
     <el-collapse v-model="activeNames" @change="handleChange">
-      <el-collapse-item title="Well Services" name="1">
+      <el-collapse-item v-for="item in results" :key="item" :title="item" name="1">
         <div class="skill-header">
           <span v-for="item in skillsArr" :key="item">{{ item }}</span>
         </div>
@@ -110,107 +114,14 @@
           </div>
         </div>
       </el-collapse-item>
-      <el-collapse-item title="Rig Operations" name="2">
-        <div class="skill-header">
-          <span v-for="item in skillsArr" :key="item">{{ item }}</span>
-        </div>
-        <div class="manager-data mt-3">
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-
-          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">Surface Cementing</h6>
-          </div>
-        </div>
-      </el-collapse-item>
+      
     </el-collapse>
   </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -235,6 +146,12 @@ export default {
   },
   beforeMount(){
     this.list()
+  },
+  computed:{
+    ...mapState("assessments", {
+      results: (state) => Object.keys(state.dataSet),
+      data: (state) => state.dataSet
+    })
   }
 };
 </script>
