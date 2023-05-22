@@ -11,42 +11,73 @@
         width="60px"
       />
     </div>
-    
+
     <div v-else>
       <span class="error-alert" v-if="error">
-      {{ error }}
-    </span>
+        {{ error }}
+      </span>
       <span class="error-alert" v-else-if="results.length === 0">
-      No Data found
-    </span>
+        No Data found
+      </span>
       <div v-else class="d-flex flex-column" style="gap: 20px">
-        <div class="t-info" id="campaigns-table" v-for="item in results" :key="item.id">
-        <div class="t-body">
-          <div class="t-row">
-            <div class="main-table">
-              <div class="t-data">
-                <h6 class="cell-header">Id</h6>
-                <h6 class="cell-content">{{ item.id }}</h6>
-              </div>
-
-              <div class="t-data">
-                <h6 class="cell-header">Job Title</h6>
-                <h6 class="cell-content">{{ item.job_title }}</h6>
-              </div>
-
-              <div class="t-data">
-                <h6 class="cell-header">Job Code</h6>
-                <h6 class="cell-content">{{ item.job_code }}</h6>
-              </div>
-
-              <div class="t-data">
-                <h6 class="cell-header">Job Description</h6>
-                <h6 class="cell-content">{{ sliceHash(item.description) }}</h6>
-              </div>
-            </div>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-centered table-nowrap">
+            <tr v-for="item in results" :key="item.id">
+              <td>
+                <div>
+                  <h6 class="cell-header">Id</h6>
+                  <h6 class="cell-content">{{ item.id }}</h6>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <h6 class="cell-header">Job Title</h6>
+                  <h6 class="cell-content">{{ item.job_title }}</h6>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <h6 class="cell-header">Job Code</h6>
+                  <h6 class="cell-content">{{ item.job_code }}</h6>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <h6 class="cell-header">Job Description</h6>
+                  <h6 class="cell-content">
+                    {{ sliceHash(item.description) }}
+                  </h6>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <h6 class="cell-header">Manager</h6>
+                  <h6 class="cell-content">{{ "No data" }}</h6>
+                </div>
+              </td>
+              <td>
+                <el-dropdown trigger="click">
+                  <span class="el-dropdown-link">
+                    <i-icon icon="icon-park-outline:more" width="20px" />
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item
+                      >Action 1</el-dropdown-item
+                    >
+                    <el-dropdown-item
+                      >Action 2</el-dropdown-item
+                    >
+                    <el-dropdown-item
+                      >Action 3</el-dropdown-item
+                    >
+                   
+                  </el-dropdown-menu>
+                </el-dropdown>
+                
+              </td>
+            </tr>
+          </table>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -59,18 +90,63 @@ export default {
   data() {
     return {
       details: false,
-      sliceHash
+      sliceHash,
     };
   },
   computed: {
     ...mapState("job_codes", {
       results: (state) => state.results,
       loading: (state) => state.loading,
-      error: (state) => state.error
+      error: (state) => state.error,
     }),
   },
 };
 </script>
 
-<style></style>
- 
+<style scoped>
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  width: 100%;
+}
+th {
+  background-color: var(--primary-500) !important;
+  color: white;
+}
+th,
+td {
+  /* width: 100%; */
+  border-bottom: 1px solid var(--primary-300);
+  border-top: 1px solid var(--primary-300);
+  /* padding: 5px; */
+  background: var(--accent-color);
+  padding: 20px 25px;
+  font-size: 0.8rem;
+}
+
+td div {
+  display: flex;
+  display: inline-flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+th:nth-child(1) {
+  border-radius: 25px 0 0 25px;
+}
+
+th:last-child {
+  border-radius: 0 25px 25px 0;
+}
+
+td:nth-child(1) {
+  border-radius: 25px 0 0 25px;
+  border-left: 1px solid var(--primary-300);
+}
+
+td:last-child {
+  border-radius: 0 25px 25px 0;
+  border-right: 1px solid var(--primary-300);
+}
+</style>

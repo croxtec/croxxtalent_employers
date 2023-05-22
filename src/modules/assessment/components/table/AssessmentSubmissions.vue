@@ -1,119 +1,142 @@
 <template>
-  <!-- <div class="t-info" id="campaigns-table">
-      <div class="t-body d-flex " style="gap:20px">
-        <div>
-          <img
-            src="https://secretsourcemarketing.com/wp-content/uploads/2021/07/company-icon-02.png"
-            alt=""
-          />
+  <div>
+    <div>
+      <div class="search-area w-25 mb-2">
+          <i-icon icon="teenyicons:search-outline" class="search-icon"/>
+          <input type="search" placeholder="Search">
         </div>
-        <div class="t-row">
-          <div class="main-table">
-            <div class="t-data">
-              <h6 class="cell-header">Wellhead Engineer</h6>
-              <h6 class="cell-content d-flex align-items-center" style="gap: 5px">
-                <span>Schlumberger</span>
-                <i-icon icon="material-symbols:circle" width="5px" />
-                <span>UAE</span>
-                <i-icon icon="material-symbols:circle" width="5px" />
-                <span>Full Time</span>
-              </h6>
-            </div>
-  
-            <div class="t-data">
-              <h6 class="cell-header">No. of Applicants</h6>
-              <h6 class="cell-content">233</h6>
-            </div>
-  
-            <div class="t-data">
-              <h6 class="cell-header">Date Created</h6>
-              <h6 class="cell-content">24 July 2021</h6>
-            </div>
-  
-            <div class="t-data">
-              <span class="status pending">In Review</span>
-            </div>
-  
-            <div class="t-data d-flex align-items-center justify-content-center" role="button" @click="details = !details">
-              <i-icon icon="ion:ellipsis-horizontal-outline" />
-            </div>
-          </div>
-  
+    </div>
+    <div v-if="loading">
+      <span>Retrieving Data</span>
+      <i-icon
+        icon="eos-icons:three-dots-loading"
+        style="color: var(--primary-500)"
+        width="60px"
+      />
+    </div>
+
+    <div v-else>
+      <span class="error-alert" v-if="error">
+        {{ error }}
+      </span>
+      <span class="error-alert" v-else-if="results.length === 0">
+        No Data found
+      </span>
+      <div v-else class="d-flex flex-column" style="gap: 20px">
+        <div class="table-responsive">
+          <table class="table table-centered table-nowrap">
+            <tr v-for="item in results" :key="item.id">
+              <td>
+                <div class="d-flex align-items-center" style="gap: 15px">
+                  <img src="https://menofvalue.com/wp-content/uploads/2015/04/bigstock-Skeptical-74315989-e1438791711725.jpg" alt="" style="" />
+                  <div class="td">
+                    <h6 class="cell-content">Stanley Joshua</h6>
+                    <h6 class="cell-header">
+                      Rain Oil
+                      <span> <i-icon icon="ph:dot" /> </span>
+                      Warri, Rivers
+                      <span> <i-icon icon="ph:dot" /> </span>
+                      Full Time
+                    </h6>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="td">
+                  <h6 class="cell-content">Date</h6>
+                  <h6 class="cell-header">Mon, 12/02/ 2023</h6>
+                </div>
+              </td>
+              <td class="text-right">
+                <button
+                  class="button primary-btn py-2"
+                  style="width: max-content"
+                >
+                  Mark Test
+                </button>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
-    </div> -->
-  <div>
-    <div class="table-responsive">
-      <table class="table table-centered table-nowrap mb-0">
-        <tbody>
-          <tr>
-            <td>Hello</td>
-            <td>Hu</td>
-            <td>Who</td>
-            <td>Is</td>
-            <td>this</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
 
 <script>
+import { sliceHash } from "@/filter";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       details: false,
+      sliceHash,
     };
+  },
+  computed: {
+    ...mapState("job_codes", {
+      results: (state) => state.results,
+      loading: (state) => state.loading,
+      error: (state) => state.error,
+    }),
   },
 };
 </script>
 
 <style scoped>
-.table td,
-.table th,
-.table thead th {
-  border-top: transparent;
-  vertical-align: middle;
-}
 table {
   border-collapse: separate;
   border-spacing: 0 15px;
   width: 100%;
 }
 th {
+  background-color: var(--primary-500) !important;
   color: white;
 }
-th {
-  /* width: 100%; */
-  border: 1px solid var(--primary-200);
-  /* padding: 5px; */
-  background: var(--primary-500);
-  font-size: 0.8rem;
-  text-align: center;
-}
+th,
 td {
   /* width: 100%; */
-  border: none;
+  border-bottom: 1px solid var(--primary-300);
+  border-top: 1px solid var(--primary-300);
   /* padding: 5px; */
-  background: var(--white);
-  padding: 1rem;
+  background: var(--accent-color);
+  padding: 20px 25px;
   font-size: 0.8rem;
-  text-align: center;
 }
+
+td .td {
+  display: flex;
+  display: inline-flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  -o-object-fit: cover;
+  object-position: top;
+  -o-object-position: top;
+  border-radius: 50%;
+}
+
 th:nth-child(1) {
-  border-radius: 20px 0 0 20px;
+  border-radius: 25px 0 0 25px;
 }
+
 th:last-child {
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 25px 25px 0;
 }
+
 td:nth-child(1) {
-  border-radius: 20px 0 0 20px;
+  border-radius: 25px 0 0 25px;
+  border-left: 1px solid var(--primary-300);
 }
+
 td:last-child {
-  border-radius: 0 20px 20px 0;
-}
-.table thead th {
-  border-bottom: none;
+  border-radius: 0 25px 25px 0;
+  border-right: 1px solid var(--primary-300);
 }
 </style>

@@ -21,7 +21,7 @@
           <span v-for="item in skillsArr" :key="item">{{ item }}</span>
         </div>
         <div class="manager-data mt-3">
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -32,7 +32,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -43,7 +43,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -54,7 +54,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -65,7 +65,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -76,7 +76,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -87,7 +87,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -98,7 +98,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -115,7 +115,7 @@
           <span v-for="item in skillsArr" :key="item">{{ item }}</span>
         </div>
         <div class="manager-data mt-3">
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -126,7 +126,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -137,7 +137,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -148,7 +148,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -159,7 +159,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -170,7 +170,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -181,7 +181,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -192,7 +192,7 @@
             <h6 class="manager-name mt-2">Surface Cementing</h6>
           </div>
 
-          <div class="manager-info text-center" @click="$router.push('/manage-assessment')">
+          <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"

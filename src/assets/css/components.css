@@ -94,6 +94,16 @@
     color: var(--primary-500);
 }
 
+.basic {
+    border: 1px solid var(--primary-500);
+    color: var(--primary-500);
+    padding: 3px 8px;
+    display: block;
+    width: max-content;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
 
 
 /* FORMS  */
