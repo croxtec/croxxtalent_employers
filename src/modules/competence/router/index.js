@@ -1,4 +1,4 @@
-import ManageCompetence from "../components/tables/ManageCompetence.vue"
+import ManageCompetence from "../views/_ID.vue"
 
 const Home = () => import("../views/indexView.vue")
 
