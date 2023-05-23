@@ -100,7 +100,7 @@ export default {
       this.create(
         this.details.category === "generic" ? generic_payload : specific_payload
       )
-      console.log(this.details, this.questions, this.value1, this.value2);
+      console.log(specific_payload, generic_payload);
     },
   },
   beforeMount() {

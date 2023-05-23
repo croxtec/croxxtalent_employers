@@ -21,8 +21,8 @@
       </div> -->
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item v-for="item in results" :key="item" :title="item" name="1">
-        <div class="skill-header">
-          <span v-for="item in skillsArr" :key="item">{{ item }}</span>
+        <div>
+          <skills-header :skillsArr="skillsArr"/>
         </div>
         <div class="manager-data mt-3">
           <div class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
@@ -121,20 +121,28 @@
 </template>
 
 <script>
+import skillsHeader from '@/components/skillsHeader.vue';
 import { mapActions, mapState } from 'vuex';
 export default {
+  components: { skillsHeader },
   data() {
     return {
       activeNames: ["1", "2"],
       customColor: "#0040A1",
       percentage: 30,
       skillsArr: [
-        "Cementing jobs",
-        "Stimulation equipment",
-        "Auxiliary equipment",
-        "Cementing equipment",
-        "Down-holes tools",
-        "Pressure jobs",
+       {id:1, name:"Cementing jobs"},
+        {id:2, name:"Stimulation equipment"},
+       { id:3, name:"Auxiliary equipment"},
+       {id:4, name: "Cementing equipment"},
+        {id:5, name:"Down-holes tools"},
+        {id:6, name:"Pressure jobs"},
+        {id:7, name:"Cementing jobs"},
+        {id:8, name:"Stimulation equipment"},
+       { id:9, name:"Auxiliary equipment"},
+       {id:10, name: "Cementing equipment"},
+        {id:11, name:"Down-holes tools"},
+        {id:12, name:"Pressure jobs"},
       ],
     };
   },
