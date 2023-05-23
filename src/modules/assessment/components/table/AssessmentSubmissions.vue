@@ -16,16 +16,16 @@
     </div>
 
     <div v-else>
-      <span class="error-alert" v-if="error">
+      <!-- <span class="error-alert" v-if="error">
         {{ error }}
       </span>
       <span class="error-alert" v-else-if="results.length === 0">
         No Data found
-      </span>
-      <div v-else class="d-flex flex-column" style="gap: 20px">
+      </span> -->
+      <div  class="d-flex flex-column" style="gap: 20px">
         <div class="table-responsive">
           <table class="table table-centered table-nowrap">
-            <tr v-for="item in results" :key="item.id">
+            <tr v-for="item in 6" :key="item">
               <td>
                 <div class="d-flex align-items-center" style="gap: 15px">
                   <img src="https://menofvalue.com/wp-content/uploads/2015/04/bigstock-Skeptical-74315989-e1438791711725.jpg" alt="" style="" />
