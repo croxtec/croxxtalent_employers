@@ -1,5 +1,19 @@
 <template>
   <div class="skills spacer">
+    <div class="mb-4 d-flex align-items-center justify-content-between">
+      <div class="search-area w-auto">
+        <i-icon icon="teenyicons:search-outline" class="search-icon"/>
+        <input type="search" placeholder="Search assessment">
+      </div>
+      <div>
+        <router-link to="/create-assessment">
+          <button class="button primary-btn d-flex align-items-center" style="gap:4px">
+            <span> <i-icon icon="material-symbols:add"/> </span>
+            <span>Add Assessment</span>
+          </button>
+        </router-link>
+      </div>
+    </div>
     <el-collapse v-model="activeNames">
       <el-collapse-item
         v-for="(domain, key_domain) in results"
