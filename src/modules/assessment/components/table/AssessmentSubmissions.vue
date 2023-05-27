@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     ...mapState("assessments", {
-      results: (state) => state.singleDataSet.assesment.assisgned_employees,
+      results: (state) => state.singleDataSet.summaries.data,
       loading: (state) => state.loading,
       error: (state) => state.error,
     }),

@@ -130,7 +130,7 @@ export default {
           </div>
         </div>
         <div class="manager-data mt-3">
-          <div class="manager-info text-center" role="button" @click="gotoManagement(skill.code)"  v-for="skill in domain.core[ competency[key_domain]?.activeCore ]?.skills" :key="skill.id">
+          <div class="manager-info text-center" role="button" @click="gotoManagement()"  v-for="skill in domain.core[ competency[key_domain]?.activeCore ]?.skills" :key="skill.id">
             <!-- <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -187,8 +187,12 @@ export default {
       }
     },
 
-    gotoManagement(code){
-      this.$router.push('/manage-assessment/'+code);
+    // gotoManagement(code){
+    //   this.$router.push('/manage-assessment/'+code);
+    // }
+
+    gotoManagement() {
+      this.$router.push('/manage-competence');
     }
 
   },
