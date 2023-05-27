@@ -5,6 +5,7 @@ import Vuex from "vuex";
 import employees from "@/modules/employees/store/index";
 import job_codes from "@/modules/job-codes/store/index"
 import assessments from "@/modules/assessment/store/index";
+import competency from "@/modules/competence/store/index"
 
 import middleware from "@/middleware/store"
 
@@ -38,6 +39,7 @@ export default new Vuex.Store({
     employees,
     job_codes,
     assessments,
+    competency,
 
     middleware
   },

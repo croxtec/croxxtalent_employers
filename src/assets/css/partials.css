@@ -18,12 +18,12 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--main-color);
+    background: var(--white);
     /* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--tertiary-color);
+    background-color: var(--primary-100);
     /* color of the scroll thumb */
     border-radius: 20px;
     /* roundness of the scroll thumb */

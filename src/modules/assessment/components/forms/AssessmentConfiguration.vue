@@ -74,7 +74,7 @@ export default {
     ...mapActions("job_codes", ["list"]),
     ...mapActions("assessments", ["create"]),
     submit() {
-      let specific_payload = {
+      let data = {
         domain_id: this.details.domain,
         core_id: this.details.core,
         skill_id: this.details.skill,
@@ -83,20 +83,16 @@ export default {
         category: this.details.category,
         delivery_type: this.details.delivery,
         questions: this.questions,
-        job_code_id: Number(this.job_code_id)
       };
-      let generic_payload = {
-        domain_id: this.details.domain,
-        core_id: this.details.core,
-        skill_id: this.details.skill,
-        level: this.details.level,
-        name: this.details.assessment_name,
-        category: this.details.category,
-        delivery_type: this.details.delivery,
-        questions: this.questions,
+      let specific = {
+        job_code_id: Number(this.job_code_id)
+      }
+      let generic =  {
         candidates: this.value1,
         managers: this.value2,
-      };
+      }
+      let generic_payload = Object.assign(data, generic)
+      let specific_payload = Object.assign(data, specific)
       this.create(
         this.details.category === "generic" ? generic_payload : specific_payload
       )

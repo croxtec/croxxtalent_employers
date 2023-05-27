@@ -3,10 +3,10 @@
     <div class="skills-list" id="container">
       <span
         role="button"
-        @click="switchActive(item)"
-        :class="{ active: activeEl === item.id }"
-        v-for="item in skillsArr"
-        :key="item.id"
+        @click="switchActive(index, item)"
+        :class="{ 'active': activeEl === (index+1) }"
+        v-for="(item, index) in skillsArr"
+        :key="index"
         >{{ item.name }}</span
       >
     </div>
@@ -30,8 +30,9 @@ export default {
     };
   },
   methods: {
-    switchActive(item) {
-      this.activeEl = item.id;
+    switchActive(index, item) {
+      this.activeEl = index;
+      this.$emit('getSkills', item)
     },
     scrollButton(direction) {
       if (direction === "left") {

@@ -6,7 +6,7 @@ const timeStamp = (value) => {
   if (value) {
     // return moment(String(value)).format();
     let date = new Date(value);
-    return moment(String(date)).format("MMM DD, YYYY hh:mm");
+    return moment(String(date)).format("ddd, DD/MM/YYYY ");
   }
 };
 

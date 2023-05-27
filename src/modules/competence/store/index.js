@@ -104,12 +104,36 @@ export default {
       }
     },
 
+    // List Assessments
+    async list({ commit }) {
+      NProgress.start();
+      commit("SET_LOADING_STATUS");
+      try {
+        let res = await $request.get(`/employers/competency`);
+        console.log(res);
+        commit("SET_DATA", res.data.data);
+        // console.log(res.message);
+        return res;
+      } catch (error) {
+        console.log(error.data);
+        commit('SET_ERROR', error.data.message)
+        // commit("SET_DATA", {
+        //   res: error.data.errors.email,
+        //   result: "error",
+        // });
+        // console.log(error.data.errors.email);
+        return error;
+      } finally {
+        NProgress.done();
+      }
+    },
+
     //View Assessment
     async view({ commit }, id) {
       NProgress.start();
       commit("SET_LOADING_STATUS");
       try {
-        let res = await $request.get(`assesments/${id}/assigned/employees`);
+        let res = await $request.get(`assesments/${id}`);
        console.log(res.data.data);
        let resPayload = res.data.data
        commit("SET_SINGLE_DATA", resPayload)
