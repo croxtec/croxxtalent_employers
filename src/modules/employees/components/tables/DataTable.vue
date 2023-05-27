@@ -71,9 +71,23 @@
                     <i-icon icon="icon-park-outline:more" width="20px" />
                   </span>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>Action 1</el-dropdown-item>
-                    <el-dropdown-item>Action 2</el-dropdown-item>
-                    <el-dropdown-item>Action 3</el-dropdown-item>
+                    <el-dropdown-item>
+                      <i-icon icon="solar:eye-outline" />
+                      View
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                      <i-icon icon="lucide:edit" />
+                      Edit</el-dropdown-item
+                    >
+                    <el-dropdown-item>
+                      <i-icon icon="solar:archive-linear" />
+                      Archive
+                    </el-dropdown-item>
+
+                    <el-dropdown-item class="text-danger">
+                      <i-icon icon="fluent:delete-24-regular" />
+                      Delete</el-dropdown-item
+                    >
                   </el-dropdown-menu>
                 </el-dropdown>
               </td>
