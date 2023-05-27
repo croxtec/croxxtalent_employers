@@ -19,13 +19,13 @@
     </div>
 
     <div v-else>
-      <!-- <span class="error-alert" v-if="error">
+      <span class="error-alert" v-if="error">
         {{ error }}
       </span>
-      <span class="error-alert" v-else-if="results.length === 0">
-        No Data found
-      </span> -->
-      <div  class="d-flex flex-column" style="gap: 20px">
+      <div class="d-flex justify-content-center" v-else-if="results.length === 0">
+        <img src="@/assets/img/empty.svg" alt="">
+      </div>
+      <div v-else class="d-flex flex-column" style="gap: 20px">
         <div class="table-responsive">
           <table class="table table-centered table-nowrap">
             <tr v-for="item in results" :key="item.id">
