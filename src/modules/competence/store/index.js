@@ -128,12 +128,12 @@ export default {
       }
     },
 
-    //View Assessment
+    //View Competency
     async view({ commit }, id) {
       NProgress.start();
       commit("SET_LOADING_STATUS");
       try {
-        let res = await $request.get(`assesments/${id}`);
+        let res = await $request.get(`employers/competency/gap?skill_gap=${id}`);
        console.log(res.data.data);
        let resPayload = res.data.data
        commit("SET_SINGLE_DATA", resPayload)

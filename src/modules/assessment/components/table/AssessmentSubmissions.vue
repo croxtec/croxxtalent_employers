@@ -2,9 +2,9 @@
   <div>
     <div>
       <div class="search-area w-25 mb-2">
-          <i-icon icon="teenyicons:search-outline" class="search-icon"/>
-          <input type="search" placeholder="Search">
-        </div>
+        <i-icon icon="teenyicons:search-outline" class="search-icon" />
+        <input type="search" placeholder="Search" />
+      </div>
     </div>
     <div>
       <!-- {{ results }} -->
@@ -22,8 +22,11 @@
       <span class="error-alert" v-if="error">
         {{ error }}
       </span>
-      <div class="d-flex justify-content-center" v-else-if="results.length === 0">
-        <img src="@/assets/img/empty.svg" alt="">
+      <div
+        class="d-flex justify-content-center"
+        v-else-if="results.length === 0"
+      >
+        <img src="@/assets/img/empty.svg" alt="" />
       </div>
       <div v-else class="d-flex flex-column" style="gap: 20px">
         <div class="table-responsive">
@@ -31,23 +34,24 @@
             <tr v-for="item in results" :key="item.id">
               <td>
                 <div class="d-flex align-items-center" style="gap: 15px">
-                  <img src="https://menofvalue.com/wp-content/uploads/2015/04/bigstock-Skeptical-74315989-e1438791711725.jpg" alt="" style="" />
+                  <img
+                    src="https://menofvalue.com/wp-content/uploads/2015/04/bigstock-Skeptical-74315989-e1438791711725.jpg"
+                    alt=""
+                    style=""
+                  />
                   <div class="td">
-                    <h6 class="cell-content">{{ item.name }}</h6>
-                    <h6 class="cell-header">
-                      Rain Oil
-                      <span> <i-icon icon="ph:dot" /> </span>
-                      Warri, Rivers
-                      <span> <i-icon icon="ph:dot" /> </span>
-                      Full Time
-                    </h6>
+                    <h6 class="cell-content">{{ item.talent ?  item.talent.name : "null" }}</h6>
+                    <h6
+                      class="cell-header"
+                      v-text="item.talent ? item.talent.job_code.job_title : 'null'"
+                    ></h6>
                   </div>
                 </div>
               </td>
               <td>
                 <div class="td">
                   <h6 class="cell-content">Date</h6>
-                  <h6 class="cell-header"> {{ timeStamp(item.created_at) }} </h6>
+                  <h6 class="cell-header">{{ timeStamp(item.created_at) }}</h6>
                   <!-- <h6 class="cell-header">Mon, 12/02/ 2023</h6> -->
                 </div>
               </td>
@@ -74,7 +78,8 @@ export default {
   data() {
     return {
       details: false,
-      sliceHash, timeStamp
+      sliceHash,
+      timeStamp,
     };
   },
   computed: {

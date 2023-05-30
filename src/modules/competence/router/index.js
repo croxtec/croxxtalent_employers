@@ -16,7 +16,7 @@ const routes = [
     },
 
     {
-        path: "/manage-competence",
+        path: "/manage-competence/:id",
         component: ManageCompetence,
         name: "manage-competence",
         meta: {

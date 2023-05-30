@@ -15,10 +15,13 @@
       <span class="error-alert" v-if="error">
         {{ error }}
       </span>
-      <div class="d-flex justify-content-center" v-else-if="results.length === 0">
-        <img src="@/assets/img/empty.svg" alt="">
+      <div
+        class="d-flex justify-content-center"
+        v-else-if="results.length === 0"
+      >
+        <img src="@/assets/img/empty.svg" alt="" />
       </div>
-      <div v-else class="d-flex flex-column" style="gap: 20px">
+      <div v-else class="d-flex flex-column">
         <div class="table-responsive">
           <table class="table table-centered table-nowrap">
             <tr v-for="(item, index) in results" :key="index" role="button">
@@ -31,10 +34,8 @@
                       <h6 class="cell-content">{{ item.name }}</h6>
                     </div>
                     <div class="td" v-if="details === item.id">
-                      <h6 class="cell-header">Date of birth</h6>
-                      <h6 class="cell-content">
-                        {{ item.birth_date || "No data" }}
-                      </h6>
+                      <h6 class="cell-header">Phone Number</h6>
+                      <h6 class="cell-content">{{ item.phone }}</h6>
                     </div>
                   </div>
                 </div>
@@ -53,18 +54,20 @@
                   </div>
                 </div>
               </td>
-              <td  @click="getDetails(item)">
-                <div class="td">
-                  <h6 class="cell-header">Phone Number</h6>
-                  <h6 class="cell-content">{{ item.phone }}</h6>
-                </div>
-              </td>
-              <td  @click="getDetails(item)">
+              <td @click="getDetails(item)">
                 <div class="td">
                   <h6 class="cell-header">Job Title</h6>
                   <h6 class="cell-content">{{ item.job_code.job_title }}</h6>
                 </div>
               </td>
+              <td @click="getDetails(item)">
+                <div class="td">
+                  <h6 class="cell-header">Status</h6>
+                  <h6 class="">
+                    <span class="status text-lowercase" style="width:max-content">{{ item.user_id === null ? 'in-active' : 'active' }}</span>
+                  </h6>
+                </div>
+              </td>  
               <td>
                 <el-dropdown trigger="click">
                   <span class="el-dropdown-link">
@@ -110,9 +113,9 @@ export default {
     };
   },
   methods: {
-    getDetails(item){
-      this.details = this.details === item.id ? null : item.id
-    }
+    getDetails(item) {
+      this.details = this.details === item.id ? null : item.id;
+    },
   },
   computed: {
     ...mapState("employees", {

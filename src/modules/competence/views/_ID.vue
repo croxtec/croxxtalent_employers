@@ -55,18 +55,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import ManageCompetence from "../components/tables/ManageCompetence.vue";
-
 export default {
   components: { ManageCompetence },
   data() {
     return {
       activeEl: "1",
+      id: this.$route.params.id
     };
   },
+
   methods: {
+    ...mapActions('competency', ['view']),
     switchSection(value) {},
   },
+  beforeMount(){
+    this.view(this.id)
+  }
 };
 </script>
 

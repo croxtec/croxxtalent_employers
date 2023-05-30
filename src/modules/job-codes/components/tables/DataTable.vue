@@ -25,26 +25,50 @@
       <div v-else class="d-flex flex-column" style="gap: 20px">
         <div class="table-responsive">
           <table class="table table-centered table-nowrap">
-            <tr v-for="item in results" :key="item.id">
-              <td>
-                <div>
-                  <h6 class="cell-header">Id</h6>
-                  <h6 class="cell-content">{{ item.id }}</h6>
+            <tr v-for="item in results" :key="item.id" role="button">
+              <td @click="getDetails(item)">
+                <div class="d-flex flex-column" style="gap: 20px">
+                  <div class="td">
+                    <h6 class="cell-header">Job Title</h6>
+                    <h6 class="cell-content">{{ item.job_title }}</h6>
+                  </div>
+                  <div class="td" v-if="details === item.id">
+                    <h6 class="cell-header">Total Employees</h6>
+                    <h6 class="cell-content">
+                      {{ item.total_employee }}
+                      <span
+                        class="small"
+                        style="color: var(--primary-500); text-decoration: underline;"
+                        @click="$router.push('/employees')"
+                        >View</span
+                      >
+                    </h6>
+                  </div>
                 </div>
               </td>
-              <td>
-                <div>
-                  <h6 class="cell-header">Job Title</h6>
-                  <h6 class="cell-content">{{ item.job_title }}</h6>
+
+              <td @click="getDetails(item)">
+                <div class="d-flex flex-column" style="gap: 20px">
+                  <div class="td">
+                    <h6 class="cell-header">Job Code</h6>
+                    <h6 class="cell-content">{{ item.job_code }}</h6>
+                  </div>
+                  <div class="td" v-if="details === item.id">
+                    <h6 class="cell-header">Total Assessments</h6>
+                    <h6 class="cell-content">
+                      {{ item.total_assessment }}
+                      <span
+                        class="small"
+                        style="color: var(--primary-500); text-decoration: underline;"
+                        @click="$router.push('/assessment')"
+                        >View</span
+                      >
+                    </h6>
+                  </div>
                 </div>
               </td>
-              <td>
-                <div>
-                  <h6 class="cell-header">Job Code</h6>
-                  <h6 class="cell-content">{{ item.job_code }}</h6>
-                </div>
-              </td>
-              <td>
+
+              <td @click="getDetails(item)">
                 <div>
                   <h6 class="cell-header">Job Description</h6>
                   <h6 class="cell-content">
@@ -52,12 +76,14 @@
                   </h6>
                 </div>
               </td>
+
               <td>
                 <div>
                   <h6 class="cell-header">Manager</h6>
                   <h6 class="cell-content">{{ "No data" }}</h6>
                 </div>
               </td>
+
               <td>
                 <el-dropdown trigger="click">
                   <span class="el-dropdown-link">
@@ -102,9 +128,14 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      details: false,
+      details: null,
       sliceHash,
     };
+  },
+  methods: {
+    getDetails(item) {
+      this.details = this.details === item.id ? null : item.id;
+    },
   },
   computed: {
     ...mapState("job_codes", {
@@ -128,10 +159,8 @@ th {
 }
 th,
 td {
-  /* width: 100%; */
   border-bottom: 1px solid var(--primary-300);
   border-top: 1px solid var(--primary-300);
-  /* padding: 5px; */
   background: var(--accent-color);
   padding: 20px 25px;
   font-size: 0.8rem;
