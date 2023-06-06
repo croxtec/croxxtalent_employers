@@ -38,7 +38,10 @@
                       {{ item.total_employee }}
                       <span
                         class="small"
-                        style="color: var(--primary-500); text-decoration: underline;"
+                        style="
+                          color: var(--primary-500);
+                          text-decoration: underline;
+                        "
                         @click="$router.push('/employees')"
                         >View</span
                       >
@@ -59,7 +62,10 @@
                       {{ item.total_assessment }}
                       <span
                         class="small"
-                        style="color: var(--primary-500); text-decoration: underline;"
+                        style="
+                          color: var(--primary-500);
+                          text-decoration: underline;
+                        "
                         @click="$router.push('/assessment')"
                         >View</span
                       >
@@ -80,7 +86,18 @@
               <td>
                 <div>
                   <h6 class="cell-header">Manager</h6>
-                  <h6 class="cell-content">{{ "No data" }}</h6>
+                  <h6 class="cell-content">
+                    <span v-if="item.department_managers.length === 0">{{
+                      "No Manager"
+                    }}</span>
+                    <span v-else>
+                      <span
+                        v-for="(dataObj, index) in item.department_managers"
+                        :key="index"
+                        >{{ dataObj.name }}</span
+                      >
+                    </span>
+                  </h6>
                 </div>
               </td>
 
@@ -99,8 +116,10 @@
                       Edit</el-dropdown-item
                     >
                     <el-dropdown-item>
-                      <i-icon icon="humbleicons:user-add" />
-                      Add Manager
+                      <span @click="addManager(item)">
+                        <i-icon icon="humbleicons:user-add" />
+                        Add Manager
+                      </span>
                     </el-dropdown-item>
                     <el-dropdown-item>
                       <i-icon icon="solar:archive-linear" />
@@ -133,6 +152,11 @@ export default {
     };
   },
   methods: {
+    addManager(item) {
+      // alert("hello")
+      console.log(item);
+      this.$store.dispatch("modals/setAddManager", item.id);
+    },
     getDetails(item) {
       this.details = this.details === item.id ? null : item.id;
     },

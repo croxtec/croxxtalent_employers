@@ -1,136 +1,77 @@
-<!-- <template>
-  <div class="spacer">
-    <div class="mb-4 d-flex align-items-center justify-content-between">
-      <div class="search-area w-auto">
-        <i-icon icon="teenyicons:search-outline" class="search-icon"/>
-        <input type="search" placeholder="Search assessment">
-      </div>
-      <div>
-        <router-link to="/create-assessment">
-          <button class="button primary-btn d-flex align-items-center" style="gap:4px">
-            <span> <i-icon icon="material-symbols:add"/> </span>
-            <span>Add Assessment</span>
-          </button>
-        </router-link>
-      </div>
-    </div>
-    <div class="skills">
-      
-    <el-collapse v-model="activeNames" @change="handleChange" accordion>
-      <el-collapse-item v-for="(item, index) in results" :key="index" :title="item.name" :name="index">
-        <div>
-          <skills-header :skillsArr="item.core" @getSkills="getSkills"/>
-        </div>
-        <div>
-          {{ item.core[index] }}
-        </div>
-        <div class="manager-data mt-3">
-          <div v-for="item in skills" :key="item.id" class="manager-info text-center" role="button" @click="$router.push('/manage-assessment')">
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag">Level 1</span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2">{{ item.skill_name }}</h6>
-          </div>
-        </div>
-      </el-collapse-item>
-      
-    </el-collapse>
-  </div>
-  </div>
-</template>
-
-<script>
-import skillsHeader from '@/components/skillsHeader.vue';
-import { mapActions, mapState } from 'vuex';
-export default {
-  components: { skillsHeader },
-  data() {
-    return {
-      activeNames: "",
-      customColor: "#0040A1",
-      percentage: 30,
-      skills: [],
-      skillsArr: [
-       {id:1, name:"Cementing jobs"},
-        {id:2, name:"Stimulation equipment"},
-       { id:3, name:"Auxiliary equipment"},
-       {id:4, name: "Cementing equipment"},
-        {id:5, name:"Down-holes tools"},
-        {id:6, name:"Pressure jobs"},
-        {id:7, name:"Cementing jobs"},
-        {id:8, name:"Stimulation equipment"},
-       { id:9, name:"Auxiliary equipment"},
-       {id:10, name: "Cementing equipment"},
-        {id:11, name:"Down-holes tools"},
-        {id:12, name:"Pressure jobs"},
-      ],
-    };
-  },
-  methods: {
-    ...mapActions('assessments', ['list']),
-    handleChange(val) {
-    },
-    getSkills(value ) {
-      console.log(value);
-      this.skills = value.skills
-    }
-  },
-  beforeMount(){
-    this.list()
-  },
-  computed:{
-    ...mapState("assessments", {
-      results: (state) => state.dataSet
-    })
-  }
-};
-</script> -->
-
 <template>
   <div class="skills spacer">
     <div class="mb-4 d-flex align-items-center justify-content-between">
       <div class="search-area w-auto">
-        <i-icon icon="teenyicons:search-outline" class="search-icon"/>
-        <input type="search" placeholder="Search competency">
+        <i-icon icon="teenyicons:search-outline" class="search-icon" />
+        <input type="search" placeholder="Search competency" />
       </div>
+      
       <div>
-        <router-link to="/create-assessment">
-          <button class="button primary-btn d-flex align-items-center" style="gap:4px">
-            <span> <i-icon icon="material-symbols:add"/> </span>
-            <span>Add Assessment</span>
-          </button>
-        </router-link>
+        <div>
+          <!-- {{ dataSet }} -->
+        </div>
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link header-select">
+            <span>{{ selectType }}</span
+            ><i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item >Select All</el-dropdown-item>
+            <el-dropdown-item v-for="item in dataSet" :key="item.id"><span  @click="selectJob(item)"  >{{ item.job_title }}</span></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
 
     <el-collapse v-model="activeNames">
-      <el-collapse-item v-for="(domain, key_domain) in results" :key="domain.name" :title="domain.name" :name="key_domain">
+      <el-collapse-item
+        v-for="(domain, key_domain) in results"
+        :key="domain.name"
+        :title="domain.name"
+        :name="key_domain"
+      >
         <div class="skill-header">
           <div class="skills-list" :id="key_domain">
             <span
               role="button"
               @click="switchActive(key_domain, key_core)"
-              :class="{ active:competency[key_domain]?.activeCore === key_core }"
+              :class="{
+                active: competency[key_domain]?.activeCore === key_core,
+              }"
               v-for="(core, key_core) in domain.core"
               :key="key_core"
-              > {{ core.name }} </span
             >
+              {{ core.name }}
+            </span>
           </div>
           <div class="arrows">
-            <span class="left-arrow" role="button" @click="scrollButton('left', key_domain)" @mousedown="scrollButton('left', key_domain)">
+            <span
+              class="left-arrow"
+              role="button"
+              @click="scrollButton('left', key_domain)"
+              @mousedown="scrollButton('left', key_domain)"
+            >
               <i-icon icon="prime:angle-left" width="25px" />
             </span>
-            <span class="right-arrow" role="button" @click="scrollButton('right', key_domain)" @mousedown="scrollButton('right', key_domain)">
+            <span
+              class="right-arrow"
+              role="button"
+              @click="scrollButton('right', key_domain)"
+              @mousedown="scrollButton('right', key_domain)"
+            >
               <i-icon icon="prime:angle-right" width="25px" />
             </span>
           </div>
         </div>
         <div class="manager-data mt-3">
-          <div class="manager-info text-center" role="button" @click="gotoManagement(skill.skill_id)"  v-for="skill in domain.core[ competency[key_domain]?.activeCore ]?.skills" :key="skill.id">
+          <div
+            class="manager-info text-center"
+            role="button"
+            @click="gotoManagement(skill.skill_id)"
+            v-for="skill in domain.core[competency[key_domain]?.activeCore]
+              ?.skills"
+            :key="skill.id"
+          >
             <!-- <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -142,14 +83,12 @@ export default {
           </div>
         </div>
       </el-collapse-item>
-
     </el-collapse>
-
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -158,25 +97,29 @@ export default {
       activeEl: 0,
       percentage: 30,
       customColor: "#0040A1",
-      competency: []
+      competency: [],
+      selectType: "Select All"
     };
   },
 
   computed: {
-   ...mapState("competency", {
-      results: (state) => state.dataSet
+    ...mapState("competency", {
+      results: (state) => state.dataSet,
+    }),
+    ...mapState("job_codes", {
+      dataSet: (state) => state.results
     })
   },
 
   methods: {
-    ...mapActions('competency', ['list']),
+    ...mapActions("competency", ["list", "viewByJob"]),
 
     handleChange(val) {
       console.log(val);
     },
 
     switchActive(domainId, item) {
-      this.competency[domainId].activeCore = item
+      this.competency[domainId].activeCore = item;
     },
 
     scrollButton(direction, domain_container) {
@@ -187,24 +130,26 @@ export default {
       }
     },
 
-    // gotoManagement(code){
-    //   this.$router.push('/manage-assessment/'+code);
-    // }
-
     gotoManagement(id) {
       this.$router.push(`/manage-competence/${id}`);
-    }
+    },
 
+    selectJob(item) {
+      console.log(item)
+      this.selectType = item.job_title
+      this.viewByJob(item.id)
+    }
   },
 
+  beforeMount(){
+    this.$store.dispatch("job_codes/list")
+  },
 
-  mounted(){
+  mounted() {
     this.list().then(() => {
-      this.results.map(() =>  this.competency.push({ activeCore: 0  }));
-    })
-  }
-
-
+      this.results.map(() => this.competency.push({ activeCore: 0 }));
+    });
+  },
 };
 </script>
 
@@ -219,7 +164,6 @@ export default {
   align-items: center;
   padding: 0 18px;
   width: 100%;
-  
 }
 
 .skills-list {
@@ -260,8 +204,8 @@ export default {
 }
 
 .skills-list::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
 .skills-list span:hover {
   color: var(--dark);
@@ -292,4 +236,20 @@ export default {
   border-radius: 25px;
 }
 
+.header-select {
+  border: 1px solid var(--primary-200);
+  padding: 10px 25px;
+  color: var(--primary-500);
+  border-radius: 25px;
+  display: flex;
+  display: inline-flex;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.el-dropdown-menu {
+  max-height: 500px;
+  overflow-y: auto;
+}
 </style>

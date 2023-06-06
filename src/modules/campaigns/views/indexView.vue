@@ -28,10 +28,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import DataTable from "../components/tables/DataTable.vue";
-
 export default {
-  components: { DataTable }
+  components: { DataTable },
+  methods: {
+    ...mapActions("campaigns", ["list"])
+  },
+  beforeMount(){
+    this.list()
+  }
 }
 </script>
 

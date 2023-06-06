@@ -10,6 +10,14 @@ const timeStamp = (value) => {
   }
 };
 
+const dateStamp = (value) => {
+  if (value) {
+    // return moment(String(value)).format();
+    let date = new Date(value);
+    return moment(String(date)).format("DD MMM YYYY ");
+  }
+};
+
 const timeStamp2 = (value) => {
   if (value) {
     return moment(String(value)).format();
@@ -37,6 +45,7 @@ const dollarFilter = (value) => {
 
   return numeral(value).format("($0a)");
 };
+
 const formatAmount = (value) => {
   return value.toLocaleString();
 };
@@ -47,10 +56,10 @@ const createRef = (value) => {
 
 const dollarFilter2 = (value) => {
   if (!value) {
-    return "$ 0";
+    return "0";
   }
 
-  return numeral(value).format("($ 0.00a)");
+  return numeral(value).format("(0.0a)");
 };
 
 const numberFilter = (value) => {
@@ -94,4 +103,5 @@ export {
   colorSplit,
   formatAmount,
   numberFilter,
+  dateStamp
 };

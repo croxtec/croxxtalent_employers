@@ -101,8 +101,8 @@ export default {
       this.create(this.payload);
     },
     close(){
-    //   this.$emit('close'),
-      this.$store.commit("job_codes/CREATE", false);
+      // this.$emit('close'),
+      this.$store.commit("job_codes/SET_CREATE", false);
     }
   },
   beforeMount() {

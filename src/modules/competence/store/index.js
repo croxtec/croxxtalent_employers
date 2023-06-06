@@ -23,7 +23,6 @@ export default {
   state: getDefaultState(),
   getters: {
     getSingleDataSet: (state) => state.singleDataSet
-    // auth: (state) => state.auth,
   },
   mutations: {
     SET_DATA(state, payload) {
@@ -80,31 +79,7 @@ export default {
     }
   },
   actions: {
-    // List Assessments
-    async list({ commit }) {
-      NProgress.start();
-      commit("SET_LOADING_STATUS");
-      try {
-        let res = await $request.get(`/assesments`);
-        console.log(res);
-        commit("SET_DATA", res.data.data);
-        // console.log(res.message);
-        return res;
-      } catch (error) {
-        console.log(error.data);
-        commit('SET_ERROR', error.data.message)
-        // commit("SET_DATA", {
-        //   res: error.data.errors.email,
-        //   result: "error",
-        // });
-        // console.log(error.data.errors.email);
-        return error;
-      } finally {
-        NProgress.done();
-      }
-    },
-
-    // List Assessments
+    // List Competency
     async list({ commit }) {
       NProgress.start();
       commit("SET_LOADING_STATUS");
@@ -117,11 +92,6 @@ export default {
       } catch (error) {
         console.log(error.data);
         commit('SET_ERROR', error.data.message)
-        // commit("SET_DATA", {
-        //   res: error.data.errors.email,
-        //   result: "error",
-        // });
-        // console.log(error.data.errors.email);
         return error;
       } finally {
         NProgress.done();
@@ -137,6 +107,37 @@ export default {
        console.log(res.data.data);
        let resPayload = res.data.data
        commit("SET_SINGLE_DATA", resPayload)
+        return res;
+      } catch (error) {
+        console.log(error.data);
+        if (error.data) {
+          let errorPayload = error.data;
+          if (errorPayload.message) {
+            commit("SET_ERROR", errorPayload.message);
+            if (errorPayload.errors) {
+              console.log(errorPayload.errors);
+              commit("SET_VALIDATION_ERRORS", errorPayload.errors);
+            }
+            return;
+          }
+        }
+        commit("SET_ERROR", "Internal connection error, please try again.");
+        return error.response;
+      } finally {
+        NProgress.done();
+      }
+    },
+
+    // Competency by Job Code 
+    
+    async viewByJob({ commit }, id) {
+      NProgress.start();
+      commit("SET_LOADING_STATUS");
+      try {
+        let res = await $request.get(`employers/competency/${id}`);
+       console.log(res.data.data);
+       let resPayload = res.data.data
+       commit("SET_DATA", resPayload)
         return res;
       } catch (error) {
         console.log(error.data);

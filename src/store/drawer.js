@@ -1,10 +1,8 @@
 /* eslint-disable no-undef */
 
-const getDefaultState = () => {
-  return {
-    collapsed: false,
-  };
-};
+const getDefaultState = () => ({
+  collapsed: false,
+});
 
 export default {
   namespaced: true,
@@ -20,7 +18,7 @@ export default {
   },
   actions: {
     setCollapseState({ state, commit }) {
-      let value = state.collapsed ? false : true;
+      const value = !state.collapsed;
       commit("SET_COLLAPSE_STATE", value);
     },
   },

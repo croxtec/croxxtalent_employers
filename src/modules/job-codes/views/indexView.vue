@@ -27,6 +27,11 @@
     <div>
       <create-job-code v-if="create_job_code"/>
     </div>
+
+    <!-- Add Manager -->
+    <div>
+      <add-manager v-if="add_manager_modal"/>
+    </div>
   </div>
 </template>
 
@@ -34,12 +39,14 @@
 import DataTable from "../components/tables/DataTable.vue";
 import { mapActions, mapState } from "vuex"
 import CreateJobCode from '../components/modals/CreateJobCode.vue';
+import AddManager from '../components/modals/AddManager.vue';
 export default {
-  components: { DataTable, CreateJobCode },
+  components: { DataTable, CreateJobCode, AddManager },
   data(){
     return {
     }
   },
+  
   methods: {
     ...mapActions("job_codes", ["list"]),
     createJobCode(){
@@ -49,13 +56,19 @@ export default {
       this.$store.commit("job_codes/SET_CREATE", false)
     }
   },
+
   beforeMount() {
     this.list();
     this.$store.commit("job_codes/SET_CREATE", false)
+    this.$store.commit("modals/CLEAR_MODAL")
   },
+
   computed: {
     ...mapState("job_codes", {
       create_job_code: (state) => state.createJobCodeModal
+    }),
+    ...mapState('modals', {
+      add_manager_modal: (state) => state.addManager
     })
   }
 }

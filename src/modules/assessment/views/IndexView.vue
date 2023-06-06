@@ -56,13 +56,12 @@
         </div>
         <div class="manager-data mt-3">
           <div
-            class="manager-info text-center"
-            @click="gotoManagement(skill.id)"
-            role="button"
+            class="skills-info text-center py-3 px-2"
             v-for="skill in domain.core[assessment[key_domain]?.activeCore]
               ?.skills"
             :key="skill.id"
           >
+          <div class="main-skills-content">
             <span
               class="d-flex align-items-center justify-content-center"
               style="gap: 4px"
@@ -70,7 +69,16 @@
               <span class="manager-tag" v-text="skill.level"></span>
               <span class="manager-count">20</span>
             </span>
-            <h6 class="manager-name mt-2" v-text="skill.name"></h6>
+            <h6 class="manager-name mt-2" @click="gotoManagement(skill.id)"
+            role="button" v-text="skill.name"></h6>
+          </div>
+          <div class="mt-3">
+            <button :class="Boolean(skill.is_published) ? 'outline-btn': 'primary-btn'" class="button py-1 px-3" 
+              @click="changePublishState(skill, Boolean(skill.is_published))">
+              {{ Boolean(skill.is_published) ? 'Unpublish' : 'Publish' }}
+            </button>
+            <!-- <button class="button outline-btn py-1 px-3">Unpublish</button> -->
+          </div>
           </div>
         </div>
       </el-collapse-item>
@@ -84,7 +92,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      activeNames: [],
+      activeNames: [0],
       activeEl: 0,
       percentage: 30,
       customColor: "#0040A1",
@@ -99,7 +107,21 @@ export default {
   },
 
   methods: {
-    ...mapActions("assessments", ["list"]),
+    ...mapActions("assessments", ["list", "publish", "unPublish"]),
+
+    changePublishState(value, data){
+      data ? this.unPublishAssessment(value) : this.publishAssessment(value)
+    },
+
+    publishAssessment(value){
+      console.log(value);
+      this.publish(value.id)
+    },
+
+    unPublishAssessment(value){
+      console.log(value);
+      this.unPublish(value.id)
+    },
 
     handleChange(val) {
       console.log(val);
@@ -206,5 +228,15 @@ export default {
   border-radius: 50%;
   height: 20px;
   width: 20px;
+}
+
+.skills-info {
+  border: 1px solid var(--primary-500);
+  border-radius: 35px;
+  padding: 0px 0px 8px 12px;
+}
+
+.main-skills-content {
+  /* padding: 25px 15px; */
 }
 </style>

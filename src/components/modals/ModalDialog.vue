@@ -5,7 +5,7 @@
         <header>
           <slot name="header"></slot>
         </header>
-        <main class="mt-3">
+        <main class="mt-3 main-site-map p-3">
           <slot name="body"></slot>
         </main>
         <footer>
@@ -55,5 +55,9 @@ export default {};
 .fade-leave-to {
   transform: translateX(15px);
   opacity: 0;
+}
+.main-site-map {
+  max-height: 500px;
+  overflow-y: auto;
 }
 </style>

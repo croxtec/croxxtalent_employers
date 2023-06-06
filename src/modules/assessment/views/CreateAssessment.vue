@@ -2,7 +2,7 @@
   <div id="create-assessment">
     <CreateAssessmentHeader />
     <div class="mt-4">
-        <div class="form-content " v-if="activeEl !== 2">
+        <div class="form-content" v-if="activeEl !== 2">
           <AssessmentDetails @next="goToNext" v-if="activeEl === 1"/>
           <AssessmentConfiguration v-if="activeEl === 3"/>
         </div>

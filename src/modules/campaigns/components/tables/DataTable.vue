@@ -5,26 +5,26 @@
         <tr v-for="(item, index) in results" :key="index" role="button">
           <td @click="getDetails(item)">
             <div class="d-flex flex-start" style="gap: 15px">
-              <img src="https://secretsourcemarketing.com/wp-content/uploads/2021/07/company-icon-02.png" alt="" style="" />
+              <img :src="item.photo_url === null ? require('@/assets/img/croxxtalent_default_logo.png') : item.photo_url" alt="" style="" />
               <div class="d-flex flex-column" style="gap: 25px">
                 <div class="td">
-                  <h6 class="cell-header">Well head Engineer</h6>
+                  <h6 class="cell-header" v-text="item.job_title"></h6>
                   <h6 class="cell-content">
-                    Schlumberger
+                    {{ item.city }}
                     <i-icon icon="material-symbols:circle" width="5px" />
-                    UAE
+                    {{ item.country_name }}
                     <i-icon icon="material-symbols:circle" width="5px" />
-                    Full Time
+                    {{ item.work_type }}
                   </h6>
                 </div>
                 <div class="d-flex justify-content-between" v-if="details === item.id">
                   <div class="td">
                     <h6 class="cell-header">Industry</h6>
-                    <h6 class="cell-content">Energy</h6>
+                    <h6 class="cell-content" v-text="item.industry_name"></h6>
                   </div>
                   <div class="td">
                     <h6 class="cell-header">Experience</h6>
-                    <h6 class="cell-content">5 years</h6>
+                    <h6 class="cell-content" v-text="item.years_of_experience + ' years'"></h6>
                   </div>
                 </div>
               </div>
@@ -34,11 +34,11 @@
             <div class="d-flex flex-column" style="gap: 20px">
               <div class="td">
                 <h6 class="cell-header">No. of Applicants</h6>
-                <h6 class="cell-content">233</h6>
+                <h6 class="cell-content" v-text="item.total_applications"></h6>
               </div>
               <div class="td" v-if="details === item.id">
                 <h6 class="cell-header">Work type</h6>
-                <h6 class="cell-content">Full Time</h6>
+                <h6 class="cell-content" v-text="item.work_type"></h6>
               </div>
             </div>
           </td>
@@ -46,33 +46,53 @@
             <div class="d-flex flex-column" style="gap: 20px">
               <div class="td">
                 <h6 class="cell-header">Date Created</h6>
-                <h6 class="cell-content">24 July, 2021</h6>
+                <h6 class="cell-content">{{ dateStamp(item.created_at) }}</h6>
               </div>
               <div class="td" v-if="details === item.id">
                 <h6 class="cell-header">Salary Range</h6>
-                <h6 class="cell-content">$10k - $15k</h6>
+                <h6 class="cell-content">{{ item.currency_symbol+dollarFilter2(item.min_salary) }} - {{ item.currency_symbol+dollarFilter2(item.max_salary) }}</h6>
               </div>
             </div>
           </td>
           <td>
             <div class="d-flex flex-column" style="gap: 20px">
               <div class="d-flex justify-content-between align-items-center">
-                <span  @click="getDetails(item)" class="status pending" style="width: max-content"
-                >In Review</span
+                <span  @click="getDetails(item)" class="status" :class="{'pending': !item.is_published}" style="width: max-content"
+                >{{ item.is_published ? 'Published':'In Review'}}</span
               >
               <el-dropdown trigger="click">
-                <span class="el-dropdown-link">
-                  <i-icon icon="icon-park-outline:more" width="20px" />
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>Action 1</el-dropdown-item>
-                  <el-dropdown-item>Action 2</el-dropdown-item>
-                  <el-dropdown-item>Action 3</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                  <span class="el-dropdown-link">
+                    <i-icon icon="icon-park-outline:more" width="20px" />
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>
+                      <i-icon icon="solar:eye-outline" />
+                      View
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                      <i-icon icon="lucide:edit" />
+                      Edit</el-dropdown-item
+                    >
+                    <!-- <el-dropdown-item>
+                      <span>
+                        <i-icon icon="humbleicons:user-add" />
+                        Publish
+                      </span>
+                    </el-dropdown-item> -->
+                    <el-dropdown-item>
+                      <i-icon icon="solar:archive-linear" />
+                      Archive
+                    </el-dropdown-item>
+
+                    <el-dropdown-item class="text-danger">
+                      <i-icon icon="fluent:delete-24-regular" />
+                      Delete</el-dropdown-item
+                    >
+                  </el-dropdown-menu>
+                </el-dropdown>
               </div>
               <div class="td" v-if="details === item.id">
-                <span class="status managed" style="width: max-content"
+                <span class="status managed" style="width: max-content" v-if="item.is_managed"
                   >Managed By Croxxtalent</span
                 >
               </div>
@@ -91,13 +111,13 @@
 </template>
 
 <script>
-import { sliceHash } from "@/filter";
+import { sliceHash, dateStamp, dollarFilter2 } from "@/filter";
 import { mapState } from "vuex";
 export default {
   data() {
     return {
       details: null,
-      sliceHash,
+      sliceHash, dateStamp, dollarFilter2
     };
   },
   methods: {
@@ -106,7 +126,7 @@ export default {
     },
   },
   computed: {
-    ...mapState("employees", {
+    ...mapState("campaigns", {
       results: (state) => state.results,
       loading: (state) => state.loading,
       error: (state) => state.error,
