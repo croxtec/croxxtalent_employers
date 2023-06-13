@@ -79,7 +79,7 @@ export default {
     }
   },
   actions: {
-    // List Competency
+    // List Campaigns
     async list({ commit }) {
       NProgress.start();
       commit("SET_LOADING_STATUS");
@@ -89,6 +89,29 @@ export default {
         let resPayload = res.data
         commit("SET_DATA", resPayload);
         // console.log(res.message);
+        return res;
+      } catch (error) {
+        console.log(error.data);
+        commit('SET_ERROR', error.data.message)
+        return error;
+      } finally {
+        NProgress.done();
+      }
+    },
+
+    // List Campaigns
+    async add({ commit }, payload) {
+      NProgress.start();
+      commit("SET_LOADING_STATUS");
+      try {
+        let res = await $request.post(`/campaigns`, payload);
+        console.log(res);
+        // console.log(res.message);
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Campaign created successfully',
+        })
         return res;
       } catch (error) {
         console.log(error.data);

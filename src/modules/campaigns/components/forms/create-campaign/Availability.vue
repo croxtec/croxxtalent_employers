@@ -18,7 +18,7 @@
           </div>
           <div>
               <label for="">Deadline to opening <span class="text-danger">*</span></label>
-              <input type="date" placeholder="Select date">
+              <input type="date" name="date"  placeholder="Select date">
           </div>
           <div>
               <label for="">Country <span class="text-danger">*</span></label>

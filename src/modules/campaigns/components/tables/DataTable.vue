@@ -141,6 +141,7 @@ table {
   border-spacing: 0 15px;
   width: 100%;
 }
+
 th {
   background-color: var(--primary-500) !important;
   color: white;

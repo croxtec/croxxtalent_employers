@@ -21,84 +21,84 @@ const getDefaultState = () => {
     delivery_type: [
       {
         id: 1,
-        name: 'Quiz',
-        value: 'quiz'
+        name: "Quiz",
+        value: "quiz",
       },
       {
         id: 2,
-        name: 'Classroom',
-        value: 'classroom'
+        name: "Classroom",
+        value: "classroom",
       },
       {
         id: 3,
-        name: 'On the Job',
-        value: 'on-the-job'
+        name: "On the Job",
+        value: "on-the-job",
       },
       {
         id: 4,
-        name: 'Assessment',
-        value: 'assessment'
+        name: "Assessment",
+        value: "assessment",
       },
       {
         id: 5,
-        name: 'Experience',
-        value: 'experience'
+        name: "Experience",
+        value: "experience",
       },
       {
         id: 6,
-        name: 'Exam',
-        value: 'exam'
+        name: "Exam",
+        value: "exam",
       },
       {
         id: 7,
-        name: 'External',
-        value: 'external'
-      }
+        name: "External",
+        value: "external",
+      },
     ],
     categories: [
       {
-        id: 1, 
-        name: 'Generic',
-        value: 'generic'
+        id: 1,
+        name: "Generic",
+        value: "generic",
       },
       {
-        id: 2, 
-        name: 'Job Specific',
-        value: 'job specific'
+        id: 2,
+        name: "Job Specific",
+        value: "job specific",
       },
       {
-        id: 3, 
-        name: 'HSE',
-        value: 'hse'
+        id: 3,
+        name: "HSE",
+        value: "hse",
       },
       {
-        id: 4, 
-        name: 'Vetting',
-        value: 'vetting'
+        id: 4,
+        name: "Vetting",
+        value: "vetting",
       },
     ],
     levels: [
       {
-        id: 1, 
-        name: 'Beginner',
-        value: 'beginner'
+        id: 1,
+        name: "Beginner",
+        value: "beginner",
       },
       {
-        id: 2, 
-        name: 'Intermediate',
-        value: 'intermediate'
+        id: 2,
+        name: "Intermediate",
+        value: "intermediate",
       },
       {
-        id: 3, 
-        name: 'Advanced',
-        value: 'advanced'
+        id: 3,
+        name: "Advanced",
+        value: "advanced",
       },
       {
-        id: 4, 
-        name: 'Expert',
-        value: 'expert'
-      }
-    ]
+        id: 4,
+        name: "Expert",
+        value: "expert",
+      },
+    ],
   };
 };
 
@@ -132,6 +132,12 @@ export default {
     SET_SKILLS(state, payload) {
       state.skills = payload;
     },
+    SET_LANGUAGES(state, payload) {
+      state.languages = payload;
+    },
+    SET_STATES(state, payload) {
+      state.states = payload;
+    },
   },
   actions: {
     // get Countries
@@ -145,7 +151,7 @@ export default {
       }
     },
 
-    async getDomains ({commit}) {
+    async getDomains({ commit }) {
       try {
         let response = await $request.get("settings/competence");
         console.log(response.data.data);
@@ -156,7 +162,7 @@ export default {
       }
     },
 
-    async getCore({commit}, domain) {
+    async getCores({ commit }, domain) {
       try {
         let response = await $request.get(`settings/competence/core/${domain}`);
         console.log(response.data.data);
@@ -167,7 +173,7 @@ export default {
       }
     },
 
-    async getSkills({commit}, core) {
+    async getSkills({ commit }, core) {
       try {
         let response = await $request.get(`settings/competence/skill/${core}`);
         console.log(response.data.data);
@@ -177,8 +183,6 @@ export default {
         console.log(error);
       }
     },
-
-   
 
     // get Countries
     async getCourses({ commit }) {
@@ -214,11 +218,32 @@ export default {
     },
 
     // get Degrees
-   async  getDegrees({ commit }) {
+    async getDegrees({ commit }) {
       try {
         let response = await $request.get("settings/degrees");
         let responsePayload = response.data.data;
         commit("SET_DEGREES", responsePayload);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    // get States
+    async getStates({ commit }) {
+      try {
+        let response = await $request.get("settings/states");
+        let responsePayload = response.data.data;
+        commit("SET_STATES", responsePayload);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // get Languages
+    async getLanguages({ commit }) {
+      try {
+        let response = await $request.get("settings/languages");
+        let responsePayload = response.data.data;
+        commit("SET_LANGUAGES", responsePayload);
       } catch (error) {
         console.log(error);
       }
