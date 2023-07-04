@@ -5,7 +5,8 @@ const menu = [
     icon: "solar:home-2-outline",
     url: "/",
     parent: "dashboard",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   }, 
   
   {
@@ -14,7 +15,8 @@ const menu = [
     icon: "ic:outline-dashboard",
     url: "/job-codes",
     parent: "job-codes",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   },
 
   {
@@ -23,7 +25,8 @@ const menu = [
     icon: "fluent-emoji-high-contrast:briefcase",
     url: "/employees",
     parent: "employees",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   },
 
   {
@@ -32,7 +35,8 @@ const menu = [
     icon: "ic:outline-dashboard",
     url: "/competence",
     parent: "competence",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   },
 
   {
@@ -41,7 +45,8 @@ const menu = [
     icon: "solar:document-outline",
     url: "/assessment",
     parent: "assessment",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   },
 
   {
@@ -50,7 +55,8 @@ const menu = [
     icon: "ic:outline-dashboard",
     url: "/campaigns",
     parent: "campaigns",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: false
   },
 
   {
@@ -59,7 +65,8 @@ const menu = [
     icon: "fluent:people-28-regular",
     url: "/candidates",
     parent: "candidates",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: true
   },
 
   {
@@ -68,7 +75,8 @@ const menu = [
     icon: "icon-park-outline:people-search-one",
     url: "/find-talents",
     parent: "find-talents",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: true
   },
 
   {
@@ -77,7 +85,8 @@ const menu = [
     icon: "mdi:file-document-multiple-outline",
     url: "/trainings",
     parent: "trainings",
-    lineAfter: true
+    lineAfter: true,
+    coming_soon: true
   },
 
   {
@@ -86,7 +95,8 @@ const menu = [
     icon: "solar:settings-outline",
     url: "/settings",
     parent: "settings",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: true
   },
 
   {
@@ -95,7 +105,8 @@ const menu = [
     icon: "pixelarticons:subscriptions",
     url: "/subscriptions",
     parent: "subscriptions",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: true
   },
 
   {
@@ -104,7 +115,8 @@ const menu = [
     icon: "material-symbols:settings-alert-outline",
     url: "/help-center",
     parent: "help-center",
-    lineAfter: false
+    lineAfter: false,
+    coming_soon: true
   },
 ];
 

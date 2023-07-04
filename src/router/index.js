@@ -8,15 +8,18 @@ import Assessment from "@/modules/assessment/router";
 import TalentFinder from "@/modules/talents/router";
 import JobCodes from "@/modules/job-codes/router";
 import Employees from "@/modules/employees/router";
-import Candidates from "@/modules/candidates/router"
+import Candidates from "@/modules/candidates/router";
 
-import Competence from "@/modules/competence/router"
+import Competence from "@/modules/competence/router";
 
-import Middleware from "@/middleware/router"
+import Middleware from "@/middleware/router";
+
 
 Vue.use(VueRouter);
 
-const routes = [];
+const routes = [
+  
+];
 
 const router = new VueRouter({
   mode: "history",
@@ -29,7 +32,7 @@ const router = new VueRouter({
     JobCodes,
     Employees,
     Candidates,
-    Middleware, 
+    Middleware,
     Competence
   ),
 });

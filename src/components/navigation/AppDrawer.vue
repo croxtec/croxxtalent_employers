@@ -28,6 +28,7 @@
               <span :class="item.header ? 'menu-title-header' : 'menu-title'">
                 {{ item.title }}
               </span>
+              <span class="coming-soon" v-if="item.coming_soon">coming soon</span>
             </div>
             <!-- <span v-if="item.hasChildren">
               <i-icon
@@ -72,7 +73,12 @@ export default {
   },
   methods: {
     goToLink(item) {
-      this.$router.push(item.url);
+      if(!item.coming_soon) {
+        this.$router.push(item.url);
+      }
+      else {
+        this.$router.push('/coming-soon')
+      }
     },
     openSubMenu(item) {
       this.subMenu = this.subMenu === item.id ? null : item.id;
@@ -96,4 +102,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  .coming-soon {
+    font-size: 8px;
+    color: #ff0000;
+    background: #ff000023;
+    padding: 3px;
+    border-radius: 3px;
+  }
+</style>
