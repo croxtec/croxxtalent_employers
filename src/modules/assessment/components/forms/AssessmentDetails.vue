@@ -125,13 +125,13 @@ export default {
   methods: {
     ...mapActions('config', ['getSkills', 'getCore']),
     selectDomain() {
-      var priceOptions = document.getElementById("mySelect");
-      var selOption = priceOptions.options[priceOptions.selectedIndex].value;
+      // var priceOptions = document.getElementById("mySelect");
+      // var selOption = priceOptions.options[priceOptions.selectedIndex].value;
       this.getCore(this.domain)
     },
     selectCore(){
-      var priceOptions = document.getElementById("mySelect2");
-      var selOption = priceOptions.options[priceOptions.selectedIndex].value;
+      // var priceOptions = document.getElementById("mySelect2");
+      // var selOption = priceOptions.options[priceOptions.selectedIndex].value;
       this.getSkills(this.core)
     },
     goToNext() {
