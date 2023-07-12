@@ -93,7 +93,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      activeNames: [],
+      activeNames: [0, 1, 2],
       activeEl: 0,
       percentage: 30,
       customColor: "#0040A1",
