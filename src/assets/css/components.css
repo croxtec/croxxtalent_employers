@@ -525,7 +525,7 @@ ul {
 .bordered {
     border: 1px solid var(--primary-200);
     background: #fff;
-    padding: 18px;
+    padding: 23px;
     border-radius: 25px;
 }
 

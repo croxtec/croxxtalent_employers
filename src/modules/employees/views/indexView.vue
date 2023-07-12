@@ -2,25 +2,25 @@
   <div id="campaigns" class="spacer">
     <div
       class="d-flex align-items-center justify-content-end"
-      style="gap: 20px"
+      style="gap: 10px"
     >
-      <button
+      <button disabled
         class="button dark-btn d-flex align-items-center justify-content-center"
-        style="gap: 20px"
+        style="gap: 5px"
       >
         <!-- <span> <i-icon icon="solar:download-minimalistic-outline" /> </span><span>Download Template</span> -->
         <span> <i-icon icon="solar:download-minimalistic-outline" /> </span>
       </button>
-      <button
+      <button disabled
         class="button dark-btn d-flex align-items-center justify-content-center"
-        style="gap: 20px"
+        style="gap: 5px"
       >
         <span> <i-icon icon="solar:upload-minimalistic-outline" /> </span
         ><span>Upload Employees</span>
       </button>
       <button @click="createEmployee"
         class="button dark-btn d-flex align-items-center justify-content-center"
-        style="gap: 20px"
+        style="gap: 5px"
       >
         <span> <i-icon icon="solar:upload-minimalistic-outline" /> </span
         ><span>Add Employee</span>
