@@ -21,7 +21,7 @@
                 <div class="main-data">
                   <h5 class="form-header text-center">Campaign Information</h5>
                   <div>
-                    <validation-provider v-slot="validationContext" vid="title"  name="title" rules="required|max:75">
+                    <validation-provider v-slot="validationContext" vid="title"  name="title" rules="required|min:5|max:75">
                       <label for=""
                         >Campaign Title <span class="text-danger">*</span></label
                       >
@@ -384,8 +384,7 @@
               >
                 Back
               </button>
-              {{ invalid }}
-              <button class="primary-btn button" @click="navigateSteps('next')">
+              <button :disabled="invalid" class="primary-btn button" @click="navigateSteps('next')">
                 {{ stepNum === steps.length ? "Finish" : "Next Step" }}
               </button>
             </div>
