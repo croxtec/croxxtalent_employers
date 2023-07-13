@@ -1,5 +1,7 @@
 <template>
+  <validation-observer  ref="form" v-slot="{ invalid }">
   <div class="question-item">
+
     <div class="headline">
       <h6>This is a single choice Question</h6>
     </div>
@@ -15,37 +17,53 @@
     <!-- <div>
       {{ questions }}
     </div> -->
-
     <div class="choices">
-      <input
-        type="text"
-        class="question-input"
-        placeholder="What is your question?"
-        v-model="payload.question"
-      />
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option1" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option3" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
-      <span class="d-flex align-items-center w-75" style="gap: 10px">
-        <input type="text" class="answer-choice" v-model="payload.option4" placeholder="Enter Option" />
-        <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-      </span>
+      <validation-provider v-slot="validationContext" vid="question"  name="question" rules="required|min:10|max:100">
+          <input
+            type="text"
+            class="question-input"
+            placeholder="What is your question?"
+            v-model="payload.question"
+        />
+        <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+      </validation-provider>
+      <validation-provider v-slot="validationContext" vid="optiont1"  name="optiont1" rules="required|min:2|max:50">
+        <span class="d-flex align-items-center w-75" style="gap: 10px">
+          <input type="text" class="answer-choice" v-model="payload.option1" placeholder="Enter Option" />
+          <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+        </span>
+        <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+       </validation-provider>
+       <validation-provider v-slot="validationContext" vid="option2"  name="option2" rules="required|min:2|max:50">
+          <span class="d-flex align-items-center w-75" style="gap: 10px">
+          <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
+          <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+        </span>
+        <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
+        <validation-provider v-slot="validationContext" vid="option3"  name="option3" rules="required|min:2|max:50">
+           <span class="d-flex align-items-center w-75" style="gap: 10px">
+          <input type="text" class="answer-choice" v-model="payload.option3" placeholder="Enter Option" />
+          <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+        </span>
+        <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
+      <validation-provider v-slot="validationContext" vid="option4"  name="option4" rules="required|min:2|max:50">
+        <span class="d-flex align-items-center w-75" style="gap: 10px">
+            <input type="text" class="answer-choice" v-model="payload.option4" placeholder="Enter Option" />
+            <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+          </span>
+          <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
     </div>
-
+    
     <div class="footer-data d-flex align-items-center" style="gap: 20px">
-      <button class="button primary-btn" @click="addQuestion">Add Question</button>
-      <button class="button outline-btn" @click="next">Next</button>
+      <button class="button outline-btn"  @click="prev">Prev</button>
+      <button class="button primary-btn" :disabled="invalid"  @click="addQuestion">Add Question</button>
+      <button class="button outline-btn"  @click="next">Next</button>
     </div>
   </div>
+</validation-observer>
 </template>
 
 <script>
@@ -72,6 +90,10 @@ export default {
     },
     next() {
       this.$store.commit("assessmentHeader/NEXT_EL", 3);
+    },
+
+    prev() {
+      this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
     },
   },  
   computed: {

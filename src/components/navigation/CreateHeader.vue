@@ -18,6 +18,8 @@
 export default {
   methods: {
     goBack(){
+      this.$store.commit("assessmentDetails/SET_REFRESH_STATE");
+      this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
       this.$router.go(-1)
     }
   }

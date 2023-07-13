@@ -44,13 +44,16 @@
             </validation-provider>
           </div>
           <div class="w-100">
-            <label for="">Level <span class="text-danger">*</span></label>
-            <select v-model="level">
-              <option value="" selected disabled>Select Level</option>
-              <option :value="item.value" v-for="item in levels" :key="item.id">
-                {{ item.name }}
-              </option>
-            </select>
+            <validation-provider v-slot="validationContext" vid="core_id"  name="core" rules="required">
+              <label for="">Level <span class="text-danger">*</span></label>
+              <select v-model="level">
+                <option value="" selected disabled>Select Level</option>
+                <option :value="item.value" v-for="item in levels" :key="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
           </div>
         </div>
 
@@ -58,27 +61,33 @@
 
         <div class="d-flex align-items-center" style="gap: 20px">
           <div class="w-100">
-            <label for=""
-              >Assessment Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              v-model="assessment_name"
-              placeholder="Assessment Name"
-            />
+            <validation-provider v-slot="validationContext" vid="assessment_name"  name="Assessment Name" rules="required|min:5|max:50">
+              <label for=""
+                >Assessment Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                v-model="assessment_name"
+                placeholder="Assessment Name"
+              />
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
           </div>
           <div class="w-100">
-            <label for="">Categories <span class="text-danger">*</span></label>
-            <select v-model="category">
-              <option value="" selected disabled>Select Category</option>
-              <option
-                :value="item.value"
-                v-for="item in categories"
-                :key="item.id"
-              >
-                {{ item.name }}
-              </option>
-            </select>
+            <validation-provider v-slot="validationContext" vid="categories"  name="categories" rules="required">
+              <label for="">Categories <span class="text-danger">*</span></label>
+              <select v-model="category">
+                <option value="" selected disabled>Select Category</option>
+                <option
+                  :value="item.value"
+                  v-for="item in categories"
+                  :key="item.id"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
           </div>
         </div>
         <div class="d-flex align-items-center" style="gap: 20px">
@@ -97,8 +106,7 @@
           </div>
           <div class="w-100">
             <label for=""
-              >Validity Period <span class="text-danger">*</span></label
-            >
+              >Validity Period </label>
             <select>
               <option value="" selected disabled>Select Validity Period</option>
               <option value="valid">Valid</option>
@@ -107,14 +115,12 @@
           </div>
         </div>
         <div>
-          <validation-provider v-slot="validationContext" vid="description"  name="description" rules="ruquired|max:500">
+          <validation-provider v-slot="validationContext" vid="description"  name="description" rules="required|min:15|max:500">
               <label for=""
-                >Description <span class="text-danger">*</span></label
-              >
+                >Description <span class="text-danger">*</span></label>
               <textarea
                 name=""
-                id=""
-                cols="30" rows="6"
+                id="" cols="30" rows="6"
                 placeholder="Assesment Description"
                 v-model="description"></textarea>
               <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>

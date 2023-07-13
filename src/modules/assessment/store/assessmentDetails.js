@@ -44,9 +44,21 @@ const getDefaultState = () => ({
       SET_QUESTIONS(state, payload) {
         state.questions.push(payload);
       },
+      SET_REFRESH_STATE(state) {
+        state.details.domain = "";
+        state.details.core = "";
+        state.details.skill = "";
+        state.delivery= "";
+        state.level= "";
+        state.assessment_name= "";
+        state.category= "";
+        state.domain= "";
+        state.questions=  [];
+      },
      
     },
     actions: {
+
     },
   };
   

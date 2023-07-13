@@ -143,7 +143,7 @@
               <div v-if="stepNum === 3" class="main-data">
                 <h5 class="form-header text-center">Other Details</h5>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="course_ids"  name="course of study" rules="required|array">
+                  <validation-provider v-slot="validationContext" vid="course_ids"  name="Course of Study" rules="required|array">
                     <label for=""
                       >Course of Study <span class="text-danger">*</span></label
                     >
@@ -336,7 +336,7 @@
               <div v-if="stepNum === 5" class="main-data">
                 <h5 class="form-header text-center">Summary</h5>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="summary"  name="Summary" rules="ruquired|max:500">
+                  <validation-provider v-slot="validationContext" vid="summary"  name="Summary" rules="required|max:500">
                     <label for="">Summary <span class="text-danger">*</span></label>
                     <textarea
                       name=""
@@ -350,7 +350,7 @@
                 </div>
 
                 <div>
-                  <validation-provider v-slot="validationContext" vid="description"  name="description" rules="ruquired|max:500">
+                  <validation-provider v-slot="validationContext" vid="description"  name="description" rules="required|max:500">
                       <label for=""
                         >Description <span class="text-danger">*</span></label
                       >

@@ -1,35 +1,39 @@
 <template>
-  <div class="question-item">
-    <div class="headline">
-      <h6>This is a question requiring a file upload</h6>
-    </div>
-
-    <div class="main-header">
-      <h6>Question {{ questions.length + 1 }}</h6>
-    </div>
-
-    <div class="question">
-      <h6>What would like to ask?</h6>
-    </div>
-
-    <!-- <div>
-      {{ questions }}
-    </div> -->
-
-    <div class="choices">
-      <input
-        type="text"
-        class="question-input"
-        placeholder="What is your question?"
-        v-model="payload.question"
-      />
-    </div>
-
-    <div class="footer-data d-flex align-items-center" style="gap: 20px">
-      <button class="button primary-btn" @click="addQuestion">Add Question</button>
-      <button class="button outline-btn" @click="next">Next</button>
-    </div>
-  </div>
+    <validation-provider v-slot="{ invalid, errors}" vid="question"  name="question" rules="required|min:10|max:100">
+      <div class="question-item">
+        <div class="headline">
+          <h6>This is a question requiring a file upload</h6>
+        </div>
+    
+        <div class="main-header">
+          <h6>Question {{ questions.length + 1 }}</h6>
+        </div>
+    
+        <div class="question">
+          <h6>What would like to ask?</h6>
+        </div>
+    
+        <!-- <div>
+          {{ questions }}
+        </div> -->
+    
+        <div class="choices">
+          <input
+            type="text"
+            class="question-input"
+            placeholder="What is your question?"
+            v-model="payload.question"
+          />
+          <small class="text-danger my-2" v-text="errors[0]"></small>
+        </div>
+    
+        <div class="footer-data d-flex align-items-center" style="gap: 20px">
+            <button class="button outline-btn"  @click="prev">Prev</button>
+            <button class="button primary-btn" :disabled="invalid"  @click="addQuestion">Add Question</button>
+            <button class="button outline-btn"  @click="next">Next</button>
+          </div>
+      </div>
+    </validation-provider>
 </template>
 
 <script>
@@ -53,6 +57,9 @@ export default {
    next() {
       this.$store.commit("assessmentHeader/NEXT_EL", 3);
     },
+    prev() {
+      this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
+    }
   },  
   computed: {
     questions(){
