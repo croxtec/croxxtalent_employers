@@ -59,8 +59,8 @@
     
     <div class="footer-data d-flex align-items-center" style="gap: 20px">
       <button class="button outline-btn"  @click="prev">Prev</button>
-      <button class="button primary-btn" :disabled="invalid"  @click="addQuestion">Add Question</button>
-      <button class="button outline-btn"  @click="next">Next</button>
+      <button class="button primary-btn" :disabled="invalid" :class="{ 'bg-secondary': invalid}"   @click="addQuestion">Add Question</button>
+      <button class="button outline-btn"  @click="next" :disabled="!questions">Next</button>
     </div>
   </div>
 </validation-observer>

@@ -143,7 +143,7 @@
               <div v-if="stepNum === 3" class="main-data">
                 <h5 class="form-header text-center">Other Details</h5>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="course_ids"  name="Course of Study" rules="required|array">
+                  <validation-provider v-slot="validationContext" vid="course_of_study_ids"  name="Course of Study" rules="required">
                     <label for=""
                       >Course of Study <span class="text-danger">*</span></label
                     >
@@ -336,7 +336,7 @@
               <div v-if="stepNum === 5" class="main-data">
                 <h5 class="form-header text-center">Summary</h5>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="summary"  name="Summary" rules="required|max:500">
+                  <validation-provider v-slot="validationContext" vid="summary"  name="Summary" rules="required|min:10|max:500">
                     <label for="">Summary <span class="text-danger">*</span></label>
                     <textarea
                       name=""
@@ -350,7 +350,7 @@
                 </div>
 
                 <div>
-                  <validation-provider v-slot="validationContext" vid="description"  name="description" rules="required|max:500">
+                  <validation-provider v-slot="validationContext" vid="description"  name="description" rules="required|min:10|max:500">
                       <label for=""
                         >Description <span class="text-danger">*</span></label
                       >
@@ -384,7 +384,9 @@
               >
                 Back
               </button>
-              <button :disabled="invalid" class="primary-btn button" @click="navigateSteps('next')">
+              <button :disabled="invalid" class="primary-btn button" 
+                :class="{ 'bg-secondary': invalid }"
+                @click="navigateSteps('next')">
                 {{ stepNum === steps.length ? "Finish" : "Next Step" }}
               </button>
             </div>
@@ -398,6 +400,8 @@
 <script>
 // import campaignSteps from "@/api/campaign";
 import { mapState, mapActions } from "vuex";
+import Swal from 'sweetalert2'
+
 export default {
   components: {},
 
@@ -458,7 +462,7 @@ export default {
         min_salary: null,
         max_salary: null,
         number_of_positions: null,
-        years_of_experience: null,
+        years_of_experience: 1,
         expire_at: null,
         city: null,
         state_id: null,
@@ -503,8 +507,14 @@ export default {
 
     onComplete() {
       this.add(this.dataObject).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Campaign created successfully',
+        })
         this.list();
         this.resetForm()
+        this.$router.push('/campaigns')
       });
     },
 
