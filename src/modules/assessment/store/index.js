@@ -7,9 +7,12 @@ const getDefaultState = () => {
   return {
     results: null,
     loading: false,
-    dataSet: null,
     success: null,
     error: null,
+    data: {},
+    dataSet: [],
+    dataSetTotal: 0,
+    dataSetLastPage: 1,
     validationErrors: {},
     createEmployeeModal: false,
     singleDataSet: {}
@@ -26,9 +29,11 @@ export default {
     // auth: (state) => state.auth,
   },
   mutations: {
-    SET_DATA(state, payload) {
+    SET_DATASET(state, payload) {
       state.results = payload.data;
-      state.dataSet = payload;
+      state.dataSet = payload.data;
+      state.dataSetTotal = payload.data?.length;
+      state.dataSetLastPage = payload.last_page;
       state.loading = false;
       state.error = false;
       state.success = false;
@@ -87,7 +92,7 @@ export default {
       try {
         let res = await $request.get(`/assesments`);
         console.log(res);
-        commit("SET_DATA", res.data.data);
+        commit("SET_DATASET", res.data);
         return res;
       } catch (error) {
         console.log(error.data);

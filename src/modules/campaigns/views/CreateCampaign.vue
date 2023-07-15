@@ -185,7 +185,7 @@
                   </validation-provider>
                 </div>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="languages_ids"  name="Languages" rules="array">
+                  <validation-provider v-slot="validationContext" vid="languages_ids"  name="Languages" rules="required">
                     <label for=""
                       >Languages </label
                     >
@@ -215,7 +215,7 @@
                 </div>
                 <div class="d-flex align-items-center" style="gap: 20px">
                   <div>
-                    <validation-provider v-slot="validationContext" vid="min_salary"  name="Minimum Salary" rules="max:26|integer">
+                    <validation-provider v-slot="validationContext" vid="min_salary"  name="Minimum Salary" rules="nullable|max:26|integer">
                       <label for="">Minimum Salary </label>
                       <input
                         type="number"
@@ -226,7 +226,7 @@
                     </validation-provider>
                   </div>
                   <div>
-                    <validation-provider v-slot="validationContext" vid="max_salary"  name="Maximum Salary" rules="max:26|integer">
+                    <validation-provider v-slot="validationContext" vid="max_salary"  name="Maximum Salary" rules="nullable|max:26|integer">
                       <label for="" >Maximum Salary </label>
                       <input
                         type="number"
@@ -263,7 +263,7 @@
                   </validation-provider>
                 </div>
                 <div>
-                  <validation-provider v-slot="validationContext" vid="available_openings"  name="Available Openings" rules="integer">
+                  <validation-provider v-slot="validationContext" vid="available_openings"  name="Available Openings" rules="required|integer">
                     <label for=""
                       >Available Openings </label
                     >

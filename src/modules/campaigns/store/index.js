@@ -7,9 +7,12 @@ const getDefaultState = () => {
   return {
     results: null,
     loading: false,
-    dataSet: null,
     success: null,
     error: null,
+    data: {},
+    dataSet: [],
+    dataSetTotal: 0,
+    dataSetLastPage: 1,
     validationErrors: {},
     createEmployeeModal: false,
     singleDataSet: {}
@@ -25,9 +28,11 @@ export default {
     getSingleDataSet: (state) => state.singleDataSet
   },
   mutations: {
-    SET_DATA(state, payload) {
+    SET_DATASET(state, payload) {
       state.results = payload.data;
       state.dataSet = payload;
+      state.dataSetTotal = payload.total;
+      state.dataSetLastPage = payload.last_page;
       state.loading = false;
       state.error = false;
       state.success = false;
@@ -87,7 +92,7 @@ export default {
         let res = await $request.get(`/campaigns`);
         console.log(res);
         let resPayload = res.data
-        commit("SET_DATA", resPayload);
+        commit("SET_DATASET", resPayload);
         // console.log(res.message);
         return res;
       } catch (error) {
@@ -161,7 +166,7 @@ export default {
         let res = await $request.get(`employers/competency/${id}`);
        console.log(res.data.data);
        let resPayload = res.data.data
-       commit("SET_DATA", resPayload)
+       commit("SET_DATASET", resPayload)
         return res;
       } catch (error) {
         console.log(error.data);

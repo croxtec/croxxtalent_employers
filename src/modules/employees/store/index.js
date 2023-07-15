@@ -7,9 +7,12 @@ const getDefaultState = () => {
   return {
     results: null,
     loading: false,
-    dataSet: null,
     success: null,
     error: null,
+    data: {},
+    dataSet: [],
+    dataSetTotal: 0,
+    dataSetLastPage: 1,
     validationErrors: {},
     createEmployeeModal: false
   };
@@ -24,9 +27,11 @@ export default {
     // auth: (state) => state.auth,
   },
   mutations: {
-    SET_DATA(state, payload) {
+    SET_DATASET(state, payload) {
       state.results = payload.data;
       state.dataSet = payload;
+      state.dataSetTotal = payload.total;
+      state.dataSetLastPage = payload.last_page;
       state.loading = false;
       state.error = false;
       state.success = false;
@@ -77,13 +82,13 @@ export default {
       try {
         let res = await $request.get(`employers/employee`);
         console.log(res);
-        commit("SET_DATA", res.data);
+        commit("SET_DATASET", res.data);
         // console.log(res.message);
         return res;
       } catch (error) {
         console.log(error.data);
         commit('SET_ERROR', error.data.message)
-        // commit("SET_DATA", {
+        // commit("SET_DATASET", {
         //   res: error.data.errors.email,
         //   result: "error",
         // });
