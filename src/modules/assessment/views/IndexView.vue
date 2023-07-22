@@ -14,102 +14,123 @@
         </router-link>
       </div>
     </div>
-    <el-collapse v-model="activeNames">
-      <el-collapse-item
-        v-for="(domain, key_domain) in results"
-        :key="domain.name"
-        :title="domain.name"
-        :name="key_domain"
-      >
-        <div class="skill-header">
-          <div class="skills-list" :id="key_domain">
-            <span
-              role="button"
-              @click="switchActive(key_domain, key_core)"
-              :class="{
-                active: assessment[key_domain]?.activeCore === key_core,
-              }"
-              v-for="(core, key_core) in domain.core"
-              :key="key_core"
-            >
-              {{ core.name }}
-            </span>
-          </div>
-          <div class="arrows">
-            <span
-              class="left-arrow"
-              role="button"
-              @click="scrollButton('left', key_domain)"
-              @mousedown="scrollButton('left', key_domain)"
-            >
-              <i-icon icon="prime:angle-left" width="25px" />
-            </span>
-            <span
-              class="right-arrow"
-              role="button"
-              @click="scrollButton('right', key_domain)"
-              @mousedown="scrollButton('right', key_domain)"
-            >
-              <i-icon icon="prime:angle-right" width="25px" />
-            </span>
-          </div>
+    <div v-if="loading">
+      <span>Fetching Data</span>
+      <i-icon
+        icon="eos-icons:three-dots-loading"
+        style="color: var(--primary-500)"
+        width="60px"
+      />
+    </div>
+    <div v-else>
+        <span class="error-alert" v-if="error">
+          {{ error }}
+        </span>
+        <div
+          class="d-flex justify-content-center"
+          v-else-if="results.length === 0"
+        >
+          <img src="@/assets/img/empty.svg" alt="" />
         </div>
-        <div class="manager-data mt-3">
-          <div
-            class="skills-info text-center py-3 px-2"
-            v-for="skill in domain.core[assessment[key_domain]?.activeCore]
-              ?.skills"
-            :key="skill.id" >
-          <div class="main-skills-content">
-            <span class="assessment-options">
-                <el-dropdown trigger="click">
-                      <span class="el-dropdown-link">
-                        <i-icon icon="icon-park-outline:more" width="20px" />
-                      </span>
-                      <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>
-                          <span @click="changePublishState(skill, Boolean(skill.is_published))">
-                            <i-icon icon="solar:eye-outline" />
-                             {{ Boolean(skill.is_published) ? 'View' : 'Publish' }}
-                          </span>
-                          
-                        </el-dropdown-item>
-                        <el-dropdown-item>
-                          <i-icon icon="lucide:edit" />
-                          Edit</el-dropdown-item
-                        >
-                        <el-dropdown-item>
-                          <i-icon icon="solar:archive-linear" />
-                          Archive
-                        </el-dropdown-item>
-
-                        <!-- <el-dropdown-item class="text-danger">
-                          <i-icon icon="fluent:delete-24-regular" />
-                          Delete</el-dropdown-item
-                        > -->
-                      </el-dropdown-menu>
-                </el-dropdown>
-            </span>
-            <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px">
-              <span class="manager-tag" v-text="skill.level"></span>
-              <span class="manager-count">20</span>
-            </span>
-            <h6 class="manager-name mt-2" @click="gotoManagement(skill.id)"
-                role="button" v-text="skill.name"></h6>
-
-          </div>
-              <div class="mt-3">
-                <!-- <button :class="Boolean(skill.is_published) ? 'outline-btn': 'primary-btn'" class="button py-1 px-3" 
-                  @click="changePublishState(skill, Boolean(skill.is_published))">
-                  {{ Boolean(skill.is_published) ? 'Unpublish' : 'Publish' }}
-                </button> -->
+        <div v-else >
+          <el-collapse v-model="activeNames">
+            <el-collapse-item
+              v-for="(domain, key_domain) in results"
+              :key="domain.name"
+              :title="domain.name"
+              :name="key_domain"
+            >
+              <div class="skill-header">
+                <div class="skills-list" :id="key_domain">
+                  <span
+                    role="button"
+                    @click="switchActive(key_domain, key_core)"
+                    :class="{
+                      active: assessment[key_domain]?.activeCore === key_core,
+                    }"
+                    v-for="(core, key_core) in domain.core"
+                    :key="key_core"
+                  >
+                    {{ core.name }}
+                  </span>
+                </div>
+                <div class="arrows">
+                  <span
+                    class="left-arrow"
+                    role="button"
+                    @click="scrollButton('left', key_domain)"
+                    @mousedown="scrollButton('left', key_domain)"
+                  >
+                    <i-icon icon="prime:angle-left" width="25px" />
+                  </span>
+                  <span
+                    class="right-arrow"
+                    role="button"
+                    @click="scrollButton('right', key_domain)"
+                    @mousedown="scrollButton('right', key_domain)"
+                  >
+                    <i-icon icon="prime:angle-right" width="25px" />
+                  </span>
+                </div>
               </div>
-          </div>
+              <div class="manager-data mt-3">
+                <div
+                  class="skills-info text-center py-3 px-2"
+                  v-for="skill in domain.core[assessment[key_domain]?.activeCore]
+                    ?.skills"
+                  :key="skill.id" >
+                <div class="main-skills-content">
+                  <span class="assessment-options">
+                      <el-dropdown trigger="click">
+                            <span class="el-dropdown-link">
+                              <i-icon icon="icon-park-outline:more" width="20px" />
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                              <el-dropdown-item>
+                                <span @click="changePublishState(skill, Boolean(skill.is_published))">
+                                  <i-icon icon="solar:eye-outline" />
+                                  {{ Boolean(skill.is_published) ? 'View' : 'Publish' }}
+                                </span>
+                                
+                              </el-dropdown-item>
+                              <el-dropdown-item>
+                                <i-icon icon="lucide:edit" />
+                                Edit</el-dropdown-item
+                              >
+                              <el-dropdown-item>
+                                <i-icon icon="solar:archive-linear" />
+                                Archive
+                              </el-dropdown-item>
+
+                              <!-- <el-dropdown-item class="text-danger">
+                                <i-icon icon="fluent:delete-24-regular" />
+                                Delete</el-dropdown-item
+                              > -->
+                            </el-dropdown-menu>
+                      </el-dropdown>
+                  </span>
+                  <span
+                    class="d-flex align-items-center justify-content-center"
+                    style="gap: 4px">
+                    <span class="manager-tag" v-text="skill.level"></span>
+                    <span class="manager-count">20</span>
+                  </span>
+                  <h6 class="manager-name mt-2" @click="gotoManagement(skill.id)"
+                      role="button" v-text="skill.name"></h6>
+
+                </div>
+                    <div class="mt-3">
+                      <!-- <button :class="Boolean(skill.is_published) ? 'outline-btn': 'primary-btn'" class="button py-1 px-3" 
+                        @click="changePublishState(skill, Boolean(skill.is_published))">
+                        {{ Boolean(skill.is_published) ? 'Unpublish' : 'Publish' }}
+                      </button> -->
+                    </div>
+                </div>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
         </div>
-      </el-collapse-item>
-    </el-collapse>
+    </div>
   </div>
 </template>
 
@@ -129,6 +150,7 @@ export default {
 
   computed: {
     ...mapState("assessments", {
+      loading: (state) => state.loading,
       results: (state) => state.dataSet,
     }),
   },

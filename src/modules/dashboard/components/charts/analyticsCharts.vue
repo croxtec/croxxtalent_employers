@@ -67,10 +67,10 @@
             <span class="bordered-icon"> <i-icon icon="ph:eye" /> </span>
           </div>
           <div  class="mt-2">
-            <h1 class="card-number">654</h1>
+            <h1 class="card-number">0</h1>
             <span class="text-secondary small d-flex align-items-center" style="gap:10px">
               <span>This week</span>
-              <span class="text-danger">5.6%</span>
+              <span class="text-danger">0%</span>
               <span> <i-icon class="text-danger" icon="mdi:caret-down" width="23px"/> </span>
             </span>
           </div>
@@ -81,10 +81,10 @@
             <span class="bordered-icon"> <i-icon icon="ph:eye" /> </span>
           </div>
           <div  class="mt-2">
-            <h1 class="card-number">654</h1>
+            <h1 class="card-number">0</h1>
             <span class="text-secondary small d-flex align-items-center" style="gap:10px">
               <span>This week</span>
-              <span class="text-success">5.6%</span>
+              <span class="text-success">0%</span>
               <span> <i-icon class="text-success" icon="mdi:caret-up" width="23px"/> </span>
             </span>
           </div>

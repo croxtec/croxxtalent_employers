@@ -3,7 +3,7 @@
       <div class="bordered">
         <h6>Applicants Summary</h6>
         <div  class="mt-2 d-flex align-items-end" style="gap:5px">
-            <h1 class="card-number">12</h1>
+            <h1 class="card-number">0</h1>
             <span class="text-secondary small">Applicants</span>
         </div>
         <div class="color-tabs my-3">
@@ -29,13 +29,13 @@
   export default {
     data(){
         return {
-            applicantTypes: [
-        { id: 1, name: "Full-Time", frequency: 45 },
-        { id: 2, name: "Internship", frequency: 32 },
-        { id: 3, name: "Part-Time", frequency: 24 },
-        { id: 4, name: "Contract", frequency: 30 },
-        { id: 5, name: "Remote", frequency: 22 },
-      ],
+          applicantTypes: [
+            { id: 1, name: "Full-Time", frequency: 0 },
+            { id: 2, name: "Internship", frequency: 0 },
+            { id: 3, name: "Part-Time", frequency: 0 },
+            { id: 4, name: "Contract", frequency: 0 },
+            { id: 5, name: "Remote", frequency: 0 },
+          ],
         }
     },
     computed: {

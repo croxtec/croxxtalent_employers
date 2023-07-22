@@ -108,7 +108,7 @@ export default {
         Swal.fire({
           icon: 'success',
           title: 'Successful',
-          text: 'Employee created successfully',
+          text: 'Employee invitation sent successfully',
         })
         commit("SET_CREATE", false)
         commit("SET_SUCCESS", true);

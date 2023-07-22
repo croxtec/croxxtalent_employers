@@ -358,7 +358,7 @@
                       <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
                   </validation-provider>
                 </div>
-                <div class="d-flex align-items-center" style="gap: 6px">
+                <!-- <div class="d-flex align-items-center" style="gap: 6px">
                   <label for=""
                     >Manage by Croxxtalent?
                     <span class="text-danger">*</span></label
@@ -366,7 +366,7 @@
                   <div>
                     <el-switch v-model="dataObject.is_managed"></el-switch>
                   </div>
-                </div>
+                </div> -->
                 <!-- <div>
                   <label for=""
                     >Select Campaign photo
