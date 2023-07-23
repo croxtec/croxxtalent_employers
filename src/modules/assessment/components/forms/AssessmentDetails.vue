@@ -176,9 +176,9 @@ export default {
         level: this.level,
         assessment_name: this.assessment_name,
         category: this.category,
-        domain: this.domain
+        domain: this.domain,
+        description: this.description
       };
-      console.log(payload);
       this.$store.commit("assessmentDetails/SET_DETAILS", payload);
       this.$emit("next");
     },

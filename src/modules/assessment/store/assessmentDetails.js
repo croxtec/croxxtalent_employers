@@ -15,7 +15,8 @@ const getDefaultState = () => ({
         level: "",
         assessment_name: "",
         category: "",
-        domain: ""
+        domain: "",
+        description: ""
     },
     questions: []
   });
@@ -53,6 +54,7 @@ const getDefaultState = () => ({
         state.assessment_name= "";
         state.category= "";
         state.domain= "";
+        state.description= "";
         state.questions=  [];
       },
      

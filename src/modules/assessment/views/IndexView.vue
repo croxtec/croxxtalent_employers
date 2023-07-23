@@ -159,7 +159,7 @@ export default {
     ...mapActions("assessments", ["list", "publish", "unPublish"]),
 
     changePublishState(value, data){
-      data ? this.unPublishAssessment(value) : this.publishAssessment(value)
+      data ? this.gotoManagement(value.id) : this.publishAssessment(value)
     },
 
     publishAssessment(value){
