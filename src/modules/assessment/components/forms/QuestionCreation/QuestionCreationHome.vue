@@ -1,50 +1,50 @@
 <template>
   <div>
-    <div class="form-content" v-if="!questionsContainer">
+    <!-- <div class="form-content" v-if="!questionsContainer">
       <div class="form-data" id="questions">
-      <div class="">
-        <el-menu default-active="2" class="el-menu-vertical-demo">
-          <el-submenu index="1">
-            <template slot="title">
-              <span>Setup Questions</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1" @click="goToContainer">
-                <span class="menu-icon">
-                  <i-icon icon="solar:clipboard-text-linear" />
-                </span>
-                <span class="menu-label">Introduction/Instruction</span>
-              </el-menu-item>
-              <hr class="my-1" style="border-color: var(--primary-100)" />
-              <el-menu-item index="1-2" @click="goToContainer">
-                <span class="menu-icon"
-                  ><i-icon icon="solar:clipboard-check-outline"
-                /></span>
-                <span class="menu-label">Single choice question</span>
-              </el-menu-item>
-              <hr class="my-1" style="border-color: var(--primary-100)" />
-              <el-menu-item index="1-3" @click="goToContainer">
-                <span class="menu-icon"
-                  ><i-icon icon="solar:checklist-minimalistic-outline"
-                /></span>
-                <span class="menu-label">Multiple choice questions</span>
-              </el-menu-item>
-              <hr class="my-1" style="border-color: var(--primary-100)" />
-              <el-menu-item index="1-4" @click="goToContainer">
-                <span class="menu-icon"
-                  ><i-icon icon="basil:edit-outline"
-                /></span>
-                <span class="menu-label">Open ended questions</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-        </el-menu>
+        <div class="">
+          <el-menu default-active="2" class="el-menu-vertical-demo">
+            <el-submenu index="1">
+              <template slot="title">
+                <span>Setup Questions</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="1-1" @click="goToContainer">
+                  <span class="menu-icon">
+                    <i-icon icon="solar:clipboard-text-linear" />
+                  </span>
+                  <span class="menu-label">Introduction/Instruction</span>
+                </el-menu-item>
+                <hr class="my-1" style="border-color: var(--primary-100)" />
+                <el-menu-item index="1-2" @click="goToContainer">
+                  <span class="menu-icon"
+                    ><i-icon icon="solar:clipboard-check-outline"
+                  /></span>
+                  <span class="menu-label">Single choice question</span>
+                </el-menu-item>
+                <hr class="my-1" style="border-color: var(--primary-100)" />
+                <el-menu-item index="1-3" @click="goToContainer">
+                  <span class="menu-icon"
+                    ><i-icon icon="solar:checklist-minimalistic-outline"
+                  /></span>
+                  <span class="menu-label">Multiple choice questions</span>
+                </el-menu-item>
+                <hr class="my-1" style="border-color: var(--primary-100)" />
+                <el-menu-item index="1-4" @click="goToContainer">
+                  <span class="menu-icon"
+                    ><i-icon icon="basil:edit-outline"
+                  /></span>
+                  <span class="menu-label">Open ended questions</span>
+                </el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+          </el-menu>
+        </div>
       </div>
-    </div>
-    </div>
+    </div> -->
     
-    <!-- Container -->
-    <div v-if="questionsContainer">
+    <!-- Container v-if="questionsContainer"-->
+    <div>
       <QuestionsContainer />
     </div>
   </div>

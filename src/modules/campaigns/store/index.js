@@ -112,11 +112,11 @@ export default {
         let res = await $request.post(`/campaigns`, payload);
         console.log(res);
         // console.log(res.message);
-        Swal.fire({
-          icon: 'success',
-          title: 'Successful',
-          text: 'Campaign created successfully',
-        })
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Successful',
+        //   text: 'Campaign created successfully',
+        // })
         return res;
       } catch (error) {
         console.log(error.data);

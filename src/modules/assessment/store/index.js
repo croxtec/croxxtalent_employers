@@ -133,6 +133,35 @@ export default {
       }
     },
 
+      // Publish Assessment
+      async create({ commit }, payload) {
+        NProgress.start();
+        commit("SET_LOADING_STATUS");
+        try {
+          let res = await $request.post(`/assesments`, payload);
+          let responsePayload = response.data;
+          commit("SET_SINGLE_DATA", responsePayload);
+          commit("SET_SUCCESS", responsePayload.message);
+        } catch (error) {
+          console.log(error.data);
+          if (error.data) {
+            let errorPayload = error.data;
+            if (errorPayload.message) {
+              commit("SET_ERROR", errorPayload.message);
+              if (errorPayload.errors) {
+                console.log(errorPayload.errors);
+                commit("SET_VALIDATION_ERRORS", errorPayload.errors);
+              }
+              return;
+            }
+          }
+          commit("SET_ERROR", "Internal connection error, please try again.");
+          return error.response;
+        } finally {
+          NProgress.done();
+        }
+      },
+
     // Publish Assessment
     async publish({ commit, dispatch }, id) {
       NProgress.start();

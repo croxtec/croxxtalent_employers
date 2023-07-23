@@ -499,7 +499,7 @@ export default {
 
     next() {
       if (this.stepNum === this.steps.length) {
-        this.onComplete();
+       this.onComplete();
       } else {
         this.stepNum++;
       }

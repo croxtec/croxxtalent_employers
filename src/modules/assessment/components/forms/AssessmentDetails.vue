@@ -129,6 +129,7 @@
         <div class="mt-2 text-center">
           <button
             :disabled="invalid"
+            :class="{ 'bg-secondary': invalid }"
             class="primary-btn button"
             style="width: max-content"
           >

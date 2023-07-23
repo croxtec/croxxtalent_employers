@@ -1,6 +1,5 @@
 <template>
   <validation-observer  ref="form" v-slot="{ invalid }">
-  
     <div class="form-data">
       <div
         class="d-flex align-items-center"
@@ -22,10 +21,10 @@
           </div>
           <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
         </validation-provider>
+        <!-- <div>
+          {{ details }}
+        </div> -->
       </div>
-      <!-- <div>
-        {{ details }}
-      </div> -->
       <div v-else>
         <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
         <div class="d-flex align-items-center" style="gap: 20px">
@@ -49,7 +48,6 @@
         <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
           <div class="d-flex align-items-center" style="gap: 20px">
             <span class="label">Assign Manager</span>
-  
             <div class="w-100">
               <el-select v-model="value2" multiple placeholder="Select Managers">
                 <el-option
@@ -69,7 +67,7 @@
   
       <div class="footer-data d-flex align-items-center" style="gap: 20px">
         <button class="button outline-btn"  @click="prev">Prev</button>
-        <button :disabled="invalid"  @click="submit" class="primary-btn button">Submit</button>
+        <button :disabled="invalid" :class="{ 'bg-secondary': invalid }"  @click="submit" class="primary-btn button">Submit</button>
       </div>
     </div>
   </validation-observer>
@@ -78,6 +76,8 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -110,12 +110,24 @@ export default {
         candidates: this.value1,
         managers: this.value2,
       }
+
       let generic_payload = Object.assign(data, generic)
       let specific_payload = Object.assign(data, specific)
+
       this.create(
         this.details.category === "generic" ? generic_payload : specific_payload
-      )
-      console.log(specific_payload, generic_payload);
+      ).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Assessment created successfully',
+        });
+
+        // this.$store.commit("assessmentDetails/SET_REFRESH_STATE");
+        // this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
+        // this.$router.go(-1)
+
+      });
     },
   },
   beforeMount() {
