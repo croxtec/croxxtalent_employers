@@ -27,8 +27,8 @@
       </div>
       <div v-else>
         <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
-        <div class="d-flex align-items-center" style="gap: 20px">
-          <span class="label">Assign Candidates</span>
+          <div class="d-flex align-items-center" style="gap: 20px">
+          <span class="label">Assign Employees</span>
             <div class="w-100">
               <el-select v-model="value1" multiple placeholder="Select Employees">
                 <el-option
@@ -39,10 +39,9 @@
                 >
                 </el-option>
               </el-select>
-              <small class="text-danger my-2" v-text="errors[0]"></small>
             </div>
-            <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
           </div>
+          <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
         </validation-provider>
         <hr style="border-color: var(--primary-200)" />
         <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
@@ -65,7 +64,7 @@
         </validation-provider>
       </div>
   
-      <div class="footer-data d-flex align-items-center" style="gap: 20px">
+      <div class="footer-data d-flex mx-auto" style="gap: 20px">
         <button class="button outline-btn"  @click="prev">Prev</button>
         <button :disabled="invalid" :class="{ 'bg-secondary': invalid }"  @click="submit" class="primary-btn button">Submit</button>
       </div>
@@ -123,9 +122,9 @@ export default {
           text: 'Assessment created successfully',
         });
 
-        // this.$store.commit("assessmentDetails/SET_REFRESH_STATE");
-        // this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
-        // this.$router.go(-1)
+        this.$store.commit("assessmentDetails/SET_REFRESH_STATE");
+        this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
+        this.$router.go(-1)
 
       });
     },
