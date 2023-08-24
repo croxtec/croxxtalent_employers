@@ -36,9 +36,9 @@
        </validation-provider>
        <validation-provider v-slot="validationContext" vid="option2"  name="option2" rules="required|min:2|max:50">
           <span class="d-flex align-items-center w-75" style="gap: 10px">
-          <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
-          <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
-        </span>
+            <input type="text" class="answer-choice" v-model="payload.option2" placeholder="Enter Option" />
+            <!-- <span> <i-icon icon="solar:close-circle-bold" class="delete-response"/>  </span> -->
+          </span>
         <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
         </validation-provider>
         <validation-provider v-slot="validationContext" vid="option3"  name="option3" rules="required|min:2|max:50">
@@ -86,7 +86,14 @@ export default {
       console.log(this.payload);
       console.log(this.questions)
       this.$store.commit('assessmentDetails/SET_QUESTIONS', this.payload)
-      this.payload = {}
+      this.payload = {
+        type: "radio",
+        question: "",
+        option1: "",
+        option2: "",
+        option3: "",
+        option4: "",
+      }
     },
     next() {
       this.$store.commit("assessmentHeader/NEXT_EL", 3);

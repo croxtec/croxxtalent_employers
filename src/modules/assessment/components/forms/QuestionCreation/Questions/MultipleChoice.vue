@@ -87,7 +87,14 @@ export default {
       console.log(this.payload);
       console.log(this.questions)
       this.$store.commit('assessmentDetails/SET_QUESTIONS', this.payload)
-      this.payload = {}
+      this.payload = {
+        type: "checkbox",
+        question: "",
+        option1: "",
+        option2: "",
+        option3: "",
+        option4: "",
+      }
     },
     next() {
       this.$store.commit("assessmentHeader/NEXT_EL", 3);

@@ -446,6 +446,8 @@ export default {
         },
       ],
 
+      loading: false,
+
       dataObject: {
         title: null,
         industry_id: "",
@@ -499,7 +501,8 @@ export default {
 
     next() {
       if (this.stepNum === this.steps.length) {
-       this.onComplete();
+        if(!this.loading) this.onComplete();
+        this.loading = true
       } else {
         this.stepNum++;
       }
@@ -512,8 +515,8 @@ export default {
           title: 'Successful',
           text: 'Campaign created successfully',
         })
-        this.list();
         this.resetForm()
+        this.list();
         this.$router.push('/campaigns')
       });
     },

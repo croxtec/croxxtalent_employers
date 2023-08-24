@@ -52,7 +52,10 @@ export default {
       console.log(this.payload);
       console.log(this.questions)
       this.$store.commit('assessmentDetails/SET_QUESTIONS', this.payload)
-      this.payload = {}
+      this.payload = {
+        type: "reference",
+        question: "",
+      }
     },
     next() {
       this.$store.commit("assessmentHeader/NEXT_EL", 3);
