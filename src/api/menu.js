@@ -66,7 +66,7 @@ const menu = [
     url: "/candidates",
     parent: "candidates",
     lineAfter: false,
-    coming_soon: true
+    coming_soon: false
   },
 
   {
