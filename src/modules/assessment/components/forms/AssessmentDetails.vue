@@ -159,8 +159,6 @@ export default {
   methods: {
     ...mapActions('config', ['getSkills', 'getCores']),
     selectDomain() {
-      // var priceOptions = document.getElementById("mySelect");
-      // var selOption = priceOptions.options[priceOptions.selectedIndex].value;
       this.getCores(this.domain)
     },
     selectCore(){
