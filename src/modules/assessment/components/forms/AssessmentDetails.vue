@@ -191,63 +191,6 @@ export default {
     ...mapState("assessmentDetails", {
       details: (state) => state.details,
     }),
-    // skill: {
-    //   get() {
-    //     return this.details.skill;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.skill = newValue;
-    //   },
-    // },
-    // domain: {
-    //   get() {
-    //     return this.details.domain.name;
-    //   },
-    //   set(newValue) {
-    //     // this.dataObj.domain = newValue;
-    //     this.$store.commit('assessmentDetails/SET_DOMAIN', newValue)
-    //   },
-    // },
-    // core: {
-    //   get() {
-    //     return this.details.core.name;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.core = newValue;
-    //   },
-    // },
-    // delivery: {
-    //   get() {
-    //     return this.details.delivery;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.delivery = newValue;
-    //   },
-    // },
-    // level: {
-    //   get() {
-    //     return this.details.level;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.level = newValue;
-    //   },
-    // },
-    // assessment_name: {
-    //   get() {
-    //     return this.details.assessment_name;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.assessment_name = newValue;
-    //   },
-    // },
-    // category: {
-    //   get() {
-    //     return this.details.category;
-    //   },
-    //   set(newValue) {
-    //     this.dataObj.category = newValue;
-    //   },
-    // },
   },
 };
 </script>

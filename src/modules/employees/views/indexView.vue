@@ -4,14 +4,17 @@
       class="d-flex align-items-center justify-content-end"
       style="gap: 10px"
     >
-      <button disabled
+      <a
+        href="employeeUploadTemplate.xlsx"
+        download
         class="button dark-btn d-flex align-items-center justify-content-center"
         style="gap: 5px"
       >
         <!-- <span> <i-icon icon="solar:download-minimalistic-outline" /> </span><span>Download Template</span> -->
         <span> <i-icon icon="solar:download-minimalistic-outline" /> </span>
-      </button>
-      <button disabled
+      </a>
+      <button
+        @click="importEmployees"
         class="button dark-btn d-flex align-items-center justify-content-center"
         style="gap: 5px"
       >
@@ -47,6 +50,9 @@
 
     <!-- Create Employee Modal  -->
     <create-employee v-if="create_employee" @close="closeModal"/>
+
+    <!-- Upload Employee  -->
+    <upload-employees v-if="import_employees"  @closeModal="closeImportModal"/>
   </div>
 </template>
 
@@ -54,8 +60,9 @@
 import DataTable from "../components/tables/DataTable.vue";
 import { mapActions, mapState } from "vuex";
 import CreateEmployee from '../components/modals/CreateEmployee.vue';
+import UploadEmployees from '../components/modals/UploadEmployees.vue';
 export default {
-  components: { DataTable, CreateEmployee },
+  components: { DataTable, CreateEmployee, UploadEmployees },
   data(){
     return{
     }
@@ -65,8 +72,17 @@ export default {
     createEmployee(){
       this.$store.commit("employees/SET_CREATE", true)
     },
+
     closeModal() {
       this.$store.commit("employees/SET_CREATE", false)
+    },
+
+    closeImportModal(){
+      this.$store.commit("employees/SET_IMPORT", false)
+    },
+    
+    importEmployees(){
+      this.$store.commit("employees/SET_IMPORT", true)
     }
   },
   beforeMount() {
@@ -75,7 +91,8 @@ export default {
   },
   computed: {
     ...mapState("employees", {
-      create_employee: (state) => state.createEmployeeModal
+      create_employee: (state) => state.createEmployeeModal,
+      import_employees: (state) => state.importEmployeeModal,
     })
   }
 };

@@ -14,7 +14,8 @@ const getDefaultState = () => {
     dataSetTotal: 0,
     dataSetLastPage: 1,
     validationErrors: {},
-    createEmployeeModal: false
+    createEmployeeModal: false,
+    importEmployeeModal: false
   };
 };
 
@@ -68,6 +69,10 @@ export default {
       state.createEmployeeModal = payload
     },
 
+    SET_IMPORT(state, payload) {
+      state.importEmployeeModal = payload
+    },
+
     REMOVE_ALERTS(state) {
       state.error = false;
       state.success = false;
@@ -99,7 +104,7 @@ export default {
       }
     },
 
-    // Contact Us request
+    // Create Employee
     async create({ commit, dispatch }, payload) {
       NProgress.start();
       commit("SET_LOADING_STATUS");
@@ -111,6 +116,41 @@ export default {
           text: 'Employee invitation sent successfully',
         })
         commit("SET_CREATE", false)
+        commit("SET_SUCCESS", true);
+        dispatch("list");
+        return res;
+      } catch (error) {
+        console.log(error.data);
+        if (error.data) {
+          let errorPayload = error.data;
+          if (errorPayload.message) {
+            commit("SET_ERROR", errorPayload.message);
+            if (errorPayload.errors) {
+              console.log(errorPayload.errors);
+              commit("SET_VALIDATION_ERRORS", errorPayload.errors);
+            }
+            return;
+          }
+        }
+        commit("SET_ERROR", "Internal connection error, please try again.");
+        return error.response;
+      } finally {
+        NProgress.done();
+      }
+    },
+
+    // Upload Employees
+    async import({ commit, dispatch }, payload) {
+      NProgress.start();
+      commit("SET_LOADING_STATUS");
+      try {
+        let res = await $request.post(`employers/employee/import`, payload);
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Employee invitation sent successfully',
+        })
+        commit("SET_IMPORT", false)
         commit("SET_SUCCESS", true);
         dispatch("list");
         return res;
