@@ -10,7 +10,7 @@
         <div>
           <!-- {{ dataSet }} -->
         </div>
-        <el-dropdown trigger="click">
+        <!-- <el-dropdown trigger="click">
           <span class="el-dropdown-link header-select">
             <span>{{ selectType }}</span
             ><i class="el-icon-arrow-down el-icon--right"></i>
@@ -19,71 +19,93 @@
             <el-dropdown-item >Select All</el-dropdown-item>
             <el-dropdown-item v-for="item in dataSet" :key="item.id"><span  @click="selectJob(item)"  >{{ item.job_title }}</span></el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
       </div>
     </div>
-
-    <el-collapse v-model="activeNames">
-      <el-collapse-item
-        v-for="(domain, key_domain) in results"
-        :key="domain.name"
-        :title="domain.name"
-        :name="key_domain"
+    <div v-if="loading">
+      <span>Fetching Data</span>
+      <i-icon
+        icon="eos-icons:three-dots-loading"
+        style="color: var(--primary-500)"
+        width="60px"
+      />
+    </div>
+    <div v-else>
+      <span class="error-alert" v-if="error">
+        {{ error }}
+      </span>
+      <div
+        class="d-flex justify-content-center"
+        v-else-if="results.length === 0"
       >
-        <div class="skill-header">
-          <div class="skills-list" :id="key_domain">
-            <span
-              role="button"
-              @click="switchActive(key_domain, key_core)"
-              :class="{
-                active: competency[key_domain]?.activeCore === key_core,
-              }"
-              v-for="(core, key_core) in domain.core"
-              :key="key_core"
-            >
-              {{ core.name }}
-            </span>
-          </div>
-          <div class="arrows">
-            <span
-              class="left-arrow"
-              role="button"
-              @click="scrollButton('left', key_domain)"
-              @mousedown="scrollButton('left', key_domain)"
-            >
-              <i-icon icon="prime:angle-left" width="25px" />
-            </span>
-            <span
-              class="right-arrow"
-              role="button"
-              @click="scrollButton('right', key_domain)"
-              @mousedown="scrollButton('right', key_domain)"
-            >
-              <i-icon icon="prime:angle-right" width="25px" />
-            </span>
-          </div>
-        </div>
-        <div class="manager-data mt-3">
-          <div
-            class="manager-info text-center"
-            role="button"
-            @click="gotoManagement(skill.skill_id)"
-            v-for="skill in domain.core[competency[key_domain]?.activeCore]
-              ?.skills"
-            :key="skill.id"
+        <img src="@/assets/img/empty.svg" alt="" />
+      </div>
+      <div v-else >
+        <el-collapse v-model="activeNames">
+          <el-collapse-item
+            v-for="(domain, key_domain) in results"
+            :key="domain.name"
+            :title="domain.name"
+            :name="key_domain"
           >
-            <!-- <span
-              class="d-flex align-items-center justify-content-center"
-              style="gap: 4px"
-            >
-              <span class="manager-tag" v-text="skill.level"></span>
-              <span class="manager-count">20</span>
-            </span> -->
-            <h6 class="manager-name" v-text="skill.skill_name"></h6>
-          </div>
-        </div>
-      </el-collapse-item>
-    </el-collapse>
+            <div class="skill-header">
+              <div class="skills-list" :id="key_domain">
+                <span
+                  role="button"
+                  @click="switchActive(key_domain, key_core)"
+                  :class="{
+                    active: competency[key_domain]?.activeCore === key_core,
+                  }"
+                  v-for="(core, key_core) in domain.core"
+                  :key="key_core"
+                >
+                  {{ core.name }}
+                </span>
+              </div>
+              <div class="arrows">
+                <span
+                  class="left-arrow"
+                  role="button"
+                  @click="scrollButton('left', key_domain)"
+                  @mousedown="scrollButton('left', key_domain)"
+                >
+                  <i-icon icon="prime:angle-left" width="25px" />
+                </span>
+                <span
+                  class="right-arrow"
+                  role="button"
+                  @click="scrollButton('right', key_domain)"
+                  @mousedown="scrollButton('right', key_domain)"
+                >
+                  <i-icon icon="prime:angle-right" width="25px" />
+                </span>
+              </div>
+            </div>
+            <div class="manager-data mt-3">
+              <div
+                class="manager-info text-center"
+                role="button"
+                @click="gotoManagement(skill.skill_id)"
+                v-for="skill in domain.core[competency[key_domain]?.activeCore]
+                  ?.skills"
+                :key="skill.id"
+              >
+                <!-- <span
+                  class="d-flex align-items-center justify-content-center"
+                  style="gap: 4px"
+                >
+                  <span class="manager-tag" v-text="skill.level"></span>
+                  <span class="manager-count">20</span>
+                </span> -->
+                <h6 class="manager-name" v-text="skill.skill_name"></h6>
+              </div>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -93,7 +115,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      activeNames: [],
+      activeNames: [0, 1, 2],
       activeEl: 0,
       percentage: 30,
       customColor: "#0040A1",
@@ -104,6 +126,7 @@ export default {
 
   computed: {
     ...mapState("competency", {
+      loading: (state) => state.loading,
       results: (state) => state.dataSet,
     }),
     ...mapState("job_codes", {

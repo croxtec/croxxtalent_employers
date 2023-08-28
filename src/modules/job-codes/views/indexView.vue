@@ -1,7 +1,22 @@
 <template>
   <div id="campaigns" class="spacer">
-    <div class="heaader d-flex justify-content-end">
-        <button class="button dark-btn d-flex align-items-center" style="gap:4px" @click="createJobCode">
+    <div class="heaader d-flex justify-content-end" style="gap: 10px">
+      <button disabled
+        class="button dark-btn d-flex align-items-center justify-content-center"
+        style="gap: 5px"
+      >
+        <!-- <span> <i-icon icon="solar:download-minimalistic-outline" /> </span><span>Download Template</span> -->
+        <span> <i-icon icon="solar:download-minimalistic-outline" /> </span>
+      </button>
+      <button disabled="true"
+        class="button dark-btn d-flex align-items-center justify-content-center"
+        style="gap: 5px"
+      >
+        <span> <i-icon icon="solar:upload-minimalistic-outline" /> </span
+        ><span>Upload Job Code</span>
+      </button>
+      
+      <button class="button dark-btn d-flex align-items-center" style="gap:4px" @click="createJobCode">
         <span> <i-icon icon="material-symbols:add"/> </span>
         <span>Add Job Code</span>
       </button>

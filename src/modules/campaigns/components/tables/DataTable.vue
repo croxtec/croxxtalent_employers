@@ -1,111 +1,133 @@
 <template>
   <div>
-    <div class="table-responsive">
-      <table class="table table-centered table-nowrap">
-        <tr v-for="(item, index) in results" :key="index" role="button">
-          <td @click="getDetails(item)">
-            <div class="d-flex flex-start" style="gap: 15px">
-              <img :src="item.photo_url === null ? require('@/assets/img/croxxtalent_default_logo.png') : item.photo_url" alt="" style="" />
-              <div class="d-flex flex-column" style="gap: 25px">
-                <div class="td">
-                  <h6 class="cell-header" v-text="item.job_title"></h6>
-                  <h6 class="cell-content">
-                    {{ item.city }}
-                    <i-icon icon="material-symbols:circle" width="5px" />
-                    {{ item.country_name }}
-                    <i-icon icon="material-symbols:circle" width="5px" />
-                    {{ item.work_type }}
-                  </h6>
-                </div>
-                <div class="d-flex justify-content-between" v-if="details === item.id">
-                  <div class="td">
-                    <h6 class="cell-header">Industry</h6>
-                    <h6 class="cell-content" v-text="item.industry_name"></h6>
-                  </div>
-                  <div class="td">
-                    <h6 class="cell-header">Experience</h6>
-                    <h6 class="cell-content" v-text="item.years_of_experience + ' years'"></h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td @click="getDetails(item)">
-            <div class="d-flex flex-column" style="gap: 20px">
-              <div class="td">
-                <h6 class="cell-header">No. of Applicants</h6>
-                <h6 class="cell-content" v-text="item.total_applications"></h6>
-              </div>
-              <div class="td" v-if="details === item.id">
-                <h6 class="cell-header">Work type</h6>
-                <h6 class="cell-content" v-text="item.work_type"></h6>
-              </div>
-            </div>
-          </td>
-          <td @click="getDetails(item)">
-            <div class="d-flex flex-column" style="gap: 20px">
-              <div class="td">
-                <h6 class="cell-header">Date Created</h6>
-                <h6 class="cell-content">{{ dateStamp(item.created_at) }}</h6>
-              </div>
-              <div class="td" v-if="details === item.id">
-                <h6 class="cell-header">Salary Range</h6>
-                <h6 class="cell-content">{{ item.currency_symbol+dollarFilter2(item.min_salary) }} - {{ item.currency_symbol+dollarFilter2(item.max_salary) }}</h6>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="d-flex flex-column" style="gap: 20px">
-              <div class="d-flex justify-content-between align-items-center">
-                <span  @click="getDetails(item)" class="status" :class="{'pending': !item.is_published}" style="width: max-content"
-                >{{ item.is_published ? 'Published':'In Review'}}</span
-              >
-              <el-dropdown trigger="click">
-                  <span class="el-dropdown-link">
-                    <i-icon icon="icon-park-outline:more" width="20px" />
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>
-                      <i-icon icon="solar:eye-outline" />
-                      View
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                      <i-icon icon="lucide:edit" />
-                      Edit</el-dropdown-item
-                    >
-                    <!-- <el-dropdown-item>
-                      <span>
-                        <i-icon icon="humbleicons:user-add" />
-                        Publish
-                      </span>
-                    </el-dropdown-item> -->
-                    <el-dropdown-item>
-                      <i-icon icon="solar:archive-linear" />
-                      Archive
-                    </el-dropdown-item>
+    <div v-if="loading">
+      <span>Retrieving Data</span>
+      <i-icon
+        icon="eos-icons:three-dots-loading"
+        style="color: var(--primary-500)"
+        width="60px"
+      />
+    </div>
 
-                    <el-dropdown-item class="text-danger">
-                      <i-icon icon="fluent:delete-24-regular" />
-                      Delete</el-dropdown-item
-                    >
-                  </el-dropdown-menu>
-                </el-dropdown>
+    <div v-else>
+      <span class="error-alert" v-if="error">
+        {{ error }}
+      </span>
+      <div
+        class="d-flex justify-content-center"
+        v-else-if="results.length === 0"
+      >
+        <img src="@/assets/img/empty.svg" alt="" />
+      </div>
+      <div v-else class="d-flex flex-column" style="gap: 20px">
+      <div class="table-responsive">
+        <table class="table table-centered table-nowrap">
+          <tr v-for="(item, index) in results" :key="index" role="button">
+            <td @click="getDetails(item)">
+              <div class="d-flex flex-start" style="gap: 15px">
+                <img :src="item.photo_url === null ? require('@/assets/img/croxxtalent_default_logo.png') : item.photo_url" alt="" style="" />
+                <div class="d-flex flex-column" style="gap: 25px">
+                  <div class="td">
+                    <h6 class="cell-header" v-text="item.job_title"></h6>
+                    <h6 class="cell-content">
+                      {{ item.city }}
+                      <i-icon icon="material-symbols:circle" width="5px" />
+                      {{ item.country_name }}
+                      <i-icon icon="material-symbols:circle" width="5px" />
+                      {{ item.work_type }}
+                    </h6>
+                  </div>
+                  <div class="d-flex justify-content-between" v-if="details === item.id">
+                    <div class="td">
+                      <h6 class="cell-header">Industry</h6>
+                      <h6 class="cell-content" v-text="item.industry_name"></h6>
+                    </div>
+                    <div class="td">
+                      <h6 class="cell-header">Experience</h6>
+                      <h6 class="cell-content" v-text="item.years_of_experience + ' years'"></h6>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="td" v-if="details === item.id">
-                <span class="status managed" style="width: max-content" v-if="item.is_managed"
-                  >Managed By Croxxtalent</span
+            </td>
+            <td @click="getDetails(item)">
+              <div class="d-flex flex-column" style="gap: 20px">
+                <div class="td">
+                  <h6 class="cell-header">No. of Applicants</h6>
+                  <h6 class="cell-content" v-text="item.total_applications"></h6>
+                </div>
+                <div class="td" v-if="details === item.id">
+                  <h6 class="cell-header">Work type</h6>
+                  <h6 class="cell-content" v-text="item.work_type"></h6>
+                </div>
+              </div>
+            </td>
+            <td @click="getDetails(item)">
+              <div class="d-flex flex-column" style="gap: 20px">
+                <div class="td">
+                  <h6 class="cell-header">Date Created</h6>
+                  <h6 class="cell-content">{{ dateStamp(item.created_at) }}</h6>
+                </div>
+                <div class="td" v-if="details === item.id">
+                  <h6 class="cell-header">Salary Range</h6>
+                  <h6 class="cell-content">{{ item.currency_symbol+dollarFilter2(item.min_salary) }} - {{ item.currency_symbol+dollarFilter2(item.max_salary) }}</h6>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex flex-column" style="gap: 20px">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span  @click="getDetails(item)" class="status" :class="{'pending': !item.is_published}" style="width: max-content"
+                  >{{ item.is_published ? 'Published':'In Review'}}</span
                 >
+                <el-dropdown trigger="click">
+                    <span class="el-dropdown-link">
+                      <i-icon icon="icon-park-outline:more" width="20px" />
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>
+                        <i-icon icon="solar:eye-outline" />
+                        View
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <i-icon icon="lucide:edit" />
+                        Edit</el-dropdown-item
+                      >
+                      <!-- <el-dropdown-item>
+                        <span>
+                          <i-icon icon="humbleicons:user-add" />
+                          Publish
+                        </span>
+                      </el-dropdown-item> -->
+                      <el-dropdown-item>
+                        <i-icon icon="solar:archive-linear" />
+                        Archive
+                      </el-dropdown-item>
+
+                      <el-dropdown-item class="text-danger">
+                        <i-icon icon="fluent:delete-24-regular" />
+                        Delete</el-dropdown-item
+                      >
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </div>
+                <div class="td" v-if="details === item.id">
+                  <span class="status managed" style="width: max-content" v-if="item.is_managed"
+                    >Managed By Croxxtalent</span
+                  >
+                </div>
               </div>
-            </div>
-          </td>
-          <!-- <td>
-            <div class="d-flex flex-column" style="gap: 20px">
-              
-              
-            </div>
-          </td> -->
-        </tr>
-      </table>
+            </td>
+            <!-- <td>
+              <div class="d-flex flex-column" style="gap: 20px">
+                
+                
+              </div>
+            </td> -->
+          </tr>
+        </table>
+      </div>
+      </div>
     </div>
   </div>
 </template>

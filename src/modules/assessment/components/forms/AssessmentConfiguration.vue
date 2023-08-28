@@ -1,67 +1,82 @@
 <template>
-  <div class="form-data">
-    <div
-      class="d-flex align-items-center"
-      style="gap: 20px"
-      v-if="details.category === 'job specific'"
-    >
-      <span class="label">Assign Job Title</span>
-      <!-- <div>
-        {{ job_codes }}
-      </div> -->
-      <div class="w-100">
-        <select name="" id="" class="" v-model="job_code_id">
-          <option value="" selected disable>Select job title</option>
-          <option :value="item.id" v-for="item in job_codes" :key="item.id">
-            {{ item.job_title }}
-          </option>
-        </select>
+  <validation-observer  ref="form" v-slot="{ invalid }">
+    <div class="form-data">
+      <div
+        class="d-flex align-items-center"
+        style="gap: 20px"
+        v-if="details.category === 'job specific'"
+      >
+        <span class="label">Assign Job Title</span>
+        <!-- <div>
+          {{ job_codes }}
+        </div> -->
+        <validation-provider v-slot="validationContext" vid="assign_manager"  name="Assign manager" rules="required">
+          <div class="w-100">
+            <select name="" id="" class="" v-model="job_code_id">
+              <option value="" selected disable>Select job title</option>
+              <option :value="item.id" v-for="item in job_codes" :key="item.id">
+                {{ item.job_title }}
+              </option>
+            </select>
+          </div>
+          <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
+        <!-- <div>
+          {{ details }}
+        </div> -->
+      </div>
+      <div v-else>
+        <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
+          <div class="d-flex align-items-center" style="gap: 20px">
+          <span class="label">Assign Employees</span>
+            <div class="w-100">
+              <el-select v-model="value1" multiple placeholder="Select Employees">
+                <el-option
+                  v-for="item in employees"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                >
+                </el-option>
+              </el-select>
+            </div>
+          </div>
+          <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
+        <hr style="border-color: var(--primary-200)" />
+        <validation-provider v-slot="validationContext" vid="employees"  name="Employees" rules="required">
+          <div class="d-flex align-items-center" style="gap: 20px">
+            <span class="label">Assign Manager</span>
+            <div class="w-100">
+              <el-select v-model="value2" multiple placeholder="Select Managers">
+                <el-option
+                  v-for="item in employees"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                >
+                </el-option>
+              </el-select>
+              
+            </div>
+          </div>
+          <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+        </validation-provider>
+      </div>
+  
+      <div class="footer-data d-flex mx-auto" style="gap: 20px">
+        <button class="button outline-btn"  @click="prev">Prev</button>
+        <button :disabled="invalid" :class="{ 'bg-secondary': invalid }"  @click="submit" class="primary-btn button">Submit</button>
       </div>
     </div>
-    <!-- <div>
-      {{ details }}
-    </div> -->
-    <div v-else>
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <span class="label">Assign Candidates</span>
-
-        <div class="w-100">
-          <el-select v-model="value1" multiple placeholder="Select Employees">
-            <el-option
-              v-for="item in employees"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
-        </div>
-      </div>
-      <hr style="border-color: var(--primary-200)" />
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <span class="label">Assign Manager</span>
-        <div class="w-100">
-          <el-select v-model="value2" multiple placeholder="Select Managers">
-            <el-option
-              v-for="item in employees"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-2 text-center">
-      <button @click="submit" class="primary-btn button">Submit</button>
-    </div>
-  </div>
+  </validation-observer>
+    
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -73,6 +88,9 @@ export default {
   methods: {
     ...mapActions("job_codes", ["list"]),
     ...mapActions("assessments", ["create"]),
+    prev() {
+      this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 2);
+    },
     submit() {
       let data = {
         domain_id: this.details.domain,
@@ -91,12 +109,24 @@ export default {
         candidates: this.value1,
         managers: this.value2,
       }
+
       let generic_payload = Object.assign(data, generic)
       let specific_payload = Object.assign(data, specific)
+
       this.create(
         this.details.category === "generic" ? generic_payload : specific_payload
-      )
-      console.log(specific_payload, generic_payload);
+      ).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: 'Assessment created successfully',
+        });
+
+        this.$store.commit("assessmentDetails/SET_REFRESH_STATE");
+        this.$store.commit("assessmentHeader/SET_ACTIVE_EL", 1);
+        this.$router.go(-1)
+
+      });
     },
   },
   beforeMount() {

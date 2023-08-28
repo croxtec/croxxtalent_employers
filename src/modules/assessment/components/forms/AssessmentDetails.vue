@@ -1,110 +1,143 @@
 <template>
   <div>
-    <form class="form-data" @submit.prevent="goToNext">
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <div class="w-100">
-          <label for="">Domain <span class="text-danger">*</span></label>
-          <select @change="selectDomain" v-model="domain" id="mySelect">
-            <option value="-" selected disabled>Select Skill</option>
-            <option :value="item.id" v-for="item in domains" :key="item.id">
-              {{ item.name }}
-            </option>
-          </select>
+    <validation-observer  ref="form" v-slot="{ invalid, handleSubmit }">
+      <form class="form-data" @submit.prevent="handleSubmit(goToNext)">
+        <div class="d-flex align-items-center" style="gap: 20px">
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="domain_id"  name="domain" rules="required">
+              <label for="">Domain <span class="text-danger">*</span></label>
+              <select @change="selectDomain" v-model="domain" id="mySelect">
+                <option value="" selected disabled>Select  Domain</option>
+                <option :value="item.id" v-for="item in domains" :key="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
+
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="core_id"  name="core" rules="required">
+              <label for="">Core <span class="text-danger">*</span></label>
+              <select @change="selectCore" v-model="core" id="mySelect2">
+                <option value="" selected disabled>Select Core</option>
+                <option :value="item.id" v-for="item in cores" :key="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
         </div>
 
-        <div class="w-100">
-          <label for="">Core <span class="text-danger">*</span></label>
-          <select @change="selectCore" v-model="core" id="mySelect2">
-            <option value="-" selected disabled>Select Core</option>
-            <option :value="item.id" v-for="item in cores" :key="item.id">
-              {{ item.name }}
-            </option>
-          </select>
+        <div class="d-flex align-items-center" style="gap: 20px">
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="skill_id"  name="skill" rules="required">
+              <label for="">Skill <span class="text-danger">*</span></label>
+              <select v-model="skill" id="mySelect3">
+                <option value="" selected disabled>Select Core</option>
+                <option :value="item.id" v-for="item in skills" :key="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="core_id"  name="core" rules="required">
+              <label for="">Level <span class="text-danger">*</span></label>
+              <select v-model="level">
+                <option value="" selected disabled>Select Level</option>
+                <option :value="item.value" v-for="item in levels" :key="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
         </div>
-      </div>
 
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <div class="w-100">
-          <label for="">Skill <span class="text-danger">*</span></label>
-          <select v-model="skill" id="mySelect3">
-            <option value="-" selected disabled>Select Core</option>
-            <option :value="item.id" v-for="item in skills" :key="item.id">
-              {{ item.name }}
-            </option>
-          </select>
+        <hr style="border-color: var(--primary-200)" />
+
+        <div class="d-flex align-items-center" style="gap: 20px">
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="assessment_name"  name="Assessment Name" rules="required|min:5|max:50">
+              <label for=""
+                >Assessment Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                v-model="assessment_name"
+                placeholder="Assessment Name"
+              />
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
+          <div class="w-100">
+            <validation-provider v-slot="validationContext" vid="categories"  name="categories" rules="required">
+              <label for="">Categories <span class="text-danger">*</span></label>
+              <select v-model="category">
+                <option value="" selected disabled>Select Category</option>
+                <option
+                  :value="item.value"
+                  v-for="item in categories"
+                  :key="item.id"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+            </validation-provider>
+          </div>
         </div>
-        <div class="w-100">
-          <label for="">Level <span class="text-danger">*</span></label>
-          <select v-model="level">
-            <option value="-" selected disabled>Select Level</option>
-            <option :value="item.value" v-for="item in levels" :key="item.id">
-              {{ item.name }}
-            </option>
-          </select>
+        <div class="d-flex align-items-center" style="gap: 20px">
+          <div class="w-100">
+            <label for="">Delivery Type <span class="text-danger">*</span></label>
+            <select v-model="delivery">
+              <option value="" selected disabled>Select Delivery Type</option>
+              <option
+                :value="item.value"
+                v-for="item in delivery_type"
+                :key="item.id"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+          <div class="w-100">
+            <label for=""
+              >Validity Period </label>
+            <select>
+              <option value="" selected disabled>Select Validity Period</option>
+              <option value="valid">Valid</option>
+              <option value="not valid">Not Valid</option>
+            </select>
+          </div>
         </div>
-      </div>
-
-      <hr style="border-color: var(--primary-200)" />
-
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <div class="w-100">
-          <label for=""
-            >Assessment Name <span class="text-danger">*</span></label
+        <div>
+          <validation-provider v-slot="validationContext" vid="description"  name="description" rules="required|min:15|max:500">
+              <label for=""
+                >Description <span class="text-danger">*</span></label>
+              <textarea
+                name=""
+                id="" cols="30" rows="6"
+                placeholder="Assesment Description"
+                v-model="description"></textarea>
+              <small class="text-danger my-2" v-text="validationContext.errors[0]"></small>
+          </validation-provider>
+        </div>
+        <div class="mt-2 text-center">
+          <button
+            :disabled="invalid"
+            :class="{ 'bg-secondary': invalid }"
+            class="primary-btn button"
+            style="width: max-content"
           >
-          <input
-            type="text"
-            v-model="assessment_name"
-            placeholder="Assessment Name"
-          />
+            Next
+          </button>
         </div>
-        <div class="w-100">
-          <label for="">Categories <span class="text-danger">*</span></label>
-          <select v-model="category">
-            <option value="-" selected disabled>Select Category</option>
-            <option
-              :value="item.value"
-              v-for="item in categories"
-              :key="item.id"
-            >
-              {{ item.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="d-flex align-items-center" style="gap: 20px">
-        <div class="w-100">
-          <label for="">Delivery Type <span class="text-danger">*</span></label>
-          <select v-model="delivery">
-            <option value="-" selected disabled>Select Delivery Type</option>
-            <option
-              :value="item.value"
-              v-for="item in delivery_type"
-              :key="item.id"
-            >
-              {{ item.name }}
-            </option>
-          </select>
-        </div>
-        <div class="w-100">
-          <label for=""
-            >Validity Period <span class="text-danger">*</span></label
-          >
-          <select>
-            <option value="-" selected disabled>Select Validity Period</option>
-            <option value="valid">Valid (1 Year to 2 Years)</option>
-            <option value="not valid">Not Valid (1 Year to 2 Years)</option>
-          </select>
-        </div>
-      </div>
-      <div class="mt-2 text-center">
-        <button
-          class="primary-btn button"
-          style="width: max-content"
-        >
-          next
-        </button>
-      </div>
-    </form>
+      </form>
+    </validation-observer>
   </div>
 </template>
 
@@ -119,19 +152,18 @@ export default {
         level: "",
         assessment_name: "",
         category: "",
-        domain: ""
+        domain: "",
+        description: ""
     };
   },
   methods: {
-    ...mapActions('config', ['getSkills', 'getCore']),
+    ...mapActions('config', ['getSkills', 'getCores']),
     selectDomain() {
       // var priceOptions = document.getElementById("mySelect");
       // var selOption = priceOptions.options[priceOptions.selectedIndex].value;
-      this.getCore(this.domain)
+      this.getCores(this.domain)
     },
     selectCore(){
-      // var priceOptions = document.getElementById("mySelect2");
-      // var selOption = priceOptions.options[priceOptions.selectedIndex].value;
       this.getSkills(this.core)
     },
     goToNext() {
@@ -142,9 +174,9 @@ export default {
         level: this.level,
         assessment_name: this.assessment_name,
         category: this.category,
-        domain: this.domain
+        domain: this.domain,
+        description: this.description
       };
-      console.log(payload);
       this.$store.commit("assessmentDetails/SET_DETAILS", payload);
       this.$emit("next");
     },

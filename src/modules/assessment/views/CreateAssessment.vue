@@ -7,7 +7,6 @@
           <AssessmentConfiguration v-if="activeEl === 3"/>
         </div>
         <QuestionCreationHome v-if="activeEl === 2"/>
-       
       </div>
     <!-- <button class="primary-btn" @click="goToNext">next</button> -->
   </div>

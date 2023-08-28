@@ -1,7 +1,8 @@
 <template>
   <div>
+    <!-- @click="selectHeader(item)"   -->
     <div class="assessment-header">
-        <span role="button" v-for="item in assessmentHeaderMenu" :key="item.id" @click="selectHeader(item)"
+        <span role="button" v-for="item in assessmentHeaderMenu" :key="item.id"  
         :class="{'active-header': activeEl === item.id}">{{ item.title }}</span>
     </div>
   </div>
