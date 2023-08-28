@@ -28,6 +28,7 @@ Vue.component("validation-provider", ValidationProvider);
 Vue.component("validation-observer", ValidationObserver);
 
 import Vue2Editor from 'vue2-editor';
+Vue.use(Vue2Editor);
 
 import 'toastify-js/src/toastify.css';
 
@@ -36,7 +37,10 @@ import { Icon } from '@iconify/vue2';
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
-Vue.use(Vue2Editor);
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect)
+
+import 'vue-select/dist/vue-select.css';
 
 Vue.component('i-icon', Icon);
 

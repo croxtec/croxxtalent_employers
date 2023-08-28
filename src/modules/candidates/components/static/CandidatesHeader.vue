@@ -1,70 +1,119 @@
 <template>
   <div class="heaader d-flex justify-content-between align-items-center">
-    <div class="header-container ">
+    <div class="header-container">
       <span
+        v-for="item in options"
+        :key="item.id"
         role="button"
         class="header-item"
-        :class="{ 'active-item': activeEl === '1' }"
-        @click="switchSection('1')"
-        >Active</span
-      >
-      <span
-        class="header-item"
-        :class="{ 'active-item': activeEl === '2' }"
-        role="button"
-        @click="switchSection('2')"
-        >Reviewed</span
-      >
-      <span
-        class="header-item"
-        :class="{ 'active-item': activeEl === '3' }"
-        role="button"
-        @click="switchSection('3')"
-        >In-Progress</span
-      >
-      <span
-        class="header-item"
-        :class="{ 'active-item': activeEl === '4' }"
-        role="button"
-        @click="switchSection('4')"
-        >Rejected</span
-      >
-      <span
-        class="header-item"
-        :class="{ 'active-item': activeEl === '5' }"
-        role="button"
-        @click="switchSection('5')"
-        >Withdraw</span
+        :class="{ 'active-item': item.active }"
+        @click="makeActive(item)"
+        >{{ item.title }}</span
       >
     </div>
 
     <div class="">
-      <el-dropdown trigger="click">
+      <v-select label="title" v-model="selectedCampaign" :options="results" placeholder="Select Campaign">
+        <template #open-indicator="{ attributes }">
+          <span v-bind="attributes">
+            <i-icon icon="radix-icons:caret-down" width="24px"/>
+          </span>
+        </template></v-select
+      >
+      <!-- <el-dropdown trigger="click">
         <span class="el-dropdown-link header-select">
-          <span>Select All</span><i class="el-icon-arrow-down el-icon--right"></i>
+          <span>Select Campaign</span
+          ><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>Action 1</el-dropdown-item>
-          <el-dropdown-item>Action 2</el-dropdown-item>
-          <el-dropdown-item>Action 3</el-dropdown-item>
-          <el-dropdown-item>Action 4</el-dropdown-item>
+          <el-dropdown-item v-for="item in results" :key="item.id">
+            <span class="w-100 d-block" @click="selectCampaign(item)">
+              {{ item.title }}
+            </span>
+          </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown>
+      </el-dropdown> -->
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
-      activeEl: "1",
+      options: [
+        {
+          id: 1,
+          title: "Active",
+          active: true,
+        },
+        {
+          id: 2,
+          title: "Reviewed",
+          active: false,
+        },
+        {
+          id: 3,
+          title: "In Progress",
+          active: false,
+        },
+        {
+          id: 4,
+          title: "Rejected",
+          active: false,
+        },
+        {
+          id: 5,
+          title: "Withdraw",
+          active: false,
+        },
+      ],
+      selectedCampaign: ""
     };
   },
   methods: {
-    switchSection(value) {
-      this.activeEl = value;
+    ...mapActions("campaigns", ["list"]),
+    makeActive(selectedItem) {
+      // Mark the clicked item as active
+      this.options.forEach((item) => {
+        item.active = item === selectedItem;
+      });
     },
+
+    selectCampaign(e) {
+      console.log(e);
+    },
+  },
+
+  watch: {
+    selectedCampaign:{
+      handler(val) {
+        this.$emit("getCandidates", val)
+      },
+      immediate: true,
+      deep: true
+    },
+
+    options:{
+      handler(val) {
+        let active = val.find(item => item.active)
+        this.$emit('setTitle', active)
+      },
+      deep: true
+    }
+  },
+
+  beforeMount() {
+    this.list();
+  },
+
+  computed: {
+    ...mapState("campaigns", {
+      results: (state) => state.results,
+      loading: (state) => state.loading,
+      error: (state) => state.error,
+    }),
   },
 };
 </script>
@@ -83,7 +132,6 @@ export default {
 .header-container span.active-item {
   background-color: var(--white);
 }
-
 
 .header-container {
   display: flex;

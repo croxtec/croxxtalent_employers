@@ -8,6 +8,7 @@ import job_codes from "@/modules/job-codes/store/index";
 import assessments from "@/modules/assessment/store/index";
 import competency from "@/modules/competence/store/index";
 import campaigns from "@/modules/campaigns/store/index";
+import candidates from "@/modules/candidates/store/index"
 
 import middleware from "@/middleware/store";
 
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     assessments,
     competency,
     campaigns,
+    candidates,
 
     middleware,
   },

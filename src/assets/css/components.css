@@ -197,6 +197,16 @@ input, textarea {
     font-size: 14px;
 }
 
+.vs__dropdown-toggle {
+    padding: 6px 10px !important;
+    font-weight: 400;
+    border: 1px solid var(--primary-200) !important;
+    border-radius: 25px !important;
+    background-color: transparent;
+    font-size: 13px !important;
+    width: 300px;
+}
+
 input::placeholder, textarea::placeholder {
     font-weight: 400;
     font-size: 13px;
