@@ -9,7 +9,8 @@ import TalentFinder from "@/modules/talents/router";
 import JobCodes from "@/modules/job-codes/router";
 import Employees from "@/modules/employees/router";
 import Candidates from "@/modules/candidates/router";
-import Settings from "@/modules/settings/router"
+import Settings from "@/modules/settings/router";
+import Subscriptions from "@/modules/subscriptions/router"
 
 import Competence from "@/modules/competence/router";
 
@@ -35,7 +36,8 @@ const router = new VueRouter({
     Candidates,
     Middleware,
     Competence,
-    Settings
+    Settings,
+    Subscriptions
   ),
 });
 

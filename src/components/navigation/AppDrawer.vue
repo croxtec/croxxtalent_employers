@@ -1,16 +1,7 @@
 <template>
   <div id="app-drawer" class="py-4">
-    <ul>
-      <li>
-        <!-- <img
-          role="button"
-          @click="collapseAppDrawer"
-          class="menu-icon"
-          src="@/assets/img/drawer.svg"
-          alt=""
-        /> -->
-        <img class="menu-icon mb-4" src="@/assets/img/logo.png" width="200" alt="">
-      </li>
+    <img class="menu-icon mb-4" src="@/assets/img/logo.png" width="200" alt="">
+    <ul class="">
       <li v-for="item in menu" :key="item.id">
         <div class="menu-item">
           <span
@@ -55,8 +46,6 @@
           </div> -->
         </div>
       </li>
-
-     
     </ul>
   </div>
 </template>

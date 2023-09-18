@@ -6,8 +6,6 @@
     position: fixed;
     top: 0;
     border-radius: 0px 40px 40px 0px;
-    /* left: 0; */
-    overflow-y: auto;
     transition: all 0.5s;
 }
 
