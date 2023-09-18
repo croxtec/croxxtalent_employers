@@ -89,10 +89,14 @@ export default {
   watch: {
     selectedCampaign:{
       handler(val) {
-        this.$emit("getCandidates", val)
+        if(val !== "") {
+          this.$emit("getCandidates", val)
+        }
+        else{
+          this.$emit("getCandidates", "")
+        }
       },
       immediate: true,
-      deep: true
     },
 
     options:{

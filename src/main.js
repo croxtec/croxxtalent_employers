@@ -9,6 +9,17 @@ import '@/assets/css/style.css';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import $request from "@/https/axios";
+
+Vue.prototype.$request = $request
+
+import VueTelInput from 'vue-tel-input';
+import 'vue-tel-input/dist/vue-tel-input.css';
+Vue.use(VueTelInput, {
+  dynamicPlaceholder: true, 
+  mode: "international"
+});
+
 // import CountryFlag from "vue-country-flag";
 // Vue.component("country-flag", CountryFlag);
 
@@ -27,8 +38,8 @@ Object.keys(rules).forEach(rule => {
 Vue.component("validation-provider", ValidationProvider);
 Vue.component("validation-observer", ValidationObserver);
 
-import Vue2Editor from 'vue2-editor';
-Vue.use(Vue2Editor);
+// import Vue2Editor from 'vue2-editor';
+// Vue.use(Vue2Editor);
 
 import 'toastify-js/src/toastify.css';
 

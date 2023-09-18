@@ -76,7 +76,7 @@ const menu = [
     url: "/find-talents",
     parent: "find-talents",
     lineAfter: false,
-    coming_soon: true
+    coming_soon: false
   },
 
   {
@@ -96,7 +96,7 @@ const menu = [
     url: "/settings",
     parent: "settings",
     lineAfter: false,
-    coming_soon: true
+    coming_soon: false
   },
 
   {
@@ -106,7 +106,7 @@ const menu = [
     url: "/subscriptions",
     parent: "subscriptions",
     lineAfter: false,
-    coming_soon: true
+    coming_soon: false
   },
 
   {

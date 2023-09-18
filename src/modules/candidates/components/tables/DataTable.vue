@@ -23,26 +23,67 @@
         <div class="table-responsive">
           <table class="table table-centered table-nowrap">
             <tr v-for="(item, index) in results" :key="index" role="button">
-              <td @click="getDetails(item)">
+              <td>
                 <div class="d-flex flex-start" style="gap: 15px">
                   <img
                     :src="
-                      item.photo_url === null
+                      item.talent.photo_url === null
                         ? require('@/assets/img/croxxtalent_default_logo.png')
-                        : item.photo_url
+                        : item.talent.photo_url
                     "
                     alt=""
                     style=""
                   />
                   <div class="d-flex flex-column" style="gap: 25px">
                     <div class="td">
-                      <h6 class="cell-header" v-text="item.job_title"></h6>
-                      <h6 class="cell-content">
-                        {{ item.city }}
-                        <i-icon icon="material-symbols:circle" width="5px" />
-                        {{ item.country_name }}
-                        <i-icon icon="material-symbols:circle" width="5px" />
-                        {{ item.work_type }}
+                      <h6 class="cell-content" v-text="item.talent.name"></h6>
+                      <h6 class="cell-header" v-text="item.talent.email"></h6>
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <div class="d-flex flex-column" style="gap: 20px">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <el-dropdown trigger="click">
+                      <span class="el-dropdown-link">
+                        <i-icon icon="icon-park-outline:more" width="20px" />
+                      </span>
+                      <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>
+                          <span @click="$router.push('/candidate/cv')">
+                            <i-icon icon="solar:eye-outline" />
+                            Preview CV
+                          </span>
+                        </el-dropdown-item>
+                      </el-dropdown-menu>
+                    </el-dropdown>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <!-- <table class="table table-centered table-nowrap">
+            <tr v-for="(item, index) in results" :key="index" role="button">
+              <td @click="getDetails(item)">
+                <div class="d-flex flex-start" style="gap: 15px">
+                  <img
+                    :src="
+                      item.talent.photo_url === null
+                        ? require('@/assets/img/croxxtalent_default_logo.png')
+                        : item.talent.  photo_url
+                    "
+                    alt=""
+                    style=""
+                  />
+                  <div class="d-flex flex-column" style="gap: 25px">
+                    <div class="td">
+                      <h6 class="cell-content" v-text="item.talent.name"></h6>
+                      <h6 class="cell-header" v-text="item.talent.email">
                       </h6>
                     </div>
                     <div
@@ -129,12 +170,6 @@
                           <i-icon icon="lucide:edit" />
                           Edit</el-dropdown-item
                         >
-                        <!-- <el-dropdown-item>
-                        <span>
-                          <i-icon icon="humbleicons:user-add" />
-                          Publish
-                        </span>
-                      </el-dropdown-item> -->
                         <el-dropdown-item>
                           <i-icon icon="solar:archive-linear" />
                           Archive
@@ -157,14 +192,8 @@
                   </div>
                 </div>
               </td>
-              <!-- <td>
-              <div class="d-flex flex-column" style="gap: 20px">
-                
-                
-              </div>
-            </td> -->
             </tr>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
@@ -196,19 +225,22 @@ export default {
     },
 
     getCampaignCandidates() {
-      this.getCandidates(this.campaign)
-      .then((res)=> {
+      this.getCandidates(this.campaign).then((res) => {
         console.log(res.data.data, "kkkk");
-        this.results = res.data.data
+        this.results = res.data.data;
       });
     },
   },
 
   watch: {
-    campaign: function (newVal) {
-      if (newVal) {
-        this.getCampaignCandidates();
-      }
+    campaign: {
+      handler: function (newVal) {
+        if (newVal) {
+          this.getCampaignCandidates();
+        }
+      },
+      immediate: true,
+      deep: true
     },
   },
 

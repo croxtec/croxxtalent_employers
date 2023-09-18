@@ -219,13 +219,13 @@ input::placeholder, textarea::placeholder {
     flex-direction: column;
     gap: 20px;
     width: 60%;
-    /* align-items: center; */
     margin: 30px auto;
 }
 
-option:disabled {
-    /* color:  red; */
-}
+.vue-tel-input {
+    border: 1px solid var(--primary-200) !important;
+    border-radius: 25px !important;
+  }
 
 
 /* Filter  */

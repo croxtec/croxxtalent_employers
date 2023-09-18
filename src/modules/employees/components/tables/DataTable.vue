@@ -64,10 +64,16 @@
                 <div class="td">
                   <h6 class="cell-header">Status</h6>
                   <h6 class="">
-                    <span class="status text-lowercase" style="width:max-content">{{ item.user_id === null ? 'in-active' : 'active' }}</span>
+                    <span
+                      class="status text-lowercase"
+                      style="width: max-content"
+                      >{{
+                        item.user_id === null ? "in-active" : "active"
+                      }}</span
+                    >
                   </h6>
                 </div>
-              </td>  
+              </td>
               <td>
                 <el-dropdown trigger="click">
                   <span class="el-dropdown-link">
@@ -75,22 +81,47 @@
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>
-                      <i-icon icon="solar:eye-outline" />
-                      View
+                      <span
+                        class="tw-flex tw-space-x-1 tw-py-2 tw-mb-2 tw-items-center"
+                        @click="goToEmployee(item)"
+                        role="button"
+                      >
+                        <i-icon icon="solar:eye-outline" />
+                        <span class="tw-text-xs"> View </span>
+                      </span>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                      <i-icon icon="lucide:edit" />
-                      Edit</el-dropdown-item
-                    >
+                      <span
+                        class="tw-flex tw-space-x-1 tw-py-2 tw-items-center tw-mb-2"
+                        @click="goToEmployee"
+                        role="button"
+                      >
+                        <i-icon icon="lucide:edit" />
+                        <span class="tw-text-xs"> Edit </span>
+                      </span>
+                    </el-dropdown-item>
+
                     <el-dropdown-item>
-                      <i-icon icon="solar:archive-linear" />
-                      Archive
+                      <span
+                        class="tw-flex tw-space-x-1 tw-py-2 tw-items-center tw-mb-2"
+                        @click="goToEmployee"
+                        role="button"
+                      >
+                        <i-icon icon="solar:archive-linear" />
+                        <span class="tw-text-xs"> Archive </span>
+                      </span>
                     </el-dropdown-item>
 
                     <el-dropdown-item class="text-danger">
-                      <i-icon icon="fluent:delete-24-regular" />
-                      Delete</el-dropdown-item
-                    >
+                      <span
+                        class="tw-flex tw-space-x-1 tw-py-2 tw-items-center"
+                        @click="goToEmployee"
+                        role="button"
+                      >
+                        <i-icon icon="fluent:delete-24-regular" />
+                        <span class="tw-text-xs"> Delete </span>
+                      </span>
+                    </el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </td>
@@ -115,6 +146,10 @@ export default {
   methods: {
     getDetails(item) {
       this.details = this.details === item.id ? null : item.id;
+    },
+
+    goToEmployee(e) {
+      this.$router.push(`/employee/${e?.id}`)
     },
   },
   computed: {

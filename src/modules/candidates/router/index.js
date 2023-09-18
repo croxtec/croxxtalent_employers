@@ -1,5 +1,6 @@
+import CandidateCV from "../views/CandidateCV.vue"
+
 const Home = () => import("../views/indexView.vue")
-const CreateJobCode = () => import("../views/CreateNewCode.vue")
 
 
 const routes = [
@@ -15,13 +16,13 @@ const routes = [
     },
 
     {
-        path: "/create-code",
-        component: CreateJobCode,
-        name: "create-code",
+        path: "/candidate/cv",
+        component: CandidateCV,
+        name: "candidate-cv",
         meta: {
             layout: 'DashboardLayout',
-            parent: "job-codes",
-            header: "Create New Job Code"
+            parent: "candidates",
+            header: "View Candidate CV"
         }
     }
 ]

@@ -1,5 +1,6 @@
 const Home = () => import("../views/indexView.vue")
 const CreateEmployee = () => import("../views/AddEmployee.vue")
+const ViewEmployee = () => import("../views/_ID.vue")
 
 
 const routes = [
@@ -22,6 +23,17 @@ const routes = [
             layout: 'DashboardLayout',
             parent: "employees",
             header: "Create New Employee"
+        }
+    },
+
+    {
+        path: "/employee/:id",
+        component: ViewEmployee,
+        name: "employee-details",
+        meta: {
+            layout: 'DashboardLayout',
+            parent: "employees",
+            header: "Employee Details"
         }
     }
 ]
