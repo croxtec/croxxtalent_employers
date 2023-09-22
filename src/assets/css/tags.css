@@ -104,8 +104,8 @@
 /* OUTLINE TAGS  */
 .outline-tag {
     border-radius: 20px;
-    padding: 5px 10px;
-    font-size: 13px;
+    padding: 4px 12px;
+    font-size: 11px;
     width: max-content;
     background-color: var(--white-50) !important;
     font-weight: 500;

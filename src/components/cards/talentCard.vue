@@ -1,27 +1,29 @@
 <template>
-   <div class="training--card">
-        <div class="top d-flex justify-content-between align-items-center">
-         <img src="https://getwallpapers.com/wallpaper/full/0/1/1/552509.jpg" alt="">
-        </div>
-        <div class="middle mt-2 text-center">
-          <h6 class=" mb-1" style="color:var(--primary-500)">Chinedu Macauley</h6>
-          <h6 class="font-weight-bolder" style="font-size:15px">Drilling Engineer</h6>
-         
-  
-          <div class="mt-3 d-flex align-items-center flex-wrap justify-content-center" style="gap: 8px">
-            <span class="outline-tag a">Surface cementing</span>
-            <span class="outline-tag d">Coring</span>
-          </div>
-        </div>
+  <div class="tw-flex tw-flex-col tw-space-y-3">
+    <div class="tw-h-56">
+      <img
+        class="tw-rounded-tr-3xl tw-rounded-tl-3xl tw-object-cover tw-h-56 tw-object-center"
+        src="https://getwallpapers.com/wallpaper/full/0/1/1/552509.jpg"
+        alt=""
+      />
+    </div>
+
+    <div
+      class=" tw-flex tw-flex-col tw-space-y-2 tw-items-center tw-border tw-border-primary-300 tw-p-3 tw-rounded-br-3xl tw-rounded-bl-3xl"
+    >
+      <h6 class="tw-text-primary-500 tw-font-medium">Chinedu Macauley</h6>
+      <h6 class="tw-font-semibold tw-text-sm">Drilling Engineer</h6>
+
+      <div class="tw-flex tw-space-x-2">
+        <span class="outline-tag a">Surface cementing</span>
+        <span class="outline-tag d">Coring</span>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>
